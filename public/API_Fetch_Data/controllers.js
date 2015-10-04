@@ -153,6 +153,9 @@ APIFetchController.controller('DemoController', ['$scope', 'CRUDService', '$time
             title: {
                 text: ''
             },
+            credits: {
+                enabled: false
+            },
             xAxis:{
                 categories: [
                     'Positive',
@@ -176,7 +179,7 @@ APIFetchController.controller('DemoController', ['$scope', 'CRUDService', '$time
          */
         var seriesData = _.countBy($scope.data, "PREDICTED_LABEL");
         seriesData['positive']=seriesData['positive'] ?seriesData['positive']:0;
-        var graphData =[{data:[seriesData['positive'],seriesData['negative'],seriesData['neutral']]}] ;
+        var graphData =[{showInLegend: false,data:[seriesData['positive'],seriesData['negative'],seriesData['neutral']]}] ;
         //var graphData =[{data:[0,22,4]}] ;
         // console.log(graphData)
         /*  $scope.barChartConfig.xAxis = {
@@ -230,6 +233,9 @@ APIFetchController.controller('DemoController', ['$scope', 'CRUDService', '$time
             colorAxis: {
                 minColor: '#FFFFFF',
                 maxColor: Highcharts.getOptions().colors[0]
+            },
+            credits: {
+                enabled: false
             },
             title: {
                 text: ''
