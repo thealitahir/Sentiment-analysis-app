@@ -34,7 +34,7 @@ router.get('/fetchData',function(req, res,next){
     console.log(req.params);
    /* var initial_params = decodeURIComponent(req.params.url);
     var params = initial_params + '&test_user=' + testConfig.testUser.id;*/
-    var url="http://45.55.159.119:3000/platalytics/api/version/developers_interface/process/560f9af6dc30bd913c2e6117/smart_sink/560fcf6ed3831ce4552b6861/?SELECT=Predicted_Label,Tweet_Id,userName,screenName,location,dateTime,status &tool=phoenix&start=0&rows=500"+ '&test_user=' + testConfig.testUser.id;;
+    var url="http://45.55.159.119:3000/platalytics/api/version/developers_interface/process/560f9af6dc30bd913c2e6117/smart_sink/560fcf6ed3831ce4552b6861/?SELECT=Predicted_Label,Tweet_Id,userName,screenName,location,dateTime,status%20&ORDER%20BY=dateTime%20DESC%20&tool=phoenix&start=0&rows=500"+ '&test_user=' + testConfig.testUser.id;;
     request(url, function (error, response, body) {
         var parsedBody = "";
         try {
