@@ -34,9 +34,9 @@ APIFetchController.controller('DemoController', ['$scope', 'CRUDService', '$time
     $scope.graphArray=[
         //{type:'line', x_coordinate:'NAME',y_coordinate:[],title:'Highest and Average Tide Height'},
 
-        {type:'column', x_coordinate:'Sentiments',y_coordinate:'Number of views',title:'Sentiment Analyses Bar Chart'},
-        {type:'heatmap', x_coordinate:'Sentiments',y_coordinate:'Number of views',title:'Sentiment Analyses Heat Map'},
-        {type:'pie', x_coordinate:'NAME',y_coordinate:[],title:'Sentiment Analyse Pie Graph'}
+        {type:'column', x_coordinate:'Sentiments',y_coordinate:'Number of views',title:'Sentiment Analysis Bar Chart'},
+        {type:'heatmap', x_coordinate:'Sentiments',y_coordinate:'Number of views',title:'Sentiment Analysis Heat Map'},
+        {type:'pie', x_coordinate:'NAME',y_coordinate:[],title:'Sentiment Analysis Pie Graph'}
         //{type:'area', x_coordinate:'NAME',y_coordinate:'HIGHEST_TIDE',title:'Highest Tide Height Per Station'},
         //{type:'map', x_coordinate:'',y_coordinate:'',title:'Weather Stations'}
     ]

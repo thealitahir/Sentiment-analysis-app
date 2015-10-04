@@ -138,7 +138,7 @@
                     Negative
                 </div>
                 <div class="graph-outer monitoring-pie-chart">
-                    <div class="chart" easypiechart percent="negativeObj.value" options="options">
+                    <div class="chart" easypiechart percent="negativeObj.value/negativeObj.total*100" options="options">
                         <span class="percent {{negativeObj.unit}}" ng-bind="negativeObj.value"></span>
                         <span class="total-value" ng-if="negativeObj.unit !='%' && negativeObj.total > 0">Total: <strong>{{negativeObj.total}}</strong></span>
                     </div>
@@ -150,7 +150,7 @@
                     Neutral
                 </div>
                 <div class="graph-outer monitoring-pie-chart">
-                    <div class="chart" easypiechart percent="neutralObj.value" options="options">
+                    <div class="chart" easypiechart percent="neutralObj.value/neutralObj.total*100" options="options">
                         <span class="percent {{neutralObj.unit}}" ng-bind="neutralObj.value"></span>
                         <span class="total-value" ng-if="neutralObj.unit !='%' && neutralObj.total > 0">Total: <strong>{{neutralObj.total}}</strong></span>
                     </div>
@@ -162,8 +162,8 @@
                     Positive
                 </div>
                 <div class="graph-outer monitoring-pie-chart">
-                    <div class="chart" easypiechart percent="positiveObj.value" options="options">
-                        <span class="percent {{positiveObj.unit}}" ng-bind="positiveObj.value"></span>
+                    <div class="chart" easypiechart percent="positiveObj.value/positiveObj.total*100" options="options">
+                        <span class="percent %" ng-bind="positiveObj.value"></span>
                         <span class="total-value" ng-if="positiveObj.unit !='%' && positiveObj.total > 0">Total: <strong>{{positiveObj.total}}</strong></span>
                     </div>
                 </div>
