@@ -509,7 +509,7 @@ APIFetchController.controller('DemoController', ['$scope', 'CRUDService', '$time
     $scope.fetchData();
     $interval(function(){
         $scope.fetchData();
-    }, 10000);
+    }, 40000);
     $scope.$watchCollection(function(){
         return $scope.data
     }, function(obj) {
