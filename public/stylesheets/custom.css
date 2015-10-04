@@ -1,0 +1,421 @@
+/*!
+ * Custom CSS Classes
+ * Copyright 2014-2016 Platalytics.
+ * Licensed under Platalytics
+ */
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    /*background: #509dd8;*/
+    background: #fcfcfc;
+    padding-top: 61px;
+}
+a,
+a:focus{
+    outline: none;
+}
+button::-moz-focus-inner {
+    border: 0;
+}
+label{
+    font-weight: normal;
+}
+.clear{
+    clear: both;
+}
+.logo {
+    padding: 7px 35px 0px 25px;
+    text-align: center;
+    font-family: "Verdana";
+    font-size: 21px;
+    color: #ffffff;
+}
+
+/* Custom Select/Multi-select CSS
+------------------------------------------------------------*/
+.angular-custom-select .multiselect-parent{
+    width: 100%;
+}
+.angular-custom-select button{
+    width: 100%;
+    text-align: left;
+}
+.angular-custom-select button .caret{
+    position: absolute;
+    right: 12px;
+    top: 14px;
+}
+.angular-custom-select .dropdown-menu .divider{
+    margin: 5px 0px;
+}
+.angular-custom-select .dropdown-header input{
+    height: 28px;
+}
+.angular-custom-select .dropdown-menu{
+    width: 100%;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    max-height: 300px !important;
+}
+.angular-custom-select .radio,
+.angular-custom-select .checkbox{
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+/*---------------------------------*/
+
+nav {
+    /*background-color: #4381b1;*/
+    background-color: #23b7e5;
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1200;
+    height: 47px;
+    border-bottom: solid 1px #e5e5e5;
+}
+nav ul{
+    margin-bottom: 0;
+}
+nav li {
+    float: left;
+    font-size: 18px;
+    list-style-type: none;
+    margin: 0;
+}
+nav a {
+    box-sizing: border-box;
+    color: #ffffff;
+    display: block;
+    font-size: 13px;
+    padding: 13px 20px 14px;
+    text-decoration: none;
+    -webkit-transition: all 0.5s ease 0s;
+    -moz-transition: all 0.5s ease 0s;
+    transition: all 0.5s ease 0s;
+    text-transform: uppercase;
+}
+nav a:hover,
+#sideNav li > a:hover,
+#sideNav li > a.active-menu,
+#topNav li > a:hover,
+#topNav li > a.active-menu,
+.topNavRight li > a:hover, .topNavRight li > a:focus, .topNavRight li > a:active,
+.topNavRight li > a.active-menu,
+.btnMenuWrap li > a.active-menu {
+    /*background-color: #fafafa;*/
+    background-color: #037AA1;
+    color: #666666;
+    text-decoration: none;
+}
+#topNav > li > a{
+    font-weight: bold;
+    height: 47px;
+}
+.topNavRight > li > a {
+    font-weight: bold;
+    height: 46px;
+}
+
+#topNav > li > a span{
+    font-size: 17px;
+    margin-right: 5px;
+}
+
+#topNav > li > a.active-menu{
+    /*color: rgb(124, 181, 236);*/
+    color: #ffffff;
+}
+
+#btnMenu{
+    padding-bottom: 12px;
+    padding-top: 7px;
+    display: block;
+}
+
+.menu-bar{
+    background-color: #ffffff;
+    border-radius: 1px;
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.25);
+    display: block;
+    height: 4px;
+    width: 20px;
+    margin-top: 5px;
+    -webkit-transition: background-color 0.5s ease 0s;
+    -moz-transition: background-color 0.5s ease 0s;
+    transition: background-color 0.5s ease 0s;
+}
+
+#btnMenu:hover .menu-bar{
+    background-color: #666666;
+}
+
+.page-header-theme{
+    /*background: #2b3541;*/
+    background: #3f77a4;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 15px 35px;
+    text-transform: uppercase;
+    margin: 10px 0px;
+}
+
+
+#main-container{
+    margin-left: 58px;
+}
+
+
+
+.table-block{
+    background: #ffffff;
+    padding: 15px;
+    color: #777777;
+    font-size: 14px;
+}
+.table-block table{
+    margin-bottom: 0px;
+}
+.table-block table tr th, .table-block table tr td{
+    border: solid 1px #f2f2f2 !important;
+    background: #ffffff;
+    font-weight: normal;
+}
+.table-block table tr th{
+    color: #666666;
+    text-transform: uppercase;
+}
+.table-block table tr td{
+    color: #939598;
+}
+.table-block table tr:nth-child(odd) td{
+    background: #f9f9f9;
+}
+
+
+
+.graphWrap {
+    position: relative;
+    float: left;
+    /*margin: 1%;*/
+    position: relative;
+    width: 49%;
+    margin-bottom: 15px;
+}
+
+.graphWrap.pie{
+    width: 100%;
+}
+
+.statsWrap{
+    position: relative;
+    float: left;
+    /*margin: 1%;*/
+    position: relative;
+    width: 32%;
+    margin-bottom: 15px;
+    margin-left: 2%;
+}
+
+.stats-container .statsWrap:first-child{
+    margin-left: 0;
+}
+
+
+.slate-graph-title {
+    /*background: none repeat scroll 0 0 #3f77a4;*/
+    background: none #f2f2f2;
+    /*border-bottom: 1px solid #e5e5e5;*/
+    border-bottom: 2px solid #23b7e5;
+    padding: 10px 15px;
+    text-align: center;
+    color: #888888;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 13px;
+}
+
+.configuration-icon{
+    float: left;
+    cursor: pointer;
+    color: #6e6e6e;
+}
+.configuration-block{
+    display: none;
+    position: absolute;
+    left: 0;
+    top: 40px;
+    width: 300px;
+    /*background: #4381b2;*/
+    background: #f9f9f9;
+    color: #333333;
+    z-index: 100;
+    padding: 20px;
+    text-align: left;
+    font-weight: normal;
+    border: solid 1px #e5e5e5;
+    border-top: none;
+}
+
+
+.query-data-chart-block{
+    min-height: 54%;
+    margin: 15px 0px 0px 0px;
+    /*padding: 15px;
+    border: 1px solid #cfdbe2;
+    background: #ffffff;*/
+}
+.query-data-chart-block label{
+    font-weight: normal;
+}
+
+.graph-outer{
+    background-color: #ffffff;
+    width: 100%;
+    padding: 15px;
+}
+
+.topNavRight li.dropdown{
+    float: right;
+}
+
+.topNavRight ul.dropdown-menu {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    /*background-color: #4381b1;*/
+    background-color: #f2f2f2;
+    border-image: none;
+    border-radius: 0;
+    border-right: medium none;
+    border-style: solid none none;
+    border-width: 1px medium medium;
+    box-shadow: none;
+    margin-top: 0;
+    padding: 0;
+    width: 188px;
+}
+
+.topNavRight ul.dropdown-menu li a {
+    border: none;
+    border-bottom: 1px solid #e5e5e5;
+    color: #666666;
+    display: block;
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
+
+.topNavRight ul.dropdown-menu li a span{
+    font-size: 22px;
+    margin-right: 10px;
+    top: -3px;
+}
+
+.topNavRight li a {
+    padding-left: 15px;
+    white-space: nowrap;
+}
+.user-icon{
+    font-size: 22px;
+    margin-right: 10px;
+    top: -3px;
+}
+
+.loading-wrapper{
+    position: fixed;
+    z-index: 200000;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+.loading-overlay{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: rgba(35,184,229,0.5);
+}
+.loading-overlay img{
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 45%;
+    width: 50px;
+    margin: auto;
+}
+
+
+.left-menu{
+    /*background-color: #4381b1;*/
+    background-color: #23b7e5;
+    height: 100%;
+    left: 0;
+    position: fixed;
+    top: 47px;
+    z-index: 1000;
+    width: 58px;
+    border-right: solid 1px #e5e5e5;
+}
+.left-menu li span{
+    display: block;
+    width: 58px;
+    color: #ffffff;
+    text-align: center;
+    font-size: 28px;
+    padding: 13px 0;
+    cursor: pointer;
+    top: 0;
+    -webkit-transition: all 0.5s ease 0s;
+    -moz-transition: all 0.5s ease 0s;
+    transition: all 0.5s ease 0s;
+}
+.left-menu li.active span,
+.left-menu li:hover span{
+    background: #fcfcfc;
+    /*color: rgb(124, 181, 236);*/
+    color: #037AA1;
+}
+
+.graph-container div:nth-child(2n+0) .graphWrap{
+    margin-left: 2%;
+}
+
+#map { height: 430px; }
+.graphOuterMap{
+    padding: 0px!important;
+}
+
+
+/* enable absolute positioning */
+.inner-addon {
+    position: relative;
+    float: right;
+    width: 250px;
+}
+
+/* style icon */
+.inner-addon .glyphicons {
+    position: absolute;
+    padding: 10px;
+    pointer-events: none;
+}
+
+/* align icon */
+.left-addon .glyphicons  { left:  0px; top: 0;}
+.right-addon .glyphicons { right: 0px; top: 0;}
+
+/* add padding  */
+.left-addon input  { padding-left:  30px; }
+.right-addon input { padding-right: 30px; }
+
+.btn-gray{
+    /*background-color: #aeaeae;*/
+    background-color: #23b7e5;
+    color: #fff;
+}
