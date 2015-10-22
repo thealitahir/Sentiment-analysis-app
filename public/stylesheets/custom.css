@@ -208,7 +208,10 @@ nav a:hover,
     margin-bottom: 15px;
 }
 
-.graphWrap.pie{
+/*.graphWrap.pie{
+    width: 100%;
+}*/
+.graphWrap.heatmap{
     width: 100%;
 }
 
