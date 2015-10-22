@@ -49,72 +49,6 @@ APIFetchController.controller('DemoController', ['$scope', 'CRUDService', '$time
 
     ];
 
-
-    var dummyData=[
-        {
-            "tweet":"Hello",
-            "label":"positive",
-            "tag":"Greet"
-        },
-        {
-            "tweet":"NO",
-            "label":"negative",
-            "tag":"Greet"
-        },
-        {
-            "tweet":"ok",
-            "label":"neutral",
-            "tag":"Greet"
-        },
-        {
-            "tweet":"Hey",
-            "label":"positive",
-            "tag":"Greet"
-        },
-        {
-            "tweet":"YO",
-            "label":"positive",
-            "tag":"Greet"
-        },
-        {
-            "tweet":"wo",
-            "label":"neutral",
-            "tag":"Greet"
-        },
-            {
-                "tweet":"win",
-                "label":"positive",
-                "tag":"Match"
-            },
-            {
-                "tweet":"lost",
-                "label":"negative",
-                "tag":"Match"
-            },
-            {
-                "tweet":"draw",
-                "label":"neutral",
-                "tag":"Match"
-            },
-        {
-            "tweet":"Hell",
-            "label":"negative",
-            "tag":"Match"
-        },
-        {
-            "tweet":"hey",
-            "label":"neutral",
-            "tag":"Match"
-        },
-        {
-            "tweet":"dont know",
-            "label":"neutral",
-            "tag":"Match"
-        }
-
-
-    ]
-
     // $scope.fetch = function(){
 
     $scope.schema = [];
@@ -389,72 +323,42 @@ APIFetchController.controller('DemoController', ['$scope', 'CRUDService', '$time
 
     };
     $scope.drawHeatMap=function(){
-        var colors = Highcharts.getOptions().colors;
-        var groupByHastTags= _.groupBy($scope.data,"HASHTAGS");
-        var seriesArray=[];
-        var randId=0;
-        for(var key in groupByHastTags){
-            var count=_.countBy(groupByHastTags[key], "PREDICTED_LABEL");
-        //    console.log("!!");
-           // console.log(count);
-         //   console.log(key);
-            seriesArray.push({name:key,color:colors[randId],id:randId.toString()});
-            count['positive']=count['positive'] ?count['positive']:0;
-            count['negative']=count['negative'] ?count['negative']:0;
-            count['neutral']=count['neutral'] ?count['neutral']:0;
-            seriesArray.push({name:"positive",value:count['positive'],parent:randId.toString()});
-            seriesArray.push({name:"negative",value:count['negative'],parent:randId.toString()});
-            seriesArray.push({name:"neutral",value:count['neutral'],parent:randId.toString()});
-            randId++;
-        }
-     //   console.log("seriesArray")
-     //   console.log(seriesArray)
-        var heatMapConfig = {
-            credits: {
-                enabled: false
-            },
-            title: {
-                text: ''
+            var colors = Highcharts.getOptions().colors;
+            var groupByHastTags= _.groupBy($scope.data,"HASHTAGS");
+            console.log("groupByHastTags");
+            console.log(groupByHastTags);
+            var seriesArray=[];
+            var randId=0;
+            for(var key in groupByHastTags){
+                var count=_.countBy(groupByHastTags[key], "PREDICTED_LABEL");
+                seriesArray.push({name:key,color:colors[randId],id:randId.toString()});
+                count['positive']=count['positive'] ?count['positive']:0;
+                count['negative']=count['negative'] ?count['negative']:0;
+                count['neutral']=count['neutral'] ?count['neutral']:0;
+                console.log("count")
+                console.log(count)
+                seriesArray.push({name:"positive",value:count['positive'],parent:randId.toString()});
+                seriesArray.push({name:"negative",value:count['negative'],parent:randId.toString()});
+                seriesArray.push({name:"neutral",value:count['neutral'],parent:randId.toString()});
+                randId++;
             }
-        };
-        console.log("sds");
-        console.log(seriesArray);
-       /* var seriesData = _.countBy($scope.data, "PREDICTED_LABEL");
-        seriesData['positive']=seriesData['positive'] ?seriesData['positive']:0;*/
-        var graphData =[{
-            type: "treemap",
-            layoutAlgorithm: 'stripes',
-            alternateStartingDirection: true,
-            levels: [{
-                level: 1,
-                layoutAlgorithm: 'sliceAndDice',
-                dataLabels: {
-                    enabled: true,
-                    align: 'left',
-                    verticalAlign: 'top',
-                    style: {
-                        fontSize: '15px',
-                        fontWeight: 'bold'
-                    }
+            var heatMapConfig = {
+                credits: {
+                    enabled: false
+                },
+                title: {
+                    text: ''
                 }
-            }],
-            data:seriesArray
-        }];
-
-        heatMapConfig.series = graphData;
-         console.log("chartConfig")
-         console.log(heatMapConfig)
-        $('#heatMap').highcharts(heatMapConfig);
-
-
-       /* $('#heatMap').highcharts({
-            series: [{
+            };
+          //  console.log(seriesArray);
+            var treeGraphData =[{
                 type: "treemap",
-                layoutAlgorithm: 'stripes',
+                layoutAlgorithm: 'squarified',
                 alternateStartingDirection: true,
                 levels: [{
                     level: 1,
                     layoutAlgorithm: 'sliceAndDice',
+                    borderWidth: 3,
                     dataLabels: {
                         enabled: true,
                         align: 'left',
@@ -466,48 +370,15 @@ APIFetchController.controller('DemoController', ['$scope', 'CRUDService', '$time
                     }
                 }],
                 data:seriesArray
-            }],
-            title: {
-                text: 'Sentiment Analysis'
-            }
-        });*/
+
+            }];
+            heatMapConfig.series = treeGraphData;
+            console.log("!!!!!!!!!!")
+            console.log(heatMapConfig)
+            $('#heatMap').highcharts(heatMapConfig);
+
     };
     $scope.drawPieChart=function(){
-     /*   var pieChartConfig = {
-            chart: {
-                plotBackgroundColor: null,
-                plotBorderWidth: null,
-                plotShadow: false,
-                type: 'pie'
-            },
-            title: {
-                text: ''
-            },
-            tooltip: {
-                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
-            },
-            plotOptions: {
-                pie: {
-                    allowPointSelect: true,
-                    cursor: 'pointer',
-                    dataLabels: {
-                        enabled: true,
-                        format: '<b>{point.name}</b>: {point.percentage:.1f} %',
-                        style: {
-                            color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
-                        }
-                    }
-                }
-            }
-        };
-        var seriesData = _.countBy($scope.data, "PREDICTED_LABEL");
-        seriesData['positive']=seriesData['positive'] ?seriesData['positive']:0;
-        var graphData =[{
-            data:[{name:'Positive',y:seriesData['positive']},{name:'Negative',y:seriesData['negative']},{name:'Neutral',y:seriesData['neutral']}]
-        }];
-        pieChartConfig.series = graphData;
-        //  console.log(chartConfig)
-        $('#pieHighChart').highcharts(pieChartConfig);*/
         var colors = Highcharts.getOptions().colors;
         var groupByHastTags= _.groupBy($scope.data,"HASHTAGS");
         var data=[];
@@ -516,11 +387,6 @@ APIFetchController.controller('DemoController', ['$scope', 'CRUDService', '$time
         for(var key in groupByHastTags){
             categories.push(key);
             var count=_.countBy(groupByHastTags[key], "PREDICTED_LABEL");
-        //    console.log("!!");
-       //     console.log(count);
-        //    console.log(key);
-
-
             count['positive']=count['positive'] ?count['positive']:0;
             count['negative']=count['negative'] ?count['negative']:0;
             count['neutral']=count['neutral'] ?count['neutral']:0;
@@ -531,34 +397,6 @@ APIFetchController.controller('DemoController', ['$scope', 'CRUDService', '$time
 
         var colors = Highcharts.getOptions().colors,
             categories = categories,
-      /*      data = [{
-                y: 60,
-                color: colors[0],
-                drilldown: {
-                    name: 'MSIE versions',
-                    categories: ['Positive','Negative','Neutral'],
-                    data: [20, 20, 20],
-                    color: colors[0]
-                }
-            }, {
-                y: 20,
-                color: colors[1],
-                drilldown: {
-                    name: 'Firefox versions',
-                    categories: ['Positive','Negative','Neutral'],
-                    data: [0, 10, 10],
-                    color: colors[1]
-                }
-            }, {
-                y: 20,
-                color: colors[2],
-                drilldown: {
-                    name: 'Chrome versions',
-                    categories: ['Positive','Negative','Neutral'],
-                    data: [10, 10, 0.55],
-                    color: colors[2]
-                }
-            }],*/
             browserData = [],
             versionsData = [],
             i,
@@ -831,12 +669,10 @@ APIFetchController.controller('DemoController', ['$scope', 'CRUDService', '$time
     };
 
     $scope.fetchData = function(){
-        $scope.data=[1,2]
+
         //  console.log("fetch data called")
         CRUDService.fetchData().success(function (res) {
             if(res.status == true){
-                // console.log("res")
-
                 $scope.mapData = res.data.data;
                 $scope.schema = res.data.data.schema;
                 $scope.data = res.data.data.data
@@ -847,20 +683,19 @@ APIFetchController.controller('DemoController', ['$scope', 'CRUDService', '$time
                         label: schema[i].field
                     });
                 }
-
-                /*$scope.selected_items.push($scope.array[6])
-                $scope.selected_items.push($scope.array[7])*/
+                $scope.drawHeatMap();
                 $scope.drawBarGraph();
                 $scope.drawPieChart();
-                $scope.drawHeatMap();
+
                 //    $scope.graphArray[0].y_coordinate = [$scope.array[6].label,$scope.array[7].label];
             }
         });
     };
     $scope.fetchData();
+    $scope.drawHeatMap();
     $interval(function(){
         $scope.fetchData();
-    }, 90000);
+    }, 9000);
    /* $scope.$watchCollection(function(){
         return $scope.data
     }, function(obj) {
