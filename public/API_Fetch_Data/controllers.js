@@ -139,61 +139,61 @@ APIFetchController.controller('DemoController', ['$scope', 'CRUDService', '$time
         //  console.log(chartConfig)
         $('#lineHighChart').highcharts(chartConfig);
     }
-        $scope.drawBarGraph = function(){
+    $scope.drawBarGraph = function(){
 
         /*$scope.barChartConfig = {
 
-            options: {
-                chart: {
-                    type: 'column',
-                    zoomType: 'xy'
-                }
-            },
-            title: {
-                text: ''
-            },
-            credits: {
-                enabled: false
-            },
-            xAxis:{
-                categories: [
-                    'Positive',
-                    'Negative',
-                    'Neutral'
-                ]
-            },
-            yAxis : [
-                {
-                    title: {
-                        text: $scope.graphArray[1].y_coordinate
-                    }
-                }
-            ],
-            credits: {
-                enabled: false
-            }
-        };
-        /!*  console.log("$scope.schema");
+         options: {
+         chart: {
+         type: 'column',
+         zoomType: 'xy'
+         }
+         },
+         title: {
+         text: ''
+         },
+         credits: {
+         enabled: false
+         },
+         xAxis:{
+         categories: [
+         'Positive',
+         'Negative',
+         'Neutral'
+         ]
+         },
+         yAxis : [
+         {
+         title: {
+         text: $scope.graphArray[1].y_coordinate
+         }
+         }
+         ],
+         credits: {
+         enabled: false
+         }
+         };
+         /!*  console.log("$scope.schema");
          console.log($scope.data);
          *!/
-        var seriesData = _.countBy($scope.data, "PREDICTED_LABEL");
-        seriesData['positive']=seriesData['positive'] ?seriesData['positive']:0;
-        var graphData =[{showInLegend: false,data:[seriesData['positive'],seriesData['negative'],seriesData['neutral']]}] ;
-        //var graphData =[{data:[0,22,4]}] ;
-        // console.log(graphData)
-        /!*  $scope.barChartConfig.xAxis = {
+         var seriesData = _.countBy($scope.data, "PREDICTED_LABEL");
+         seriesData['positive']=seriesData['positive'] ?seriesData['positive']:0;
+         var graphData =[{showInLegend: false,data:[seriesData['positive'],seriesData['negative'],seriesData['neutral']]}] ;
+         //var graphData =[{data:[0,22,4]}] ;
+         // console.log(graphData)
+         /!*  $scope.barChartConfig.xAxis = {
          title: {
          text: $scope.graphArray[1].x_coordinate
          },
          categories: graphData.categories
          };*!/
-        $scope.barChartConfig.series = graphData;*/
+         $scope.barChartConfig.series = graphData;*/
 
         var colors = Highcharts.getOptions().colors;
         var groupByHastTags= _.groupBy($scope.data,"HASHTAGS");
         var seriesData=[
             { name: 'Positive',
-              data: []
+                data: []
             },
             {
                 name: 'Negative',
@@ -324,59 +324,59 @@ APIFetchController.controller('DemoController', ['$scope', 'CRUDService', '$time
 
     };
     $scope.drawHeatMap=function(){
-            var colors = Highcharts.getOptions().colors;
-            var groupByHastTags= _.groupBy($scope.data,"HASHTAGS");
-            console.log("groupByHastTags");
-            console.log(groupByHastTags);
-            var seriesArray=[];
-            var randId=0;
-            for(var key in groupByHastTags){
-                var count=_.countBy(groupByHastTags[key], "PREDICTED_LABEL");
-                seriesArray.push({name:key,color:colors[randId],id:randId.toString()});
-                count['positive']=count['positive'] ?count['positive']:0;
-                count['negative']=count['negative'] ?count['negative']:0;
-                count['neutral']=count['neutral'] ?count['neutral']:0;
-                console.log("count")
-                console.log(count)
-                seriesArray.push({name:"positive",value:count['positive'],parent:randId.toString()});
-                seriesArray.push({name:"negative",value:count['negative'],parent:randId.toString()});
-                seriesArray.push({name:"neutral",value:count['neutral'],parent:randId.toString()});
-                randId++;
+        var colors = Highcharts.getOptions().colors;
+        var groupByHastTags= _.groupBy($scope.data,"HASHTAGS");
+        console.log("groupByHastTags");
+        console.log(groupByHastTags);
+        var seriesArray=[];
+        var randId=0;
+        for(var key in groupByHastTags){
+            var count=_.countBy(groupByHastTags[key], "PREDICTED_LABEL");
+            seriesArray.push({name:key,color:colors[randId],id:randId.toString()});
+            count['positive']=count['positive'] ?count['positive']:0;
+            count['negative']=count['negative'] ?count['negative']:0;
+            count['neutral']=count['neutral'] ?count['neutral']:0;
+            console.log("count")
+            console.log(count)
+            seriesArray.push({name:"positive",value:count['positive'],parent:randId.toString()});
+            seriesArray.push({name:"negative",value:count['negative'],parent:randId.toString()});
+            seriesArray.push({name:"neutral",value:count['neutral'],parent:randId.toString()});
+            randId++;
+        }
+        var heatMapConfig = {
+            credits: {
+                enabled: false
+            },
+            title: {
+                text: ''
             }
-            var heatMapConfig = {
-                credits: {
-                    enabled: false
-                },
-                title: {
-                    text: ''
-                }
-            };
-          //  console.log(seriesArray);
-            var treeGraphData =[{
-                type: "treemap",
-                layoutAlgorithm: 'squarified',
-                alternateStartingDirection: true,
-                levels: [{
-                    level: 1,
-                    layoutAlgorithm: 'sliceAndDice',
-                    borderWidth: 3,
-                    dataLabels: {
-                        enabled: true,
-                        align: 'left',
-                        verticalAlign: 'top',
-                        style: {
-                            fontSize: '15px',
-                            fontWeight: 'bold'
-                        }
+        };
+        //  console.log(seriesArray);
+        var treeGraphData =[{
+            type: "treemap",
+            layoutAlgorithm: 'squarified',
+            alternateStartingDirection: true,
+            levels: [{
+                level: 1,
+                layoutAlgorithm: 'sliceAndDice',
+                borderWidth: 3,
+                dataLabels: {
+                    enabled: true,
+                    align: 'left',
+                    verticalAlign: 'top',
+                    style: {
+                        fontSize: '15px',
+                        fontWeight: 'bold'
                     }
-                }],
-                data:seriesArray
+                }
+            }],
+            data:seriesArray
 
-            }];
-            heatMapConfig.series = treeGraphData;
-            console.log("!!!!!!!!!!")
-            console.log(heatMapConfig)
-            $('#heatMap').highcharts(heatMapConfig);
+        }];
+        heatMapConfig.series = treeGraphData;
+        console.log("!!!!!!!!!!")
+        console.log(heatMapConfig)
+        $('#heatMap').highcharts(heatMapConfig);
 
     };
     $scope.drawPieChart=function(){
@@ -581,135 +581,107 @@ APIFetchController.controller('DemoController', ['$scope', 'CRUDService', '$time
     }
     $scope.map=undefined;
     $scope.markerLayer=[];
-    $scope.geojsonLayer=undefined;
+    $scope.markersGroup=undefined;
+    var redIcon = L.Icon.Default.extend({
+        options: {
+            iconUrl: '/gis/images/red1.png'
+        }
+    });
+    var redMarker = new redIcon();
+    var blueIcon = L.Icon.Default.extend({
+        options: {
+            iconUrl: '/gis/images/blue1.png'
+        }
+    });
+    var blueMarker = new blueIcon();
+    var greenIcon = L.Icon.Default.extend({
+        options: {
+            iconUrl: '/gis/images/green1.png'
+        }
+    });
+    var greenMarker = new greenIcon();
 
     $scope.drawMap= function(){
 
+        var markers=[];
+        if(!$scope.map){
+            var grayscale = L.tileLayer('http://{s}.www.toolserver.org/tiles/bw-mapnik/{z}/{x}/{y}.png', {id: 'MapID1', attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
+                '<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>,' +
+                'Imagery © <a href="http://mapbox.com">Mapbox</a>'}),
+                streets = L.tileLayer('http://{s}.tile.openstreetmap.de/tiles/osmde/{z}/{x}/{y}.png', {id: 'MapID2', attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
+                '<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>,' +
+                'Imagery © <a href="http://mapbox.com">Mapbox</a>'});
+            $scope.map = L.map('mapDiv', {
+                center: [39.73, -104.99],
+                zoom: 2,
+                zoomControl: false,
+                layers: [streets]
+            });
 
-if(!$scope.map){
-    $scope.map = L.map('mapDiv', {
-        center: [39.73, -104.99],
-        zoom: 2,
-        zoomControl: false
-    });
-    L.tileLayer('http://{s}.tile.openstreetmap.de/tiles/osmde/{z}/{x}/{y}.png', {
-        attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
-        '<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>,' +
-        'Imagery � <a href="http://mapbox.com">Mapbox</a>'
 
-    }).addTo($scope.map);
 
-    //L.control.layers(Tiles).addTo($scope.map);
-    L.control.zoom({
-        position: 'bottomright'
-    }).addTo($scope.map);
-    L.control.fullscreen({
-        position: 'bottomright',
-        title: 'Fullscreen !',
-        forceSeparateButton: true,
-        forcePseudoFullscreen: true
-    }).addTo($scope.map);
-}
+            L.control.zoom({
+                position: 'bottomright'
+            }).addTo($scope.map);
+            L.control.fullscreen({
+                position: 'bottomright',
+                title: 'Fullscreen !',
+                forceSeparateButton: true,
+                forcePseudoFullscreen: true
+            }).addTo($scope.map);
+        }
+        if( $scope.markersGroup ){
+            $scope.map.removeLayer($scope.markersGroup);
+        }
 
-        console.log("data")
-$scope.gisData=[];
+
+        $scope.gisData=[];
+
 
         for(var i in $scope.data){
             if($scope.data[i].LOCATION!="null"){
                 $scope.gisData.push($scope.data[i]);
             }
         }
-        for(var i in $scope.gisData ){
-            console.log( $scope.gisData)
-            var splited=$scope.gisData[i].LOCATION.split(',');
+        if( $scope.gisData.length>0){
+            for(var i in $scope.gisData ){
+                var splited=$scope.gisData[i].LOCATION.split(',');
 
-      var lat=   splited[0].substring((splited[0].indexOf('=')+1))
+                var lat=   splited[0].substring((splited[0].indexOf('=')+1))
 
-            var abc=splited[1].substring((splited[1].indexOf('=')+1))
-         var lng=abc.split("}")[0]
-            var popup='<table>';
-            popup=popup+"<tr>"
-            if($scope.gisData[i].PREDICTED_LABEL=="positive"){
-                popup=popup+"<td>TWEET SENTIMENT:</td><td><font color='green'> "+$scope.gisData[i].PREDICTED_LABEL+'</font></td></tr>';
+                var abc=splited[1].substring((splited[1].indexOf('=')+1))
+                var lng=abc.split("}")[0]
+                var popup='';
+
+                var icon=blueMarker;
+                if($scope.gisData[i].PREDICTED_LABEL=="positive"){
+                    icon=greenMarker;
+                    //popup=popup+"<td>TWEET SENTIMENT:</td><td><font color='green'> "+$scope.gisData[i].PREDICTED_LABEL+'</font></td></tr>';
+
+                }
+                else if($scope.gisData[i].PREDICTED_LABEL=="negative"){
+                    icon=redMarker;
+                    //popup=popup+"<td>TWEET SENTIMENT:</td><td><font color='red'> "+$scope.gisData[i].PREDICTED_LABEL+'</font></td></tr>';
+
+                }
+                /* else{
+                 popup=popup+"<td>TWEET SENTIMENT:</td><td><font color='#1e90ff'> "+$scope.gisData[i].PREDICTED_LABEL+'</font></td></tr>';
+
+                 }*/
+
+                popup=popup+"<b>TWEET</b> <br>"+$scope.gisData[i].STATUS+'';
+
+
+                var marker=   L.marker(L.latLng(lat,lng),{icon:icon}).bindPopup(popup);
+                markers.push(marker);
 
             }
-            else if($scope.gisData[i].PREDICTED_LABEL=="negative"){
-                popup=popup+"<td>TWEET SENTIMENT:</td><td><font color='red'> "+$scope.gisData[i].PREDICTED_LABEL+'</font></td></tr>';
-
-            }
-            else{
-                popup=popup+"<td>TWEET SENTIMENT:</td><td><font color='#1e90ff'> "+$scope.gisData[i].PREDICTED_LABEL+'</font></td></tr>';
-
-            }
-
-            popup=popup+"<tr><td> STATUS:</td><td> "+$scope.gisData[i].STATUS+'</td></tr>';
-
-
-            var marker=   L.marker(L.latLng(lat,lng)).bindPopup(popup)
-             marker.addTo($scope.map)
+            $scope.markersGroup = L.featureGroup(markers).addTo($scope.map);
+            $scope.map.fitBounds($scope.markersGroup.getBounds());
 
         }
 
-    /*    if($scope.schema) {
 
-            $scope.schemakeys = _.pluck($scope.schema, 'field');
-            var latVar = "";
-            var lngVar = "";
-
-            for(var i in $scope.schemakeys){
-                if($scope.schemakeys[i].toLowerCase()=="longitude"){
-                    lngVar=$scope.schemakeys[i];
-                }
-                else if($scope.schemakeys[i].toLowerCase()=="latitude"){
-                    latVar=$scope.schemakeys[i];
-                }
-            }
-
-
-            if (latVar != "" && lngVar != "") {
-
-                for (var i in $scope.data) {
-
-                    $scope.markerLayer[i] = L.marker(L.latLng($scope.data[i][latVar], $scope.data[i][lngVar]));
-                    var popup = '';
-                    popup=popup+'<table>';
-
-                    for (var j in $scope.schema) {
-                        popup=popup+'<tr>';
-                        popup=popup+'<td>';
-                        popup = popup +'<b>'+ $scope.schema[j].field+'</b>';
-                        popup=popup+'</td>';
-                        popup=popup+'<td>';
-                        if(_.contains($scope.data[i][$scope.schema[j].field],'.')){
-                            var num=parseFloat($scope.data[i][$scope.schema[j].field])
-
-                            if(!isNaN(num)){
-                                popup = popup + num.toPrecision(5);
-                            }
-                        }
-
-                        else {
-                            popup = popup + $scope.data[i][$scope.schema[j].field];
-                        }
-                        popup=popup+'</td>';
-                        popup=popup+'<tr>';
-
-                    }
-                    popup=popup+'<table>';
-                    $scope.markerLayer[i].bindPopup(popup);
-
-                }
-                $scope.markersGroup = L.featureGroup($scope.markerLayer)
-                    .addTo($scope.map);
-                window.setTimeout(function () {
-
-                    $scope.map.fitBounds($scope.markersGroup.getBounds());
-
-                }.bind(this), 2000);
-
-
-            }
-        }*/
     };
 
     $scope.fetchData = function(){
@@ -742,20 +714,20 @@ $scope.gisData=[];
         $scope.fetchData();
     }, 9000);
 
-   /* $scope.$watchCollection(function(){
-        return $scope.data
-    }, function(obj) {
+    /* $scope.$watchCollection(function(){
+     return $scope.data
+     }, function(obj) {
 
-        // $scope.drawAreaGraph();
-        $scope.drawBarGraph();
-        $scope.drawPieChart();
-        $scope.drawHeatMap();
-        /!* $scope.drawMap();
-         $scope.map._onResize();*!/
-    });
-    $scope.$watchCollection(function(){return $scope.graphArray[0].y_coordinate;}, function(obj) {$scope.drawLineGraph();});
+     // $scope.drawAreaGraph();
+     $scope.drawBarGraph();
+     $scope.drawPieChart();
+     $scope.drawHeatMap();
+     /!* $scope.drawMap();
+     $scope.map._onResize();*!/
+     });
+     $scope.$watchCollection(function(){return $scope.graphArray[0].y_coordinate;}, function(obj) {$scope.drawLineGraph();});
 
-*/
+     */
 
 }]);
 
