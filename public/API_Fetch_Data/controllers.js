@@ -747,7 +747,7 @@ APIFetchController.controller('DemoController', ['$scope', 'CRUDService', '$time
 
     $scope.drawMap= function(){
 
-
+var markers=[];
 if(!$scope.map){
     $scope.map = L.map('mapDiv', {
         center: [39.73, -104.99],
@@ -773,7 +773,7 @@ if(!$scope.map){
     }).addTo($scope.map);
 }
 
-        console.log("data")
+
 $scope.gisData=[];
 
         for(var i in $scope.data){
@@ -807,10 +807,17 @@ $scope.gisData=[];
             popup=popup+"<tr><td> STATUS:</td><td> "+$scope.gisData[i].STATUS+'</td></tr>';
 
 
-            var marker=   L.marker(L.latLng(lat,lng)).bindPopup(popup)
-             marker.addTo($scope.map)
+            var marker=   L.marker(L.latLng(lat,lng)).bindPopup(popup);
+            markers.push(marker);
+             //marker.addTo($scope.map)
 
         }
+      //$scope.geojsonLayer=  L.layerGroup(markers);
+        $scope.markersGroup = L.featureGroup(markers).addTo($scope.map);
+
+        //$scope.geojsonLayer.addTo($scope.map);
+        $scope.map.fitBounds($scope.markersGroup.getBounds());
+
 
     /*    if($scope.schema) {
 
