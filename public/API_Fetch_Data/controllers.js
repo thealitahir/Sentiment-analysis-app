@@ -628,7 +628,7 @@ APIFetchController.controller('DemoController', ['$scope', 'CRUDService', '$time
                 size: '60%',
                 dataLabels: {
                     formatter: function () {
-                        return   this.point.name +":"+ this.y;
+                        return   this.y>10?this.point.name +":"+ this.y:null;
                     },
                     color: '#ffffff',
                     distance: -30
