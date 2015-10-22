@@ -86,6 +86,10 @@
         font-size: .8em;
     }
 </style>
+<style>
+    #mapDiv { height: 680px;width:700px }
+
+</style>
 <nav id="top-nav">
     <div class="pull-left ">
         <div class="btnMenuWrap">
@@ -227,8 +231,9 @@
                                 <highchart config="areaChartConfig"></highchart>
                             </div>
                         </div>
-                        <div ng-if="item.type=='map'">
-                            <div id="map"></div>
+
+                        <div ng-show="item.type=='map'">
+                            <!--<div id="mapDiv"></div>-->
                         </div>
                         <div ng-if="item.type=='pie'">
                             <div id="pieHighChart"></div>
@@ -294,6 +299,7 @@
         </div>
     </div>
 </div>
+<div id="mapDiv"></div>
 
 <script type="text/javascript">
     function showConfiguration(event){

@@ -36,7 +36,8 @@ APIFetchController.controller('DemoController', ['$scope', 'CRUDService', '$time
 
         {type:'column', x_coordinate:'Sentiments',y_coordinate:'Number of views',title:'Sentiment Analysis Bar Chart'},
         {type:'heatmap', x_coordinate:'Sentiments',y_coordinate:'Number of views',title:'Sentiment Analysis Heat Map'},
-        {type:'pie', x_coordinate:'NAME',y_coordinate:[],title:'Sentiment Analysis Pie Graph'}
+        {type:'pie', x_coordinate:'NAME',y_coordinate:[],title:'Sentiment Analysis Pie Graph'},
+        {type:'map', x_coordinate:'NAME',y_coordinate:[],title:'Map'}
         //{type:'area', x_coordinate:'NAME',y_coordinate:'HIGHEST_TIDE',title:'Highest Tide Height Per Station'},
         //{type:'map', x_coordinate:'',y_coordinate:'',title:'Weather Stations'}
     ]
@@ -740,35 +741,78 @@ APIFetchController.controller('DemoController', ['$scope', 'CRUDService', '$time
         };
         return obj;
     }
+    $scope.map=undefined;
+    $scope.markerLayer=[];
+    $scope.geojsonLayer=undefined;
 
     $scope.drawMap= function(){
-        $scope.map='';
-        $scope.markerLayer=[];
-        $scope.geojsonLayer=undefined;
 
-        $scope.map = L.map('map', {
-            center: [39.73, -104.99],
-            zoom: 2,
-            zoomControl: false
-        });
-        L.tileLayer('http://{s}.tile.openstreetmap.de/tiles/osmde/{z}/{x}/{y}.png', {
-            attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
-            '<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>,' +
-            'Imagery � <a href="http://mapbox.com">Mapbox</a>'
 
-        }).addTo($scope.map);
+if(!$scope.map){
+    $scope.map = L.map('mapDiv', {
+        center: [39.73, -104.99],
+        zoom: 2,
+        zoomControl: false
+    });
+    L.tileLayer('http://{s}.tile.openstreetmap.de/tiles/osmde/{z}/{x}/{y}.png', {
+        attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
+        '<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>,' +
+        'Imagery � <a href="http://mapbox.com">Mapbox</a>'
 
-        L.control.layers(Tiles).addTo($scope.map);
-        L.control.zoom({
-            position: 'bottomright'
-        }).addTo($scope.map);
-        L.control.fullscreen({
-            position: 'bottomright',
-            title: 'Fullscreen !',
-            forceSeparateButton: true,
-            forcePseudoFullscreen: true
-        }).addTo($scope.map);
-        if($scope.schema) {
+    }).addTo($scope.map);
+
+    //L.control.layers(Tiles).addTo($scope.map);
+    L.control.zoom({
+        position: 'bottomright'
+    }).addTo($scope.map);
+    L.control.fullscreen({
+        position: 'bottomright',
+        title: 'Fullscreen !',
+        forceSeparateButton: true,
+        forcePseudoFullscreen: true
+    }).addTo($scope.map);
+}
+
+        console.log("data")
+$scope.gisData=[];
+
+        for(var i in $scope.data){
+            if($scope.data[i].LOCATION!="null"){
+                $scope.gisData.push($scope.data[i]);
+            }
+        }
+        for(var i in $scope.gisData ){
+            console.log( $scope.gisData)
+            var splited=$scope.gisData[i].LOCATION.split(',');
+
+      var lat=   splited[0].substring((splited[0].indexOf('=')+1))
+
+            var abc=splited[1].substring((splited[1].indexOf('=')+1))
+         var lng=abc.split("}")[0]
+            var popup='<table>';
+            popup=popup+"<tr>"
+            if($scope.gisData[i].PREDICTED_LABEL=="positive"){
+                popup=popup+"<td>TWEET SENTIMENT:</td><td><font color='green'> "+$scope.gisData[i].PREDICTED_LABEL+'</font></td></tr>';
+
+            }
+            else if($scope.gisData[i].PREDICTED_LABEL=="negative"){
+                popup=popup+"<td>TWEET SENTIMENT:</td><td><font color='red'> "+$scope.gisData[i].PREDICTED_LABEL+'</font></td></tr>';
+
+            }
+            else{
+                popup=popup+"<td>TWEET SENTIMENT:</td><td><font color='#1e90ff'> "+$scope.gisData[i].PREDICTED_LABEL+'</font></td></tr>';
+
+            }
+
+            popup=popup+"<tr><td> STATUS:</td><td> "+$scope.gisData[i].STATUS+'</td></tr>';
+
+
+            var marker=   L.marker(L.latLng(lat,lng)).bindPopup(popup)
+             marker.addTo($scope.map)
+
+        }
+
+    /*    if($scope.schema) {
 
             $scope.schemakeys = _.pluck($scope.schema, 'field');
             var latVar = "";
@@ -827,11 +871,12 @@ APIFetchController.controller('DemoController', ['$scope', 'CRUDService', '$time
 
 
             }
-        }
+        }*/
     };
 
     $scope.fetchData = function(){
         $scope.data=[1,2]
+
         //  console.log("fetch data called")
         CRUDService.fetchData().success(function (res) {
             if(res.status == true){
@@ -853,6 +898,9 @@ APIFetchController.controller('DemoController', ['$scope', 'CRUDService', '$time
                 $scope.drawBarGraph();
                 $scope.drawPieChart();
                 $scope.drawHeatMap();
+                $scope.drawMap();
+
+
                 //    $scope.graphArray[0].y_coordinate = [$scope.array[6].label,$scope.array[7].label];
             }
         });
@@ -860,7 +908,11 @@ APIFetchController.controller('DemoController', ['$scope', 'CRUDService', '$time
     $scope.fetchData();
     $interval(function(){
         $scope.fetchData();
+
     }, 90000);
+
+
+
    /* $scope.$watchCollection(function(){
         return $scope.data
     }, function(obj) {
