@@ -132,7 +132,7 @@
 
     <div ng-show="tab==1">
 
-        <div class="stats-container">
+       <!-- <div class="stats-container">
             <div class="statsWrap">
                 <div class="slate-graph-title">
                     Negative
@@ -169,7 +169,7 @@
                 </div>
             </div>
         </div>
-
+-->
         <div class="graph-container">
 
             <div ng-repeat="item in graphArray" >
@@ -214,11 +214,9 @@
                          <div id="lineHighChart"></div>
                      </div>-->
 
-                        <div ng-if="item.type=='column'">
-                            <div ng-if = "item.x_coordinate != '' && item.y_coordinate != ''  && schema.length && data.length">
 
-                                <highchart config="barChartConfig"></highchart>
-                            </div>
+                        <div ng-if="item.type=='column'">
+                                <div id="barChart"></div>
                         </div>
                         <div ng-if="item.type=='heatmap'">
                             <div id="heatMap"></div>
