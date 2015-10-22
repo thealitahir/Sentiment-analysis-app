@@ -140,55 +140,6 @@ APIFetchController.controller('DemoController', ['$scope', 'CRUDService', '$time
         $('#lineHighChart').highcharts(chartConfig);
     }
     $scope.drawBarGraph = function(){
-
-        /*$scope.barChartConfig = {
-
-         options: {
-         chart: {
-         type: 'column',
-         zoomType: 'xy'
-         }
-         },
-         title: {
-         text: ''
-         },
-         credits: {
-         enabled: false
-         },
-         xAxis:{
-         categories: [
-         'Positive',
-         'Negative',
-         'Neutral'
-         ]
-         },
-         yAxis : [
-         {
-         title: {
-         text: $scope.graphArray[1].y_coordinate
-         }
-         }
-         ],
-         credits: {
-         enabled: false
-         }
-         };
-         /!*  console.log("$scope.schema");
-         console.log($scope.data);
-         *!/
-         var seriesData = _.countBy($scope.data, "PREDICTED_LABEL");
-         seriesData['positive']=seriesData['positive'] ?seriesData['positive']:0;
-         var graphData =[{showInLegend: false,data:[seriesData['positive'],seriesData['negative'],seriesData['neutral']]}] ;
-         //var graphData =[{data:[0,22,4]}] ;
-         // console.log(graphData)
-         /!*  $scope.barChartConfig.xAxis = {
-         title: {
-         text: $scope.graphArray[1].x_coordinate
-         },
-         categories: graphData.categories
-         };*!/
-         $scope.barChartConfig.series = graphData;*/
-
         var colors = Highcharts.getOptions().colors;
         var groupByHastTags= _.groupBy($scope.data,"HASHTAGS");
         var seriesData=[
@@ -237,10 +188,10 @@ APIFetchController.controller('DemoController', ['$scope', 'CRUDService', '$time
                 type: 'bar'
             },
             title: {
-                text: 'Historic World Population by Region'
+                text: ''
             },
             subtitle: {
-                text: 'Source: <a href="https://en.wikipedia.org/wiki/World_population">Wikipedia.org</a>'
+                text: ''
             },
             xAxis: {
                 categories:categories,
