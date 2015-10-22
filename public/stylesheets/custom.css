@@ -211,7 +211,8 @@ nav a:hover,
 /*.graphWrap.pie{
     width: 100%;
 }*/
-.graphWrap.heatmap{
+.graphWrap.heatmap,
+.graphWrap.map{
     width: 100%;
 }
 

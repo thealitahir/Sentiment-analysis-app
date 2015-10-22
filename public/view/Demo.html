@@ -85,7 +85,9 @@
         margin-left: 0.1em;
         font-size: .8em;
     }
+    #mapDiv { height: 400px; width:100%; }
 </style>
+
 <nav id="top-nav">
     <div class="pull-left ">
         <div class="btnMenuWrap">
@@ -132,151 +134,160 @@
 
     <div ng-show="tab==1">
 
-       <!-- <div class="stats-container">
-            <div class="statsWrap">
-                <div class="slate-graph-title">
-                    Negative
-                </div>
-                <div class="graph-outer monitoring-pie-chart">
-                    <div class="chart" easypiechart percent="negativeObj.value/negativeObj.total*100" options="options">
-                        <span class="percent {{negativeObj.unit}}" ng-bind="negativeObj.value"></span>
-                        <span class="total-value" ng-if="negativeObj.unit !='%' && negativeObj.total > 0">Total: <strong>{{negativeObj.total}}</strong></span>
-                    </div>
-                </div>
-            </div>
+        <!-- <div class="stats-container">
+             <div class="statsWrap">
+                 <div class="slate-graph-title">
+                     Negative
+                 </div>
+                 <div class="graph-outer monitoring-pie-chart">
+                     <div class="chart" easypiechart percent="negativeObj.value/negativeObj.total*100" options="options">
+                         <span class="percent {{negativeObj.unit}}" ng-bind="negativeObj.value"></span>
+                         <span class="total-value" ng-if="negativeObj.unit !='%' && negativeObj.total > 0">Total: <strong>{{negativeObj.total}}</strong></span>
+                     </div>
+                 </div>
+             </div>
 
-            <div class="statsWrap">
-                <div class="slate-graph-title">
-                    Neutral
-                </div>
-                <div class="graph-outer monitoring-pie-chart">
-                    <div class="chart" easypiechart percent="neutralObj.value/neutralObj.total*100" options="options">
-                        <span class="percent {{neutralObj.unit}}" ng-bind="neutralObj.value"></span>
-                        <span class="total-value" ng-if="neutralObj.unit !='%' && neutralObj.total > 0">Total: <strong>{{neutralObj.total}}</strong></span>
-                    </div>
-                </div>
-            </div>
+             <div class="statsWrap">
+                 <div class="slate-graph-title">
+                     Neutral
+                 </div>
+                 <div class="graph-outer monitoring-pie-chart">
+                     <div class="chart" easypiechart percent="neutralObj.value/neutralObj.total*100" options="options">
+                         <span class="percent {{neutralObj.unit}}" ng-bind="neutralObj.value"></span>
+                         <span class="total-value" ng-if="neutralObj.unit !='%' && neutralObj.total > 0">Total: <strong>{{neutralObj.total}}</strong></span>
+                     </div>
+                 </div>
+             </div>
 
-            <div class="statsWrap">
-                <div class="slate-graph-title">
-                    Positive
-                </div>
-                <div class="graph-outer monitoring-pie-chart">
-                    <div class="chart" easypiechart percent="positiveObj.value/positiveObj.total*100" options="options">
-                        <span class="percent %" ng-bind="positiveObj.value"></span>
-                        <span class="total-value" ng-if="positiveObj.unit !='%' && positiveObj.total > 0">Total: <strong>{{positiveObj.total}}</strong></span>
-                    </div>
-                </div>
-            </div>
-        </div>
--->
+             <div class="statsWrap">
+                 <div class="slate-graph-title">
+                     Positive
+                 </div>
+                 <div class="graph-outer monitoring-pie-chart">
+                     <div class="chart" easypiechart percent="positiveObj.value/positiveObj.total*100" options="options">
+                         <span class="percent %" ng-bind="positiveObj.value"></span>
+                         <span class="total-value" ng-if="positiveObj.unit !='%' && positiveObj.total > 0">Total: <strong>{{positiveObj.total}}</strong></span>
+                     </div>
+                 </div>
+             </div>
+         </div>
+ -->
         <div class="graph-container">
 
             <div ng-repeat="item in graphArray" >
 
-                <div class="graphWrap {{item.type}}">
+                <div class="graphWrap {{item.type}}" ng-if="item.type=='column' || item.type=='pie' || item.type=='heatmap'">
                     <div class="slate-graph-title">
-
-                    <span ng-if="item.type=='line' || item.type=='column' || item.type=='area'  ">
-
-                        <!--<span class="configuration-icon glyphicons glyphicons-cogwheel" onclick="showConfiguration($(this));"></span>
-
-                        <div class="configuration-block">
-                            <div class="form-group">
-                                <label> X-Coordinate</label>
-                                <select class="form-control" ng-model="item.x_coordinate" ng-options="f.field as f.field for f in schema" ng-change="getX(item.x_coordinate, $index)">
-                                    <option  value="item.x_coordinate" selected>Select X-Coordinate</option>
-                                </select>
-                            </div>
-
-                            <div class="form-group" ng-if="item.type=='column' || item.type=='area'">
-                                <label>Y-Coordinate</label>
-                                <select class="form-control" ng-model="item.y_coordinate" ng-options="f.field as f.field for f in schema" ng-change="getY(item.y_coordinate, $index)">
-                                    <option  value="item.x_coordinate" selected>Select Y-Coordinate</option>
-                                </select>
-                            </div>
-
-                            <div class="form-group" ng-if="item.type=='line'">
-                                <label>Y-Coordinate</label>
-                                <ng-dropdown-multiselect class="angular-custom-select" options="array" selected-model="selected_items" events="events" translation-texts="customTexts" extra-settings="custom_settings" search-filter="customFilter" checkboxes="true"></ng-dropdown-multiselect>
-                            </div>
-                        </div>-->
-
-
-                    </span>
-
                         {{item.title}}
+
+                        <!--<span ng-if="item.type=='line' || item.type=='column' || item.type=='area'  ">
+
+                            <span class="configuration-icon glyphicons glyphicons-cogwheel" onclick="showConfiguration($(this));"></span>
+
+                            <div class="configuration-block">
+                                <div class="form-group">
+                                    <label> X-Coordinate</label>
+                                    <select class="form-control" ng-model="item.x_coordinate" ng-options="f.field as f.field for f in schema" ng-change="getX(item.x_coordinate, $index)">
+                                        <option  value="item.x_coordinate" selected>Select X-Coordinate</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group" ng-if="item.type=='column' || item.type=='area'">
+                                    <label>Y-Coordinate</label>
+                                    <select class="form-control" ng-model="item.y_coordinate" ng-options="f.field as f.field for f in schema" ng-change="getY(item.y_coordinate, $index)">
+                                        <option  value="item.x_coordinate" selected>Select Y-Coordinate</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group" ng-if="item.type=='line'">
+                                    <label>Y-Coordinate</label>
+                                    <ng-dropdown-multiselect class="angular-custom-select" options="array" selected-model="selected_items" events="events" translation-texts="customTexts" extra-settings="custom_settings" search-filter="customFilter" checkboxes="true"></ng-dropdown-multiselect>
+                                </div>
+                            </div>
+                        </span>-->
                     </div>
 
-                    <div class="graph-outer" ng-class="{graphOuterMap:item.type=='map'}">
-
-                        <!-- <div ng-if="item.type=='pie'">
+                    <!-- <div ng-if="item.type=='pie'">
                          <div id="lineHighChart"></div>
                      </div>-->
 
 
-                        <div ng-if="item.type=='column'">
-                                <div id="barChart"></div>
-                        </div>
-                        <div ng-if="item.type=='heatmap'">
-                            <div id="heatMap"></div>
-                        </div>
-                        <div ng-if="item.type=='area'">
+                    <div ng-if="item.type=='column'">
+                        <div id="barChart"></div>
+                    </div>
+                    <div ng-if="item.type=='heatmap'">
+                        <div id="heatMap"></div>
+                    </div>
+                    <div ng-if="item.type=='area'">
 
-                            <div ng-if = "item.x_coordinate != '' && item.y_coordinate != ''  && schema.length && data.length">
-                                <highchart config="areaChartConfig"></highchart>
-                            </div>
-                        </div>
-                        <div ng-if="item.type=='map'">
-                            <div id="map"></div>
-                        </div>
-                        <div ng-if="item.type=='pie'">
-                            <div id="pieHighChart"></div>
+                        <div ng-if = "item.x_coordinate != '' && item.y_coordinate != ''  && schema.length && data.length">
+                            <highchart config="areaChartConfig"></highchart>
                         </div>
                     </div>
 
+                    <div ng-show="item.type=='map'">
+                        <!--<div id="mapDiv"></div>-->
+                    </div>
+                    <div ng-if="item.type=='pie'">
+                        <div id="pieHighChart"></div>
+                    </div>
                 </div>
+
             </div>
         </div>
-    </div>
-    <div ng-show="tab==2">
-        <div class="table-block">
 
-            <div class="form-inline pull-left">
-                <div class="form-group">
-                    <label style="margin-right: 10px;"><b>API:</b></label>
-                    <input style="width: 650px;" type="text" class="form-control" value="http://45.55.159.119:3000/sinkHelpers/executeQuery?pipeline=5526b98f8022a0dd73295c9e:556ff7a776f67ea760fe5c07;&query=select%20*%20from%20table556ff7a776f67ea760fe5c07&tool=phoenix&sink_type=smart"/>
-                </div>
 
-                <button type="submit" ng-click="fetchData();" class="btn btn-default btn-gray">Fetch</button>
+        <div class="graphWrap map">
+            <div class="slate-graph-title">
+                MAP
             </div>
 
+            <div class="graph-outer" ng-class="{graphOuterMap:item.type=='map'}">
+                <div id="mapDiv"></div>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+<div ng-show="tab==2">
+    <div class="table-block">
+
+        <div class="form-inline pull-left">
             <div class="form-group">
-
-                <div class="inner-addon right-addon">
-                    <i class="glyphicons glyphicons-search"></i>
-                    <input type="text" class="form-control" ng-model="searchText" placeholder="Search..." />
-                </div>
-                <div class="clear"></div>
+                <label style="margin-right: 10px;"><b>API:</b></label>
+                <input style="width: 650px;" type="text" class="form-control" value="http://45.55.159.119:3000/sinkHelpers/executeQuery?pipeline=5526b98f8022a0dd73295c9e:556ff7a776f67ea760fe5c07;&query=select%20*%20from%20table556ff7a776f67ea760fe5c07&tool=phoenix&sink_type=smart"/>
             </div>
 
-            <table ng-show="showData" class="table table-responsive">
-                <thead>
-                <tr>
-                    <th ng-repeat="fieldProps in schema">
-                        {{fieldProps.alias}}
-                    </th>
-                </tr>
-                </thead>
-                <tbody>
-
-                <tr ng-repeat="dataObj in data  | filter:searchText">
-                    <td ng-repeat="fields in schema">{{dataObj[fields.field]}}</td>
-                </tr>
-                </tbody>
-            </table>
+            <button type="submit" ng-click="fetchData();" class="btn btn-default btn-gray">Fetch</button>
         </div>
+
+        <div class="form-group">
+
+            <div class="inner-addon right-addon">
+                <i class="glyphicons glyphicons-search"></i>
+                <input type="text" class="form-control" ng-model="searchText" placeholder="Search..." />
+            </div>
+            <div class="clear"></div>
+        </div>
+
+        <table ng-show="showData" class="table table-responsive">
+            <thead>
+            <tr>
+                <th ng-repeat="fieldProps in schema">
+                    {{fieldProps.alias}}
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+
+            <tr ng-repeat="dataObj in data  | filter:searchText">
+                <td ng-repeat="fields in schema">{{dataObj[fields.field]}}</td>
+            </tr>
+            </tbody>
+        </table>
     </div>
+</div>
 </div>
 
 <div ng-if="data.length==0">
@@ -287,13 +298,14 @@
     </div>
 </div>
 
-<div ng-if="fetchDtataLoader==0">
+<!--<div ng-if="fetchDtataLoader==0">
     <div class="loading-wrapper">
         <div class="loading-overlay">
             <img src="../images/loading.gif" alt="Loading..." />
         </div>
     </div>
-</div>
+</div>-->
+<!--<div id="mapDiv"></div>-->
 
 <script type="text/javascript">
     function showConfiguration(event){
