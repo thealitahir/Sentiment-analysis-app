@@ -35,8 +35,8 @@ APIFetchController.controller('DemoController', ['$scope', 'CRUDService', '$time
         //{type:'line', x_coordinate:'NAME',y_coordinate:[],title:'Highest and Average Tide Height'},
 
         {type:'column', x_coordinate:'Sentiments',y_coordinate:'Number of views',title:'Sentiment Analysis Bar Chart'},
-        {type:'heatmap', x_coordinate:'Sentiments',y_coordinate:'Number of views',title:'Sentiment Analysis Tree Map'},
         {type:'pie', x_coordinate:'NAME',y_coordinate:[],title:'Sentiment Analysis Pie Graph'},
+        {type:'heatmap', x_coordinate:'Sentiments',y_coordinate:'Number of views',title:'Sentiment Analysis Tree Map'},
         {type:'map', x_coordinate:'NAME',y_coordinate:[],title:'Map'}
         //{type:'area', x_coordinate:'NAME',y_coordinate:'HIGHEST_TIDE',title:'Highest Tide Height Per Station'},
         //{type:'map', x_coordinate:'',y_coordinate:'',title:'Weather Stations'}
@@ -140,55 +140,6 @@ APIFetchController.controller('DemoController', ['$scope', 'CRUDService', '$time
         $('#lineHighChart').highcharts(chartConfig);
     }
     $scope.drawBarGraph = function(){
-
-        /*$scope.barChartConfig = {
-
-         options: {
-         chart: {
-         type: 'column',
-         zoomType: 'xy'
-         }
-         },
-         title: {
-         text: ''
-         },
-         credits: {
-         enabled: false
-         },
-         xAxis:{
-         categories: [
-         'Positive',
-         'Negative',
-         'Neutral'
-         ]
-         },
-         yAxis : [
-         {
-         title: {
-         text: $scope.graphArray[1].y_coordinate
-         }
-         }
-         ],
-         credits: {
-         enabled: false
-         }
-         };
-         /!*  console.log("$scope.schema");
-         console.log($scope.data);
-         *!/
-         var seriesData = _.countBy($scope.data, "PREDICTED_LABEL");
-         seriesData['positive']=seriesData['positive'] ?seriesData['positive']:0;
-         var graphData =[{showInLegend: false,data:[seriesData['positive'],seriesData['negative'],seriesData['neutral']]}] ;
-         //var graphData =[{data:[0,22,4]}] ;
-         // console.log(graphData)
-         /!*  $scope.barChartConfig.xAxis = {
-         title: {
-         text: $scope.graphArray[1].x_coordinate
-         },
-         categories: graphData.categories
-         };*!/
-         $scope.barChartConfig.series = graphData;*/
-
         var colors = Highcharts.getOptions().colors;
         var groupByHastTags= _.groupBy($scope.data,"HASHTAGS");
         var seriesData=[
@@ -237,10 +188,10 @@ APIFetchController.controller('DemoController', ['$scope', 'CRUDService', '$time
                 type: 'bar'
             },
             title: {
-                text: 'Historic World Population by Region'
+                text: ''
             },
             subtitle: {
-                text: 'Source: <a href="https://en.wikipedia.org/wiki/World_population">Wikipedia.org</a>'
+                text: ''
             },
             xAxis: {
                 categories:categories,
@@ -584,19 +535,19 @@ APIFetchController.controller('DemoController', ['$scope', 'CRUDService', '$time
     $scope.markersGroup=undefined;
     var redIcon = L.Icon.Default.extend({
         options: {
-            iconUrl: '/gis/images/red1.png'
+            iconUrl: '/gis/images/red-marker-pin.png'
         }
     });
     var redMarker = new redIcon();
     var blueIcon = L.Icon.Default.extend({
         options: {
-            iconUrl: '/gis/images/blue1.png'
+            iconUrl: '/gis/images/blue-marker-pin.png'
         }
     });
     var blueMarker = new blueIcon();
     var greenIcon = L.Icon.Default.extend({
         options: {
-            iconUrl: '/gis/images/green1.png'
+            iconUrl: '/gis/images/green-marker-pin.png'
         }
     });
     var greenMarker = new greenIcon();
@@ -617,8 +568,6 @@ APIFetchController.controller('DemoController', ['$scope', 'CRUDService', '$time
                 zoomControl: false,
                 layers: [streets]
             });
-
-
 
             L.control.zoom({
                 position: 'bottomright'
@@ -681,6 +630,10 @@ APIFetchController.controller('DemoController', ['$scope', 'CRUDService', '$time
 
         }
 
+        $scope.map._onResize();
+        /*$timeout(function(){
+            $scope.map._onResize();
+        },3000)*/
 
     };
 
@@ -712,7 +665,7 @@ APIFetchController.controller('DemoController', ['$scope', 'CRUDService', '$time
     $scope.drawHeatMap();
     $interval(function(){
         $scope.fetchData();
-    }, 9000);
+    }, 30000);
 
     /* $scope.$watchCollection(function(){
      return $scope.data
