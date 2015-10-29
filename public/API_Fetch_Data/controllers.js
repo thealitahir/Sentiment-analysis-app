@@ -603,10 +603,11 @@ APIFetchController.controller('DemoController', ['$scope', 'CRUDService', '$time
 
 
         for(var i in $scope.data){
-            if($scope.data[i].LOCATION!="null"){
+            if($scope.data[i]["LOCATION"].toLowerCase()!="null"){
                 $scope.gisData.push($scope.data[i]);
             }
         }
+      
         if( $scope.gisData.length>0){
             for(var i in $scope.gisData ){
                 var splited=$scope.gisData[i].LOCATION.split(',');
@@ -618,20 +619,18 @@ APIFetchController.controller('DemoController', ['$scope', 'CRUDService', '$time
                 var popup='';
 
                 var icon=blueMarker;
-                if($scope.gisData[i].PREDICTED_LABEL=="positive"){
+
+                if($scope.gisData[i]["PREDICTED_LABEL"].toLowerCase()=="positive"){
                     icon=greenMarker;
                     //popup=popup+"<td>TWEET SENTIMENT:</td><td><font color='green'> "+$scope.gisData[i].PREDICTED_LABEL+'</font></td></tr>';
 
                 }
-                else if($scope.gisData[i].PREDICTED_LABEL=="negative"){
+                else if($scope.gisData[i]["PREDICTED_LABEL"].toLowerCase()=="negative"){
                     icon=redMarker;
                     //popup=popup+"<td>TWEET SENTIMENT:</td><td><font color='red'> "+$scope.gisData[i].PREDICTED_LABEL+'</font></td></tr>';
 
                 }
-                /* else{
-                 popup=popup+"<td>TWEET SENTIMENT:</td><td><font color='#1e90ff'> "+$scope.gisData[i].PREDICTED_LABEL+'</font></td></tr>';
 
-                 }*/
 
                 popup=popup+"<b>TWEET</b> <br>"+$scope.gisData[i].STATUS+'';
 
@@ -657,9 +656,9 @@ APIFetchController.controller('DemoController', ['$scope', 'CRUDService', '$time
         //  console.log("fetch data called")
         CRUDService.fetchData().success(function (res) {
             if(res.status == true){
-                $scope.mapData = res.data.data;
                 $scope.schema = res.data.data.schema;
-                $scope.data = res.data.data.data
+                $scope.data = res.data.data.data;
+                $scope.mapData=res.data.data.data;
                 var schema = $scope.schema;
                 for(var i=0;i<schema.length;i++){
                     $scope.array.push({
