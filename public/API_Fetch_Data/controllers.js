@@ -142,6 +142,24 @@ APIFetchController.controller('DemoController', ['$scope', 'CRUDService', '$time
     $scope.drawBarGraph = function(){
         var colors = Highcharts.getOptions().colors;
         var groupByHastTags= _.groupBy($scope.data,"HASHTAGS");
+        for(var key in groupByHastTags){
+             groupByHastTags[key]= _.groupBy(groupByHastTags[key],function(item){
+                 //console.log(item);
+                 if(item["PREDICTED_LABEL"].toLowerCase() == "positive"){
+                     return "positive";
+                 }
+                 else if(item["PREDICTED_LABEL"].toLowerCase() == "negative"){
+                     return "negative";
+                 }
+                 else{
+                     return "neutral";
+                 }
+             });
+
+        }
+        console.log("!!!!!!!!!sgroupByHastTags")
+        console.log(groupByHastTags)
+
         var seriesData=[
             { name: 'Positive',
                 data: []
@@ -157,25 +175,26 @@ APIFetchController.controller('DemoController', ['$scope', 'CRUDService', '$time
         ];
         var randId=0;
         var categories=[];
-        for(var key in groupByHastTags) {
+        /*for(var key in groupByHastTags) {
             categories.push(key);
-        }
+        }*/
         for(var key in groupByHastTags){
             categories.push(key);
+            var obj=groupByHastTags[key];
+          // var count=_.countBy(groupByHastTags[key], "PREDICTED_LABEL");
 
-            var count=_.countBy(groupByHastTags[key], "PREDICTED_LABEL");
-            count['positive']=count['positive'] ?count['positive']:0;
-            count['negative']=count['negative'] ?count['negative']:0;
-            count['neutral']=count['neutral'] ?count['neutral']:0;
+            obj['positive']=obj['positive'] ?obj['positive'].length:0;
+            obj['negative']=obj['negative'] ?obj['negative'].length:0;
+            obj['neutral']=obj['neutral'] ?obj['neutral'].length:0;
             for(var i=0; i<seriesData.length;i++){
                 if(seriesData[i].name=='Positive'){
-                    seriesData[i].data.push(count['positive']);
+                    seriesData[i].data.push(obj['positive']);
                 }
                 if(seriesData[i].name=='Negative'){
-                    seriesData[i].data.push(count['negative']);
+                    seriesData[i].data.push(obj['negative']);
                 }
                 if(seriesData[i].name=='Neutral'){
-                    seriesData[i].data.push(count['neutral']);
+                    seriesData[i].data.push(obj['neutral']);
                 }
             }
             randId++;
@@ -238,42 +257,6 @@ APIFetchController.controller('DemoController', ['$scope', 'CRUDService', '$time
 
 
     };
-    $scope.drawAreaGraph = function(){
-
-        $scope.areaChartConfig = {
-
-            options: {
-                chart: {
-                    type: 'area',
-                    zoomType: 'xy'
-                }
-            },
-            title: {
-                text: ''
-            },
-            yAxis : [
-                {
-                    title: {
-                        text: $scope.graphArray[2].y_coordinate
-                    }
-                }
-            ],
-            credits: {
-                enabled: false
-            }
-        };
-
-        var graphData = getSeriesAndCategories($scope.data,$scope.graphArray[2].x_coordinate,$scope.graphArray[2].y_coordinate, 'NAME');
-
-        $scope.areaChartConfig.xAxis = {
-            title: {
-                text: $scope.graphArray[2].x_coordinate
-            },
-            categories: graphData.categories
-        };
-        $scope.areaChartConfig.series = graphData.series;
-
-    };
     $scope.drawHeatMap=function(){
         var colors = Highcharts.getOptions().colors;
         var groupByHastTags= _.groupBy($scope.data,"HASHTAGS");
@@ -282,16 +265,32 @@ APIFetchController.controller('DemoController', ['$scope', 'CRUDService', '$time
         var seriesArray=[];
         var randId=0;
         for(var key in groupByHastTags){
-            var count=_.countBy(groupByHastTags[key], "PREDICTED_LABEL");
+            groupByHastTags[key]= _.groupBy(groupByHastTags[key],function(item){
+                //console.log(item);
+                if(item["PREDICTED_LABEL"].toLowerCase() == "positive"){
+                    return "positive";
+                }
+                else if(item["PREDICTED_LABEL"].toLowerCase() == "negative"){
+                    return "negative";
+                }
+                else{
+                    return "neutral";
+                }
+            });
+
+        }
+
+        for(var key in groupByHastTags){
+            //var count=_.countBy(groupByHastTags[key], "PREDICTED_LABEL");
+            var obj=groupByHastTags[key];
             seriesArray.push({name:key,color:colors[randId],id:randId.toString()});
-            count['positive']=count['positive'] ?count['positive']:0;
-            count['negative']=count['negative'] ?count['negative']:0;
-            count['neutral']=count['neutral'] ?count['neutral']:0;
-            console.log("count")
-            console.log(count)
-            seriesArray.push({name:"positive",value:count['positive'],parent:randId.toString()});
-            seriesArray.push({name:"negative",value:count['negative'],parent:randId.toString()});
-            seriesArray.push({name:"neutral",value:count['neutral'],parent:randId.toString()});
+            obj['positive']=obj['positive'] ?obj['positive'].length:0;
+            obj['negative']=obj['negative'] ?obj['negative'].length:0;
+            obj['neutral']=obj['neutral'] ?obj['neutral'].length:0;
+
+            seriesArray.push({name:"positive",value:obj['positive'],parent:randId.toString()});
+            seriesArray.push({name:"negative",value:obj['negative'],parent:randId.toString()});
+            seriesArray.push({name:"neutral",value:obj['neutral'],parent:randId.toString()});
             randId++;
         }
         var heatMapConfig = {
@@ -337,13 +336,29 @@ APIFetchController.controller('DemoController', ['$scope', 'CRUDService', '$time
         var randId=0;
         var categories=[];
         for(var key in groupByHastTags){
+            groupByHastTags[key]= _.groupBy(groupByHastTags[key],function(item){
+                //console.log(item);
+                if(item["PREDICTED_LABEL"].toLowerCase() == "positive"){
+                    return "positive";
+                }
+                else if(item["PREDICTED_LABEL"].toLowerCase() == "negative"){
+                    return "negative";
+                }
+                else{
+                    return "neutral";
+                }
+            });
+
+        }
+        for(var key in groupByHastTags){
             categories.push(key);
-            var count=_.countBy(groupByHastTags[key], "PREDICTED_LABEL");
-            count['positive']=count['positive'] ?count['positive']:0;
-            count['negative']=count['negative'] ?count['negative']:0;
-            count['neutral']=count['neutral'] ?count['neutral']:0;
-            var sum=count['positive']+count['negative']+count['neutral'];
-            data.push({y:sum,color:colors[randId],drilldown:{name:key+"_labels",categories: ['Positive','Negative','Neutral'],color:colors[randId],data:[count['positive'],count['negative'],count['neutral']]}});
+            //var count=_.countBy(groupByHastTags[key], "PREDICTED_LABEL");
+            var obj=groupByHastTags[key];
+            obj['positive']=obj['positive'] ?obj['positive'].length:0;
+            obj['negative']=obj['negative'] ?obj['negative'].length:0;
+            obj['neutral']=obj['neutral'] ?obj['neutral'].length:0;
+            var sum=obj['positive']+obj['negative']+obj['neutral'];
+            data.push({y:sum,color:colors[randId],drilldown:{name:key+"_labels",categories: ['Positive','Negative','Neutral'],color:colors[randId],data:[obj['positive'],obj['negative'],obj['neutral']]}});
             randId++;
         }
 
