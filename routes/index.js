@@ -36,7 +36,8 @@ router.get('/fetchData',function(req, res,next){
     var params = initial_params + '&test_user=' + testConfig.testUser.id;*/
  //   var url="http://45.55.159.119:3000/platalytics/api/version/developers_interface/process/560f9af6dc30bd913c2e6117/smart_sink/560fcf6ed3831ce4552b6861/?SELECT=Predicted_Label,Tweet_Id,userName,screenName,location,dateTime,status%20&ORDER%20BY=dateTime%20DESC%20&tool=phoenix&start=0&rows=500"+ '&test_user=' + testConfig.testUser.id;;
  //   var url="http://45.55.159.119:3000/sinkHelpers/executeQuery?pipeline=56278682a8aabf373bf11c56:56278737a8aabf373bf11c93;&query=select%20*%20from%20table56278737a8aabf373bf11c93%20where%20HASHTAGS%20is%20not%20null%20order%20by%20DATETIME%20desc%20limit%20500%20&tool=phoenix&sink_type=smart"+ '&test_user=' + testConfig.testUser.id;;
-    var url="http://45.55.159.119:3000/sinkHelpers/executeQuery?pipeline=56278682a8aabf373bf11c56:56278737a8aabf373bf11c93;&query=select%20*%20from%20table56278737a8aabf373bf11c93%20where%20HASHTAGS%20is%20not%20null%20order%20by%20DATETIME%20asc%20%20limit%20500%20&tool=phoenix&sink_type=smart"+ '&test_user=' + testConfig.testUser.id;;
+ //   var url="http://45.55.159.119:3000/sinkHelpers/executeQuery?pipeline=56278682a8aabf373bf11c56:56278737a8aabf373bf11c93;&query=select%20*%20from%20table56278737a8aabf373bf11c93%20where%20HASHTAGS%20is%20not%20null%20order%20by%20DATETIME%20asc%20%20limit%20500%20&tool=phoenix&sink_type=smart"+ '&test_user=' + testConfig.testUser.id;;
+    var url="http://45.55.159.119:3000/platalytics/api/version/developers_interface/process/562f2ada3a366cf9052db40f/smart_sink/562f2c8e3a366cf9052db428/?SELECT=Predicted_Label,Tweet_Id,userName,screenName,location,dateTime,status,HashTags%20&tool=phoenix&start=0&rows=500"+ '&test_user=' + testConfig.testUser.id;;
     request(url, function (error, response, body) {
         var parsedBody = "";
         try {
