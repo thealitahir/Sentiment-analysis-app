@@ -263,7 +263,7 @@ APIFetchController.controller('DemoController', ['$scope', 'CRUDService', '$time
         console.log("groupByHastTags");
         console.log(groupByHastTags);
         var seriesArray=[];
-        var randId=0;
+        var randId=1;
         for(var key in groupByHastTags){
             groupByHastTags[key]= _.groupBy(groupByHastTags[key],function(item){
                 //console.log(item);
@@ -333,7 +333,7 @@ APIFetchController.controller('DemoController', ['$scope', 'CRUDService', '$time
         var colors = Highcharts.getOptions().colors;
         var groupByHastTags= _.groupBy($scope.data,"HASHTAGS");
         var data=[];
-        var randId=0;
+        var randId=1;
         var categories=[];
         for(var key in groupByHastTags){
             groupByHastTags[key]= _.groupBy(groupByHastTags[key],function(item){
