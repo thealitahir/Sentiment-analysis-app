@@ -252,45 +252,46 @@
 
 
     </div>
-</div>
-<div ng-show="tab==2">
-    <div class="table-block">
 
-        <div class="form-inline pull-left">
+    <div ng-show="tab==2">
+        <div class="table-block">
+
+            <div class="form-inline pull-left">
+                <div class="form-group">
+                    <label style="margin-right: 10px;"><b>API:</b></label>
+                    <input style="width: 650px;" type="text" class="form-control" value="http://45.55.159.119:3000/sinkHelpers/executeQuery?pipeline=5526b98f8022a0dd73295c9e:556ff7a776f67ea760fe5c07;&query=select%20*%20from%20table556ff7a776f67ea760fe5c07&tool=phoenix&sink_type=smart"/>
+                </div>
+
+                <button type="submit" ng-click="fetchData();" class="btn btn-default btn-gray">Fetch</button>
+            </div>
+
             <div class="form-group">
-                <label style="margin-right: 10px;"><b>API:</b></label>
-                <input style="width: 650px;" type="text" class="form-control" value="http://45.55.159.119:3000/sinkHelpers/executeQuery?pipeline=5526b98f8022a0dd73295c9e:556ff7a776f67ea760fe5c07;&query=select%20*%20from%20table556ff7a776f67ea760fe5c07&tool=phoenix&sink_type=smart"/>
+
+                <div class="inner-addon right-addon">
+                    <i class="glyphicons glyphicons-search"></i>
+                    <input type="text" class="form-control" ng-model="searchText" placeholder="Search..." />
+                </div>
+                <div class="clear"></div>
             </div>
 
-            <button type="submit" ng-click="fetchData();" class="btn btn-default btn-gray">Fetch</button>
+            <table ng-show="showData" class="table table-responsive">
+                <thead>
+                <tr>
+                    <th ng-repeat="fieldProps in schema">
+                        {{fieldProps.alias}}
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+
+                <tr ng-repeat="dataObj in data  | filter:searchText">
+                    <td ng-repeat="fields in schema">{{dataObj[fields.field]}}</td>
+                </tr>
+                </tbody>
+            </table>
         </div>
-
-        <div class="form-group">
-
-            <div class="inner-addon right-addon">
-                <i class="glyphicons glyphicons-search"></i>
-                <input type="text" class="form-control" ng-model="searchText" placeholder="Search..." />
-            </div>
-            <div class="clear"></div>
-        </div>
-
-        <table ng-show="showData" class="table table-responsive">
-            <thead>
-            <tr>
-                <th ng-repeat="fieldProps in schema">
-                    {{fieldProps.alias}}
-                </th>
-            </tr>
-            </thead>
-            <tbody>
-
-            <tr ng-repeat="dataObj in data  | filter:searchText">
-                <td ng-repeat="fields in schema">{{dataObj[fields.field]}}</td>
-            </tr>
-            </tbody>
-        </table>
     </div>
-</div>
+
 </div>
 
 <div ng-if="data.length==0">
