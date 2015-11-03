@@ -8,7 +8,7 @@ var nodemailer = require('nodemailer');
 var async = require('async');
 var crypto = require('crypto');
 var testConfig = require('../testConfig');
-
+var pipelineId="562f2ada3a366cf9052db40f";
 var smtpTransport = nodemailer.createTransport({
     service: "Gmail",  // sets automatically host, port and connection security settings
     auth: {
@@ -29,309 +29,184 @@ var tweet = require("../public/API_Fetch_Data/tweet.json")
     //  console.log(params);
     console.log("sdssd");
 });*/
-router.get('/fetchData',function(req, res,next){
-    console.log(testConfig.testUser.id);
-    console.log(req.params);
-   /* var initial_params = decodeURIComponent(req.params.url);
-    var params = initial_params + '&test_user=' + testConfig.testUser.id;*/
-   //var url="http://45.55.159.119:3000/platalytics/api/version/developers_interface/process/562f2ada3a366cf9052db40f/smart_sink/56320c9ed6a05b593336ca65/?SELECT=Predicted_Label,Tweet_Id,userName,screenName,location,dateTime,status,HashTags &tool=phoenix&start=0&rows=500"+ '&test_user=' + testConfig.testUser.id;;
-   var url="http://45.55.159.119:3000/platalytics/api/version/developers_interface/process/562f2ada3a366cf9052db40f/smart_sink/563738e1e709572d6aa3fb3f/?SELECT=Predicted_Label,Tweet_Id,userName,screenName,location,dateTime,status,HashTags%20&tool=phoenix&start=0&rows=500"+ '&test_user=' + testConfig.testUser.id;;
-    request(url, function (error, response, body) {
-        var parsedBody = "";
-        try {
 
-            parsedBody = JSON.parse(body);
-        }
-        catch (ex) {
-
-            console.log("Exception occurred while parsing oozie response : " + ex);
-        }
-        finally {
-
-            if (parsedBody instanceof Object) {
-                res.send({status: true, msg: "response received", data: parsedBody});
-
-            }
-            else {
-                res.send({status: false, msg: "Non JSON response received.", data: []});
-            }
-        }
-
-    });
-
-
-    /*
-     request(params, function (error, response, body) {
-     */
-    /* if (!error && response.statusCode == 200) {
-     var data=JSON.parse(body);
-     res.send({msg:"",data:JSON.parse(data)});
-
-     }*//*
-
-
-     var parsedBody = "";
-     try {
-     parsedBody = JSON.parse( JSON.parse(body) );
-     }
-     catch (ex) {
-
-     console.log(" Exception occurred while parsing response ");
-     }
-     finally {
-
-     if (parsedBody instanceof Object) {
-     res.send({status: true, msg: 'Data available.', data: parsedBody});
-
-     }
-     else {
-
-     res.send({status: false, msg: "Non JSON or invalid JSON response received.", data: []});
-     }
-     }
-
-     });
-     */
-});
 var fs = require('fs');
 
 /*var multi  = require('connect-multiparty');
  var multimiddleware=new multi();*/
 
-var Student = require('../models/StudentModel');
+var Sentiment= require('../models/SentiModel');
+//var Pipeline= require('../models/pipelineModel');
+//var Stage= require('../models/stageModel');
 
 var mongoose = require('mongoose');
-var StudentModel = mongoose.model('Student');
+//var StudentModel = mongoose.model('Student');
 
 var request = require('request');
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-    res.render('index', { title: 'Express' });
+var hashTags="";
+var twitterStage={};
+
+var mongo = require('mongodb'),
+    Server = mongo.Server,
+    ObjectID = require('mongodb').ObjectID,
+    Db = mongo.Db;
+var server = new Server('45.55.159.119', 27017, {
+    auto_reconnect: true
 });
+var db = new Db('test', server);
+db.open(function(err, db) {
+    if(!err) {
 
-router.post('/',function(req, res){
-
-    var Student = new StudentModel();
-    Student.firstname = req.body.firstname;
-    Student.lastname = req.body.lastname;
-    Student.email = req.body.email;
-    Student.age = req.body.age;
-    Student.phoneno = req.body.phoneno;
-    Student.save(function(err){
-        if(err){
-            res.send({error:err});
-        }
-
-        else{
-
-            res.send('Student Added Successfully!');
-        }
-    });
-});
-
-router.get('/getAllStudents',function(req, res){
-    StudentModel.find(function(err, students){
-        if(err){
-            res.send({error:err});
-        }
-
-        else{
-            res.send(students);
-        }
-    })
-});
-
-router.delete('/delete/:id',function(req, res){
-
-    StudentModel.remove({_id: req.params.id}, function(err){
-        if(err){
-            res.send({error:err});
-        }
-
-        else{
-            res.send("Deleted Successfully");
-        }
-    })
-
-});
-
-router.get('/update/:id',function(req, res){
-    var params = req.params.id;
-    StudentModel.find({_id : params}, function(err, student){
-        if(err){
-            res.send({error:err});
-        }
-
-        else{
-            res.send(student);
-        }
-
-    });
-});
-
-router.put('/update/save/:id',function(req, res){
-
-    StudentModel.update({_id: req.params.id}, {$set: {firstname:req.body.firstname, lastname: req.body.lastname,
-            email: req.body.email, age: req.body.age, phoneno: req.body.phoneno}},
-        function(err, affected){
-            if(err){
-                res.send({error:err});
-            }
-
-            else{
-                res.send('Updated Successfully');
+        db.collection('pipelines', function(err, collection) {
+            if(!err){
+                if (!err) {
+                    collection.findOne({_id:new ObjectID(pipelineId)},function(err, docs) {
+                        if (!err) {
+                            var stages=docs.stages;
+                            getTwitterSourceId(stages,function(doc){
+                                hashTags=doc.stage_attributes.hash_tags;
+                                twitterStage=doc;
+                            });
+                        }
+                    });
+                }
             }
         })
+        console.log("connected to db")
+        console.log("sd")
+        router.get('/', function (req, res, next) {
+            res.render('index', {title: 'Express'});
+        });
+        router.get('/fetchData',function(req, res,next){
+            console.log(testConfig.testUser.id);
+            console.log(req.params);
+            /* var initial_params = decodeURIComponent(req.params.url);
+             var params = initial_params + '&test_user=' + testConfig.testUser.id;*/
+            //var url="http://45.55.159.119:3000/platalytics/api/version/developers_interface/process/562f2ada3a366cf9052db40f/smart_sink/56320c9ed6a05b593336ca65/?SELECT=Predicted_Label,Tweet_Id,userName,screenName,location,dateTime,status,HashTags &tool=phoenix&start=0&rows=500"+ '&test_user=' + testConfig.testUser.id;;
+            var url="http://45.55.159.119:3000/platalytics/api/version/developers_interface/process/562f2ada3a366cf9052db40f/smart_sink/563738e1e709572d6aa3fb3f/?SELECT=Predicted_Label,Tweet_Id,userName,screenName,location,dateTime,status,HashTags%20&tool=phoenix&start=0&rows=500"+ '&test_user=' + testConfig.testUser.id;;
+            request(url, function (error, response, body) {
+                var parsedBody = "";
+                try {
 
-});
+                    parsedBody = JSON.parse(body);
+                }
+                catch (ex) {
 
-router.post('/upload' , function(req, res) {
+                    console.log("Exception occurred while parsing oozie response : " + ex);
+                }
+                finally {
 
-    console.log(req.files);
+                    if (parsedBody instanceof Object) {
+                        console.log("!!!!!!!!!!!!")
+                        console.log(hashTags)
+                        res.send({status: true, msg: "response received", data: parsedBody,hashTags:hashTags});
 
-    if (req.body.length == 1) {
+                    }
+                    else {
+                        res.send({status: false, msg: "Non JSON response received.", data: []});
+                    }
+                }
 
-        var file_path = req.files.FILE.path;
-        var dest_path = './public/uploads/' + req.files.FILE.originalname;
+            });
+        });
+        router.post('/upload', function (req, res) {
 
-        fs.rename(file_path, dest_path, function (err) {
-            if (err) {
-                fs.unlink(file_path, function () {
+            console.log(req.files);
+
+            if (req.body.length == 1) {
+
+                var file_path = req.files.FILE.path;
+                var dest_path = './public/uploads/' + req.files.FILE.originalname;
+
+                fs.rename(file_path, dest_path, function (err) {
                     if (err) {
-                        throw err;
+                        fs.unlink(file_path, function () {
+                            if (err) {
+                                throw err;
+                            }
+
+                        });
+                    }
+
+                    else {
+                        res.send('File Uploaded Successfully');
                     }
 
                 });
             }
 
             else {
-                res.send('File Uploaded Successfully');
+                for (var i = 0; i < req.files.FILE.length; i++) {
+
+                    var file_path = req.files.FILE[i].path;
+                    var dest_path = './public/uploads/' + req.files.FILE[i].originalname;
+
+                    if ((i + 1) == req.files.FILE.length) {
+                        res.send('File/s Uploaded Successfully');
+                    }
+
+                    fs.rename(file_path, dest_path, function (err) {
+                        if (err) {
+                            fs.unlink(file_path, function () {
+                                if (err) {
+                                    throw err;
+                                }
+
+                            });
+                        }
+                    });
+                }
             }
 
         });
-    }
+        router.post('/saveHashTag', function (req, res) {
+            console.log("req obj");
+            console.log(req.body.tags);
+            console.log("here")
+            console.log(twitterStage)
+            twitterStage.stage_attributes.hash_tags=req.body.tags;
+            console.log("finding collection")
+            db.collection('stages', function(err, collection) {
+                console.log("testing")
+                if(!err){
+                        console.log("twiiter doc")
+                        console.log(twitterStage)
+                        collection.update({_id:new ObjectID(twitterStage._id)}, {$set: {stage_attributes:twitterStage.stage_attributes}},function(){
+                            if(!err){
+                                res.send({status: true, msg: "Hash Tags updated"});
 
-    else {
-        for (var i = 0; i < req.files.FILE.length; i++) {
+                            }
+                        });
+                }
+            })
 
-            var file_path = req.files.FILE[i].path;
-            var dest_path = './public/uploads/' + req.files.FILE[i].originalname;
-
-            if ((i + 1) == req.files.FILE.length) {
-                res.send('File/s Uploaded Successfully');
-            }
-
-            fs.rename(file_path, dest_path, function (err) {
-                if (err) {
-                    fs.unlink(file_path, function () {
-                        if (err) {
-                            throw err;
+        });
+        function getTwitterSourceId(stages,callback){
+            for(var i=0;i<stages.length;i++){
+                db.collection('stages', function(err, collection) {
+                    if(!err){
+                        if (!err) {
+                            collection.findOne({_id:new ObjectID(stages[i])},function(err, doc) {
+                                if (!err) {
+                                    if(doc.sub_type=='twitter'){
+                                        callback(doc);
+                                    }
+                                }
+                            });
                         }
-
-                    });
-                }
-            });
-        }
-    }
-
-});
-
-router.post('/send',function(req, res,next){
-
-/*    console.log(req.body);
-    var user=req.body;
-    console.log(user.email)*/
-    /*smtpTransport.sendMail(
-        {
-            //email options
-            from: "Admin <samanashraf92@gmail.com>", // sender address.
-            to:    user.email, // receiver
-            subject: "Test Email", // subject
-            text: "Please Click on the link to verify your registeration:<br>"
-        },
-        function(error, response){  //callback
-            if(error){
-
-                res.send('Error');
-            }else{
-                res.send("Email sent")
+                    }
+                })
             }
-            smtpTransport.close(); // shut down the connection pool, no more messages.
-        });*/
-
-  /*  var token = Math.floor((Math.random() * 100) + 54);
-
-    var link = 'http://'+ req.headers.host +'/verify?token=' + token;
-    var mailOptions = {
-        from: "Fred Foo ✔ <foo@blurdybloop.com>", // sender address
-        to: user.email, // list of receivers
-        subject: "Hello ✔", // Subject line
-        text: "Hello world ✔", // plaintext body
-        html: "<b>Hello world ✔</b>"+link // html body
+        }
+    }
+    else{
+        console.log("error connecting db")
     }
 
-// send mail with defined transport object
-    smtpTransport.sendMail(mailOptions, function(error, response){
-        if(error){
-            console.log(error);
-        }else{
-            console.log("Message sent: ");
-        }
 
-        // if you don't want to use this transport object anymore, uncomment following line
-        //smtpTransport.close(); // shut down the connection pool, no more messages
-    });*/
-
-    passport.authenticate('local-register', function(err, info) {
-
-
-       /* if (err) {
-
-            req.flash('message','Missing credentials');
-            return res.redirect('/register');
-        }
-
-
-        if (!user) {
-
-            req.flash('message','Missing credentials');
-            return res.redirect('/register');
-        }
-
-        var link = 'http://'+ req.headers.host +'/verify?token=' + user.token;
-
-        //sending mail
-        smtpTransport.sendMail(
-            {
-                //email options
-                from: "Admin <asma.sardar@platalytics.com>", // sender address.
-                to:    user.name+"<"+user.username+">", // receiver
-                subject: "Registration Confirmation", // subject
-                html: "Please Click on the link to verify your registeration:<br>"+link
-            },
-            function(error, response){  //callback
-                if(error){
-
-                    res.send('Error');
-                }else{
-
-                }
-                smtpTransport.close(); // shut down the connection pool, no more messages.
-            });
-
-        req.flash('message','Please verify the link sent to your email');
-        return res.redirect('/login');*/
-
-    })(req, res, next);
 });
-
-router.get('/verify', function(req,res){
-
-   console.log("account activated")
-});
-
-
+/* GET home page. */
 
 
 module.exports=router;

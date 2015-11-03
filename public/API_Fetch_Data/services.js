@@ -11,6 +11,10 @@ angular.module('services').factory('CRUDService',['$http','$routeParams', functi
 
             var link = '/fetchData'
             return $http.get(link);
-        }
+        },
+        saveHashTag:function(tags){
+            var link = '/saveHashTag'
+            return $http.post(link,{tags:tags});
+    }
     }
 }]);

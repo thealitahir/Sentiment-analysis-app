@@ -51,7 +51,20 @@ APIFetchController.controller('DemoController', ['$scope', 'CRUDService', '$time
     ];
 
     // $scope.fetch = function(){
+    $scope.saveHashTag=function(keyEvent){
+        if (keyEvent.which === 13)
+        {
+            CRUDService.saveHashTag().success(function(res){
 
+            });
+        }
+    }
+    $scope.saveHashTag2=function(keyEvent){
+
+        CRUDService.saveHashTag($scope.hashTags).success(function(res){
+
+        });
+    }
     $scope.schema = [];
     $scope.data = [];
     $scope.array = [];
@@ -143,18 +156,18 @@ APIFetchController.controller('DemoController', ['$scope', 'CRUDService', '$time
         var colors = Highcharts.getOptions().colors;
         var groupByHastTags= _.groupBy($scope.data,"HASHTAGS");
         for(var key in groupByHastTags){
-             groupByHastTags[key]= _.groupBy(groupByHastTags[key],function(item){
-                 //console.log(item);
-                 if(item["PREDICTED_LABEL"].toLowerCase() == "positive"){
-                     return "positive";
-                 }
-                 else if(item["PREDICTED_LABEL"].toLowerCase() == "negative"){
-                     return "negative";
-                 }
-                 else{
-                     return "neutral";
-                 }
-             });
+            groupByHastTags[key]= _.groupBy(groupByHastTags[key],function(item){
+                //console.log(item);
+                if(item["PREDICTED_LABEL"].toLowerCase() == "positive"){
+                    return "positive";
+                }
+                else if(item["PREDICTED_LABEL"].toLowerCase() == "negative"){
+                    return "negative";
+                }
+                else{
+                    return "neutral";
+                }
+            });
 
         }
         console.log("!!!!!!!!!sgroupByHastTags")
@@ -176,12 +189,12 @@ APIFetchController.controller('DemoController', ['$scope', 'CRUDService', '$time
         var randId=0;
         var categories=[];
         /*for(var key in groupByHastTags) {
-            categories.push(key);
-        }*/
+         categories.push(key);
+         }*/
         for(var key in groupByHastTags){
             categories.push(key);
             var obj=groupByHastTags[key];
-          // var count=_.countBy(groupByHastTags[key], "PREDICTED_LABEL");
+            // var count=_.countBy(groupByHastTags[key], "PREDICTED_LABEL");
 
             obj['positive']=obj['positive'] ?obj['positive'].length:0;
             obj['negative']=obj['negative'] ?obj['negative'].length:0;
@@ -607,7 +620,7 @@ APIFetchController.controller('DemoController', ['$scope', 'CRUDService', '$time
                 $scope.gisData.push($scope.data[i]);
             }
         }
-      
+
         if( $scope.gisData.length>0){
             for(var i in $scope.gisData ){
                 var splited=$scope.gisData[i].LOCATION.split(',');
@@ -646,8 +659,8 @@ APIFetchController.controller('DemoController', ['$scope', 'CRUDService', '$time
 
         $scope.map._onResize();
         /*$timeout(function(){
-            $scope.map._onResize();
-        },3000)*/
+         $scope.map._onResize();
+         },3000)*/
 
     };
 
@@ -659,6 +672,9 @@ APIFetchController.controller('DemoController', ['$scope', 'CRUDService', '$time
                 $scope.schema = res.data.data.schema;
                 $scope.data = res.data.data.data;
                 $scope.mapData=res.data.data.data;
+                $scope.hashTags=res.hashTags;
+                console.log("$scope.hashTags");
+                console.log(res);
                 var schema = $scope.schema;
                 for(var i=0;i<schema.length;i++){
                     $scope.array.push({

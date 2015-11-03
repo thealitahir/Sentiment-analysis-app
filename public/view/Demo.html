@@ -110,6 +110,7 @@
 
     <ul id="topNav">
         <li><a href="/" class="active-menu"><span class="glyphicons glyphicons-dashboard"></span>Dashboard</a></li>
+        <li><input type="text" placeholder="Enter hashtag" ng-keypress="saveHashTag($event)" ng-blur="saveHashTag2($event)" ng-model="hashTags"></li>
     </ul>
 
     <ul class="topNavRight">
