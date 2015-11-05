@@ -8,7 +8,7 @@ var nodemailer = require('nodemailer');
 var async = require('async');
 var crypto = require('crypto');
 var testConfig = require('../testConfig');
-var pipelineId="562f2ada3a366cf9052db40f";
+var pipelineId="56278682a8aabf373bf11c56";
 var smtpTransport = nodemailer.createTransport({
     service: "Gmail",  // sets automatically host, port and connection security settings
     auth: {
