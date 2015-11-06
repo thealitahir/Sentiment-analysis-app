@@ -664,6 +664,16 @@ APIFetchController.controller('DemoController', ['$scope', 'CRUDService', '$time
 
     };
 
+    $scope.showHashTag = false;
+
+    $scope.showHideHashTag = function(){
+        if ($scope.showHashTag == false){
+            $scope.showHashTag = true;
+        } else {
+            $scope.showHashTag = false;
+        }
+    }
+
     $scope.fetchData = function(){
 
         //  console.log("fetch data called")
@@ -675,6 +685,9 @@ APIFetchController.controller('DemoController', ['$scope', 'CRUDService', '$time
                 $scope.hashTags=res.hashTags;
                 console.log("$scope.hashTags");
                 console.log(res);
+
+                $scope.splittdHashTags = $scope.hashTags.split(",")
+
                 var schema = $scope.schema;
                 for(var i=0;i<schema.length;i++){
                     $scope.array.push({
