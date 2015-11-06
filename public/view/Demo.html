@@ -89,10 +89,41 @@
     .leaflet-control-attribution {
         display: none;
     }
+
+    .hash-tags{
+        width: 300px;
+        position: fixed;
+        top: 47px;
+        overflow: auto;
+        height: 50%;
+        right: -300px;
+        z-index: 1000;
+        background: #f5f5f5;
+        box-shadow: 0px 0px 5px rgba(0, 0, 0, .2);
+        padding: 10px;
+        -webkit-transition: all .5s ease-out;
+        -moz-transition: all .5s ease-out;
+        transition: all .5s ease-out;
+    }
+    .hash-tags ul{
+        list-style-type: none;
+    }
+    .hash-tags li{
+        background: #bbbbbb;
+        color: #ffffff;
+        padding: 5px 10px;
+        margin-top: 5px;
+        margin-right: 5px;
+        display: inline-block;
+    }
+
+    .showHashTag{
+        right: 0;
+    }
 </style>
 
 <nav id="top-nav">
-    <div class="pull-left ">
+    <div class="pull-left">
         <div class="btnMenuWrap">
             <ul>
                 <li>
@@ -106,11 +137,18 @@
         </div>
     </div>
 
-    <div class="logo pull-left">Sentiment Analysis</div>
+    <div class="logo pull-left">
+        <img src="images/logo-white.svg" alt="" />
+    </div>
 
-    <ul id="topNav">
+    <ul id="topNav" class="topNav">
         <li><a href="/" class="active-menu"><span class="glyphicons glyphicons-dashboard"></span>Dashboard</a></li>
-        <li><input type="text" placeholder="Enter hashtag" ng-keypress="saveHashTag($event)"  ng-blur="saveHashTag2($event)" ng-model="hashTags"></li>
+        <!--<li><input type="text" placeholder="Enter hashtag" ng-keypress="saveHashTag($event)" ng-blur="saveHashTag2($event)" ng-model="hashTags"></li>-->
+    </ul>
+
+    <ul class="pull-right topNav" style="margin-left: 2px;">
+        <li><a ng-class="{'active-menu': showHashTag}" ng-click="showHideHashTag()"># Tags</a></li>
+        <!--<li><input type="text" placeholder="Enter hashtag" ng-keypress="saveHashTag($event)"  ng-blur="saveHashTag2($event)" ng-model="hashTags"></li>-->
     </ul>
 
     <ul class="topNavRight">
@@ -127,7 +165,17 @@
 </nav>
 
 
+
 <div ng-show="data.length" id="main-container" class="container-fluid">
+
+    <div class="hash-tags" ng-class="{'showHashTag': showHashTag}">
+        <input type="text" class="form-control" placeholder="Enter hashtag" ng-keypress="saveHashTag($event)" ng-blur="saveHashTag2($event)" ng-model="hashTags">
+        <ul>
+            <li ng-repeat="hashTag in splittdHashTags">
+                {{hashTag}}
+            </li>
+        </ul>
+    </div>
 
     <div class="left-menu">
         <ul ng-init="tab=1">

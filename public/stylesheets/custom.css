@@ -27,11 +27,13 @@ label{
     clear: both;
 }
 .logo {
-    padding: 7px 35px 0px 25px;
+    /*padding: 7px 35px 0px 25px;*/
     text-align: center;
     font-family: "Verdana";
     font-size: 21px;
     color: #ffffff;
+    margin-right: 50px;
+    margin-left: 20px;
 }
 
 /* Custom Select/Multi-select CSS
@@ -100,35 +102,40 @@ nav a {
     text-transform: uppercase;
 }
 nav a:hover,
-#sideNav li > a:hover,
-#sideNav li > a.active-menu,
-#topNav li > a:hover,
-#topNav li > a.active-menu,
-.topNavRight li > a:hover, .topNavRight li > a:focus, .topNavRight li > a:active,
-.topNavRight li > a.active-menu,
-.btnMenuWrap li > a.active-menu {
+#sideNav > li > a:hover,
+#sideNav > li > a.active-menu,
+.topNav > li > a:hover,
+.topNav > li > a.active-menu,
+.topNavRight > li > a:hover, .topNavRight > li > a:focus, .topNavRight > li > a:active,
+.topNavRight > li > a.active-menu,
+.btnMenuWrap > li > a.active-menu {
     /*background-color: #fafafa;*/
     background-color: #037AA1;
     color: #666666;
     text-decoration: none;
 }
-#topNav > li > a{
+.topNav > li > a{
     font-weight: bold;
-    height: 47px;
+    height: 46px;
 }
 .topNavRight > li > a {
     font-weight: bold;
     height: 46px;
 }
 
-#topNav > li > a span{
+.topNav > li > a span{
     font-size: 17px;
     margin-right: 5px;
 }
 
-#topNav > li > a.active-menu{
+.topNav > li > a:hover,
+.topNav > li > a.active-menu,
+.topNavRight > li > a:hover,
+.topNavRight > li > a.active,
+.topNavRight .dropdown.open > a {
     /*color: rgb(124, 181, 236);*/
     color: #ffffff;
+    cursor: pointer;
 }
 
 #btnMenu{
