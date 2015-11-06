@@ -163,8 +163,9 @@ db.open(function(err, db) {
         router.post('/saveHashTag', function (req, res) {
             console.log("req obj");
             console.log(req.body.tags);
-            console.log("here")
-            console.log(twitterStage)
+            console.log("here");
+            console.log(twitterStage);
+
             twitterStage.stage_attributes.hash_tags=req.body.tags;
             console.log("finding collection")
             db.collection('stages', function(err, collection) {
@@ -174,6 +175,7 @@ db.open(function(err, db) {
                         console.log(twitterStage)
                         collection.update({_id:new ObjectID(twitterStage._id)}, {$set: {stage_attributes:twitterStage.stage_attributes}},function(){
                             if(!err){
+                                hashTags=req.body.tags;
                                 res.send({status: true, msg: "Hash Tags updated"});
 
                             }
