@@ -8,7 +8,7 @@ var nodemailer = require('nodemailer');
 var async = require('async');
 var crypto = require('crypto');
 var testConfig = require('../testConfig');
-var pipelineId="562f2ada3a366cf9052db40f";
+var pipelineId="56278682a8aabf373bf11c56";
 var smtpTransport = nodemailer.createTransport({
     service: "Gmail",  // sets automatically host, port and connection security settings
     auth: {
@@ -83,8 +83,8 @@ db.open(function(err, db) {
             console.log(req.params);
             /* var initial_params = decodeURIComponent(req.params.url);
              var params = initial_params + '&test_user=' + testConfig.testUser.id;*/
-            //var url="http://45.55.159.119:3000/platalytics/api/version/developers_interface/process/562f2ada3a366cf9052db40f/smart_sink/56320c9ed6a05b593336ca65/?SELECT=Predicted_Label,Tweet_Id,userName,screenName,location,dateTime,status,HashTags &tool=phoenix&start=0&rows=500"+ '&test_user=' + testConfig.testUser.id;;
-            var url="http://45.55.159.119:3000/platalytics/api/version/developers_interface/process/562f2ada3a366cf9052db40f/smart_sink/563738e1e709572d6aa3fb3f/?SELECT=Predicted_Label,Tweet_Id,userName,screenName,location,dateTime,status,HashTags%20&tool=phoenix&start=0&rows=500"+ '&test_user=' + testConfig.testUser.id;;
+            var url="http://45.55.159.119:3000/sinkHelpers/executeQuery?pipeline=56278682a8aabf373bf11c56:562e4c48fd65829b3ba4c025;&query=select%20*%20from%20table562e4c48fd65829b3ba4c025%20where%20HASHTAGS%20is%20not%20null%20order%20by%20TWEET_ID%20DESC&tool=phoenix&sink_type=smart"+ '&test_user=' + testConfig.testUser.id;;
+            //var url="http://45.55.159.119:3000/platalytics/api/version/developers_interface/process/562f2ada3a366cf9052db40f/smart_sink/563738e1e709572d6aa3fb3f/?SELECT=Predicted_Label,Tweet_Id,userName,screenName,location,dateTime,status,HashTags%20&tool=phoenix&start=0&rows=500"+ '&test_user=' + testConfig.testUser.id;;
             request(url, function (error, response, body) {
                 var parsedBody = "";
                 try {
@@ -163,8 +163,9 @@ db.open(function(err, db) {
         router.post('/saveHashTag', function (req, res) {
             console.log("req obj");
             console.log(req.body.tags);
-            console.log("here")
-            console.log(twitterStage)
+            console.log("here");
+            console.log(twitterStage);
+
             twitterStage.stage_attributes.hash_tags=req.body.tags;
             console.log("finding collection")
             db.collection('stages', function(err, collection) {
@@ -174,6 +175,7 @@ db.open(function(err, db) {
                         console.log(twitterStage)
                         collection.update({_id:new ObjectID(twitterStage._id)}, {$set: {stage_attributes:twitterStage.stage_attributes}},function(){
                             if(!err){
+                                hashTags=req.body.tags;
                                 res.send({status: true, msg: "Hash Tags updated"});
 
                             }
