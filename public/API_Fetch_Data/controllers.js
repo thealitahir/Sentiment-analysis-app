@@ -170,8 +170,8 @@ APIFetchController.controller('DemoController', ['$scope', 'CRUDService', '$time
             });
 
         }
-        console.log("!!!!!!!!!sgroupByHastTags")
-        console.log(groupByHastTags)
+     //   console.log("!!!!!!!!!sgroupByHastTags")
+    //    console.log(groupByHastTags)
 
         var seriesData=[
             { name: 'Positive',
@@ -212,9 +212,6 @@ APIFetchController.controller('DemoController', ['$scope', 'CRUDService', '$time
             }
             randId++;
         }
-        console.log("series Data")
-        console.log(seriesData)
-        console.log(categories)
         $('#barChart').highcharts({
             chart: {
                 type: 'bar'
@@ -273,8 +270,6 @@ APIFetchController.controller('DemoController', ['$scope', 'CRUDService', '$time
     $scope.drawHeatMap=function(){
         var colors = Highcharts.getOptions().colors;
         var groupByHastTags= _.groupBy($scope.data,"HASHTAGS");
-        console.log("groupByHastTags");
-        console.log(groupByHastTags);
         var seriesArray=[];
         var randId=1;
         for(var key in groupByHastTags){
@@ -337,8 +332,6 @@ APIFetchController.controller('DemoController', ['$scope', 'CRUDService', '$time
 
         }];
         heatMapConfig.series = treeGraphData;
-        console.log("!!!!!!!!!!")
-        console.log(heatMapConfig)
         $('#heatMap').highcharts(heatMapConfig);
 
     };
@@ -436,7 +429,7 @@ APIFetchController.controller('DemoController', ['$scope', 'CRUDService', '$time
             tooltip: {
                 formatter: function(){
                     var point = this.point;
-                    console.log(point);
+                    //console.log(point);
                     return '<b>' + point.name + ': ' + point.y + '';
                 }
             },
@@ -683,8 +676,8 @@ APIFetchController.controller('DemoController', ['$scope', 'CRUDService', '$time
                 $scope.data = res.data.data.data;
                 $scope.mapData=res.data.data.data;
                 $scope.hashTags=res.hashTags;
-                console.log("$scope.hashTags");
-                console.log(res);
+              //  console.log("$scope.hashTags");
+              //  console.log(res);
 
                 $scope.splittdHashTags = $scope.hashTags.split(",")
 
