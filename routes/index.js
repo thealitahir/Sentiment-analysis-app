@@ -9,11 +9,12 @@ var async = require('async');
 var crypto = require('crypto');
 var testConfig = require('../testConfig');
 var pipelineId="56278682a8aabf373bf11c56";
+var _=require('underscore');
 var smtpTransport = nodemailer.createTransport({
     service: "Gmail",  // sets automatically host, port and connection security settings
     auth: {
         /*user: "samanashraf92@gmail.com",
-        pass: "zusammenensemble91992"*/
+         pass: "zusammenensemble91992"*/
 
         user: "asma.sardar@platalytics.com",
         pass: "libra1729"
@@ -22,13 +23,13 @@ var smtpTransport = nodemailer.createTransport({
 var jsonFile = require("../public/API_Fetch_Data/waterlevel.json")
 var tweet = require("../public/API_Fetch_Data/tweet.json")
 /*router.get('/fetchData', function(req, res, next) {
-    console.log("here")
-    //res.send( {status:true,data:tweet} );
+ console.log("here")
+ //res.send( {status:true,data:tweet} );
 
-    console.log("Sds");
-    //  console.log(params);
-    console.log("sdssd");
-});*/
+ console.log("Sds");
+ //  console.log(params);
+ console.log("sdssd");
+ });*/
 
 var fs = require('fs');
 
@@ -39,7 +40,7 @@ var Sentiment= require('../models/SentiModel');
 //var Pipeline= require('../models/pipelineModel');
 //var Stage= require('../models/stageModel');
 
-var mongoose = require('mongoose');
+//var mongoose = require('mongoose');
 //var StudentModel = mongoose.model('Student');
 
 var request = require('request');
@@ -51,17 +52,17 @@ var mongo = require('mongodb'),
     Server = mongo.Server,
     ObjectID = require('mongodb').ObjectID,
     Db = mongo.Db;
-var server = new Server('45.55.159.119', 27017, {
+var server = new Server(testConfig.database.ip, 27017, {
     auto_reconnect: true
 });
-var db = new Db('test', server);
+var db = new Db(testConfig.database.db, server);
 db.open(function(err, db) {
     if(!err) {
 
         db.collection('pipelines', function(err, collection) {
             if(!err){
                 if (!err) {
-                    collection.findOne({_id:new ObjectID(pipelineId)},function(err, docs) {
+                    collection.findOne({_id:new ObjectID(testConfig.pipelineId)},function(err, docs) {
                         if (!err) {
                             var stages=docs.stages;
                             getTwitterSourceId(stages,function(doc){
@@ -73,8 +74,7 @@ db.open(function(err, db) {
                 }
             }
         })
-        console.log("connected to db")
-        console.log("sd")
+        console.log("connected to db :"+testConfig.database.ip )
         router.get('/', function (req, res, next) {
             res.render('index', {title: 'Express'});
         });
@@ -83,7 +83,7 @@ db.open(function(err, db) {
             console.log(req.params);
             /* var initial_params = decodeURIComponent(req.params.url);
              var params = initial_params + '&test_user=' + testConfig.testUser.id;*/
-            var url="http://45.55.159.119:3000/sinkHelpers/executeQuery?pipeline=56278682a8aabf373bf11c56:562e4c48fd65829b3ba4c025;&query=select%20*%20from%20table562e4c48fd65829b3ba4c025%20where%20HASHTAGS%20is%20not%20null%20order%20by%20TWEET_ID%20DESC&tool=phoenix&sink_type=smart"+ '&test_user=' + testConfig.testUser.id;;
+            var url=testConfig.smartSinkQueryUrl;
             //var url="http://45.55.159.119:3000/platalytics/api/version/developers_interface/process/562f2ada3a366cf9052db40f/smart_sink/563738e1e709572d6aa3fb3f/?SELECT=Predicted_Label,Tweet_Id,userName,screenName,location,dateTime,status,HashTags%20&tool=phoenix&start=0&rows=500"+ '&test_user=' + testConfig.testUser.id;;
             request(url, function (error, response, body) {
                 var parsedBody = "";
@@ -98,8 +98,14 @@ db.open(function(err, db) {
                 finally {
 
                     if (parsedBody instanceof Object) {
-                        console.log("!!!!!!!!!!!!")
-                        console.log(hashTags)
+                        var tmp = hashTags.split(',').join('~').toLowerCase();
+                        var lcArray = tmp.split('~');
+                        var newArray = _.filter (parsedBody.data.data, function(obj) {
+                            var index=-1;
+                            return lcArray.indexOf(obj.HASHTAGS.toLowerCase())>-1;
+
+                        });
+                        parsedBody.data.data=newArray;
                         res.send({status: true, msg: "response received", data: parsedBody,hashTags:hashTags});
 
                     }
@@ -171,15 +177,15 @@ db.open(function(err, db) {
             db.collection('stages', function(err, collection) {
                 console.log("testing")
                 if(!err){
-                        console.log("twiiter doc")
-                        console.log(twitterStage)
-                        collection.update({_id:new ObjectID(twitterStage._id)}, {$set: {stage_attributes:twitterStage.stage_attributes}},function(){
-                            if(!err){
-                                hashTags=req.body.tags;
-                                res.send({status: true, msg: "Hash Tags updated"});
+                    console.log("twiiter doc")
+                    console.log(twitterStage)
+                    collection.update({_id:new ObjectID(twitterStage._id)}, {$set: {stage_attributes:twitterStage.stage_attributes}},function(){
+                        if(!err){
+                            hashTags=req.body.tags;
+                            res.send({status: true, msg: "Hash Tags updated"});
 
-                            }
-                        });
+                        }
+                    });
                 }
             })
 
