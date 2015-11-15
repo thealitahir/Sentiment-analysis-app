@@ -17,6 +17,7 @@
     "nodemailer-sendgrid-transport": "^0.1.0",
     "nodemailer-sendmail-transport": "^1.0.0",
     "underscore":"*",
-    "mongodb":"*"
+    "mongodb":"*",
+    "mongoose":"*"
   }
 }
