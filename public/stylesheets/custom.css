@@ -457,8 +457,19 @@ nav a:hover,
 .left-addon input  { padding-left:  30px; }
 .right-addon input { padding-right: 30px; }
 
-.btn-gray{
+.btn-gray,
+.btn-gray:hover
+.btn-gray:focus
+.btn-gray:active{
     /*background-color: #aeaeae;*/
-    background-color: #23b7e5;
+    /*background-color: #23b7e5;*/
+    background-color: #3b5079;
     color: #fff;
+    border: none;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    -moz-border-radius: 0px;
+    -webkit-border-radius: 0px;
+    border-radius: 0px;
 }
