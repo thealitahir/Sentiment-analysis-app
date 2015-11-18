@@ -200,7 +200,7 @@ nav a:hover,
 
 
 #main-container{
-    margin-left: 58px;
+    /*margin-left: 58px;*/
 }
 
 
@@ -213,6 +213,8 @@ nav a:hover,
 }
 .table-block table{
     margin-bottom: 0px;
+    display: block;
+    overflow: auto;
 }
 .table-block table tr th, .table-block table tr td{
     border: solid 1px #f2f2f2 !important;

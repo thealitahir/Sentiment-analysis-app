@@ -93,7 +93,7 @@
     .hash-tags{
         width: 300px;
         position: fixed;
-        top: 47px;
+        top: 120px;
         overflow: auto;
         height: 50%;
         right: -300px;
@@ -120,228 +120,265 @@
     .showHashTag{
         right: 0;
     }
+
+    .top-tabs{
+
+    }
+    .top-tabs ul{
+        list-style-type: none;
+        float: left;
+        width: 100%;
+        border-bottom: solid 3px #eee;
+    }
+    .top-tabs li{
+        float: left;
+        margin-right: 3px;
+        color: #2a3542;
+        padding: 10px 30px;
+        background: #eee;
+        font-size: 16px;
+        cursor: pointer;
+    }
+    .top-tabs li.active{
+        background: #3b5079 none repeat scroll 0 0;
+        color: #fff;
+    }
+    .top-tabs li span{
+        position: relative;
+        top: 2px;
+    }
 </style>
 
-<div class="row" ng-show="data.length">
-    <div class="col-sm-10 col-sm-offset-1">
-        <nav id="top-nav">
-            <div class="logo pull-left">
-                <img src="images/nfl-logo.png" alt="" />
+<div class="col-sm-10 col-sm-offset-1" ng-show="data.length">
+    <nav id="top-nav">
+        <div class="logo pull-left">
+            <img src="images/nfl-logo.png" alt="" />
+        </div>
+        <!--<div class="pull-left">
+            <div class="btnMenuWrap">
+                <ul>
+                    <li>
+                        <a id="btnMenu" href="javascript:void(0);">
+                            <span class="menu-bar"></span>
+                            <span class="menu-bar"></span>
+                            <span class="menu-bar"></span>
+                        </a>
+                    </li>
+                </ul>
             </div>
-            <!--<div class="pull-left">
-                <div class="btnMenuWrap">
-                    <ul>
-                        <li>
-                            <a id="btnMenu" href="javascript:void(0);">
-                                <span class="menu-bar"></span>
-                                <span class="menu-bar"></span>
-                                <span class="menu-bar"></span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>-->
+        </div>-->
 
-            <ul id="topNav" class="topNav">
-                <li><a ui-sref="teams"><!--<span class="glyphicons glyphicons-dashboard"></span>-->Teams</a></li>
-                <li><a class="active-menu"><!--<span class="glyphicons glyphicons-dashboard"></span>-->Realtime Sentiments</a></li>
-                <!--<li><a ui-sref="teams"><span class="glyphicons glyphicons-dashboard"></span>Teams</a></li>-->
-            </ul>
+        <ul id="topNav" class="topNav">
+            <li><a ui-sref="teams"><!--<span class="glyphicons glyphicons-dashboard"></span>-->Teams</a></li>
+            <li><a class="active-menu"><!--<span class="glyphicons glyphicons-dashboard"></span>-->Realtime Sentiments</a></li>
+            <!--<li><a ui-sref="teams"><span class="glyphicons glyphicons-dashboard"></span>Teams</a></li>-->
+        </ul>
 
-            <ul class="pull-right topNavRight" style="margin-left: 5px; margin-right: 15px;">
-                <li><a ng-class="{'active-menu': showHashTag}" ng-click="showHideHashTag()"># Tags</a></li>
-                <!--<li><input type="text" placeholder="Enter hashtag" ng-keypress="saveHashTag($event)"  ng-blur="saveHashTag2($event)" ng-model="hashTags"></li>-->
-            </ul>
+        <ul class="pull-right topNavRight" style="margin-left: 5px; margin-right: 15px;">
+            <li><a ng-class="{'active-menu': showHashTag}" ng-click="showHideHashTag()"># Tags</a></li>
+            <!--<li><input type="text" placeholder="Enter hashtag" ng-keypress="saveHashTag($event)"  ng-blur="saveHashTag2($event)" ng-model="hashTags"></li>-->
+        </ul>
 
-            <!--<ul class="topNavRight">
-                <li class="dropdown">
-                    <a href="#" data-toggle="dropdown" class="dropdown-toggle"><span class="user-icon glyphicons glyphicons-user"></span><span style="display: inline-block; margin-right: 10px;">Admin</span><span class="glyphicons glyphicons-chevron-down"></span></a>
-                    <ul class="dropdown-menu">
-                        <li style="width: 100%; float: left;">
+        <!--<ul class="topNavRight">
+            <li class="dropdown">
+                <a href="#" data-toggle="dropdown" class="dropdown-toggle"><span class="user-icon glyphicons glyphicons-user"></span><span style="display: inline-block; margin-right: 10px;">Admin</span><span class="glyphicons glyphicons-chevron-down"></span></a>
+                <ul class="dropdown-menu">
+                    <li style="width: 100%; float: left;">
 
-                            <a href="/"><span class="glyphicons glyphicons-log-out"></span>Log out</a>
-                        </li>
-                    </ul>
-                </li>
-            </ul>-->
-        </nav>
-    </div>
+                        <a href="/"><span class="glyphicons glyphicons-log-out"></span>Log out</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>-->
+    </nav>
 </div>
 
 
-<div ng-show="data.length" id="main-container" class="container-fluid">
+<div ng-show="data.length" id="main-container" class="container-fluid row">
 
-    <div class="hash-tags" ng-class="{'showHashTag': showHashTag}">
-        <input type="text" class="form-control" placeholder="Enter hashtag" ng-keypress="saveHashTag($event)" ng-blur="saveHashTag2($event)" ng-model="hashTags">
-        <ul>
-            <li ng-repeat="hashTag in splittdHashTags">
-                {{hashTag}}
-            </li>
-        </ul>
-    </div>
+    <div class="col-sm-10 col-sm-offset-1">
 
-    <div class="left-menu">
-        <ul ng-init="tab=1">
-            <li class="tab" ng-class="{active:tab == 1}" ng-click="tab=1"><span class="glyphicons glyphicons-charts"></span></li>
-            <li class="tab" ng-class="{active:tab == 2}" ng-click="tab=2"><span class="glyphicons glyphicons-show-thumbnails"></span></li>
-        </ul>
-    </div>
+        <div class="hash-tags" ng-class="{'showHashTag': showHashTag}">
+            <input type="text" class="form-control" placeholder="Enter hashtag" ng-keypress="saveHashTag($event)" ng-blur="saveHashTag2($event)" ng-model="hashTags">
+            <ul>
+                <li ng-repeat="hashTag in splittdHashTags">
+                    {{hashTag}}
+                </li>
+            </ul>
+        </div>
 
-    <div ng-show="tab==1">
+        <!--<div class="left-menu">
+            <ul ng-init="tab=1">
+                <li class="tab" ng-class="{active:tab == 1}" ng-click="tab=1"><span class="glyphicons glyphicons-charts"></span></li>
+                <li class="tab" ng-class="{active:tab == 2}" ng-click="tab=2"><span class="glyphicons glyphicons-show-thumbnails"></span></li>
+            </ul>
+        </div>-->
+        <div class="top-tabs">
+            <ul ng-init="tab=1">
+                <li class="tab" ng-class="{active:tab == 1}" ng-click="tab=1"><span class="glyphicons glyphicons-charts"></span> Graph</li>
+                <li class="tab" ng-class="{active:tab == 2}" ng-click="tab=2"><span class="glyphicons glyphicons-show-thumbnails"></span> Data</li>
+            </ul>
+        </div>
 
-        <!-- <div class="stats-container">
-             <div class="statsWrap">
-                 <div class="slate-graph-title">
-                     Negative
+        <div ng-show="tab==1">
+
+            <!-- <div class="stats-container">
+                 <div class="statsWrap">
+                     <div class="slate-graph-title">
+                         Negative
+                     </div>
+                     <div class="graph-outer monitoring-pie-chart">
+                         <div class="chart" easypiechart percent="negativeObj.value/negativeObj.total*100" options="options">
+                             <span class="percent {{negativeObj.unit}}" ng-bind="negativeObj.value"></span>
+                             <span class="total-value" ng-if="negativeObj.unit !='%' && negativeObj.total > 0">Total: <strong>{{negativeObj.total}}</strong></span>
+                         </div>
+                     </div>
                  </div>
-                 <div class="graph-outer monitoring-pie-chart">
-                     <div class="chart" easypiechart percent="negativeObj.value/negativeObj.total*100" options="options">
-                         <span class="percent {{negativeObj.unit}}" ng-bind="negativeObj.value"></span>
-                         <span class="total-value" ng-if="negativeObj.unit !='%' && negativeObj.total > 0">Total: <strong>{{negativeObj.total}}</strong></span>
+
+                 <div class="statsWrap">
+                     <div class="slate-graph-title">
+                         Neutral
+                     </div>
+                     <div class="graph-outer monitoring-pie-chart">
+                         <div class="chart" easypiechart percent="neutralObj.value/neutralObj.total*100" options="options">
+                             <span class="percent {{neutralObj.unit}}" ng-bind="neutralObj.value"></span>
+                             <span class="total-value" ng-if="neutralObj.unit !='%' && neutralObj.total > 0">Total: <strong>{{neutralObj.total}}</strong></span>
+                         </div>
+                     </div>
+                 </div>
+
+                 <div class="statsWrap">
+                     <div class="slate-graph-title">
+                         Positive
+                     </div>
+                     <div class="graph-outer monitoring-pie-chart">
+                         <div class="chart" easypiechart percent="positiveObj.value/positiveObj.total*100" options="options">
+                             <span class="percent %" ng-bind="positiveObj.value"></span>
+                             <span class="total-value" ng-if="positiveObj.unit !='%' && positiveObj.total > 0">Total: <strong>{{positiveObj.total}}</strong></span>
+                         </div>
                      </div>
                  </div>
              </div>
+     -->
+            <div class="graph-container">
 
-             <div class="statsWrap">
-                 <div class="slate-graph-title">
-                     Neutral
-                 </div>
-                 <div class="graph-outer monitoring-pie-chart">
-                     <div class="chart" easypiechart percent="neutralObj.value/neutralObj.total*100" options="options">
-                         <span class="percent {{neutralObj.unit}}" ng-bind="neutralObj.value"></span>
-                         <span class="total-value" ng-if="neutralObj.unit !='%' && neutralObj.total > 0">Total: <strong>{{neutralObj.total}}</strong></span>
-                     </div>
-                 </div>
-             </div>
+                <div ng-repeat="item in graphArray" >
 
-             <div class="statsWrap">
-                 <div class="slate-graph-title">
-                     Positive
-                 </div>
-                 <div class="graph-outer monitoring-pie-chart">
-                     <div class="chart" easypiechart percent="positiveObj.value/positiveObj.total*100" options="options">
-                         <span class="percent %" ng-bind="positiveObj.value"></span>
-                         <span class="total-value" ng-if="positiveObj.unit !='%' && positiveObj.total > 0">Total: <strong>{{positiveObj.total}}</strong></span>
-                     </div>
-                 </div>
-             </div>
-         </div>
- -->
-        <div class="graph-container">
+                    <div class="graphWrap {{item.type}}" ng-if="item.type=='column' || item.type=='pie' || item.type=='heatmap'">
+                        <div class="slate-graph-title">
+                            {{item.title}}
 
-            <div ng-repeat="item in graphArray" >
+                            <!--<span ng-if="item.type=='line' || item.type=='column' || item.type=='area'  ">
 
-                <div class="graphWrap {{item.type}}" ng-if="item.type=='column' || item.type=='pie' || item.type=='heatmap'">
-                    <div class="slate-graph-title">
-                        {{item.title}}
+                                <span class="configuration-icon glyphicons glyphicons-cogwheel" onclick="showConfiguration($(this));"></span>
 
-                        <!--<span ng-if="item.type=='line' || item.type=='column' || item.type=='area'  ">
+                                <div class="configuration-block">
+                                    <div class="form-group">
+                                        <label> X-Coordinate</label>
+                                        <select class="form-control" ng-model="item.x_coordinate" ng-options="f.field as f.field for f in schema" ng-change="getX(item.x_coordinate, $index)">
+                                            <option  value="item.x_coordinate" selected>Select X-Coordinate</option>
+                                        </select>
+                                    </div>
 
-                            <span class="configuration-icon glyphicons glyphicons-cogwheel" onclick="showConfiguration($(this));"></span>
+                                    <div class="form-group" ng-if="item.type=='column' || item.type=='area'">
+                                        <label>Y-Coordinate</label>
+                                        <select class="form-control" ng-model="item.y_coordinate" ng-options="f.field as f.field for f in schema" ng-change="getY(item.y_coordinate, $index)">
+                                            <option  value="item.x_coordinate" selected>Select Y-Coordinate</option>
+                                        </select>
+                                    </div>
 
-                            <div class="configuration-block">
-                                <div class="form-group">
-                                    <label> X-Coordinate</label>
-                                    <select class="form-control" ng-model="item.x_coordinate" ng-options="f.field as f.field for f in schema" ng-change="getX(item.x_coordinate, $index)">
-                                        <option  value="item.x_coordinate" selected>Select X-Coordinate</option>
-                                    </select>
+                                    <div class="form-group" ng-if="item.type=='line'">
+                                        <label>Y-Coordinate</label>
+                                        <ng-dropdown-multiselect class="angular-custom-select" options="array" selected-model="selected_items" events="events" translation-texts="customTexts" extra-settings="custom_settings" search-filter="customFilter" checkboxes="true"></ng-dropdown-multiselect>
+                                    </div>
                                 </div>
+                            </span>-->
+                        </div>
 
-                                <div class="form-group" ng-if="item.type=='column' || item.type=='area'">
-                                    <label>Y-Coordinate</label>
-                                    <select class="form-control" ng-model="item.y_coordinate" ng-options="f.field as f.field for f in schema" ng-change="getY(item.y_coordinate, $index)">
-                                        <option  value="item.x_coordinate" selected>Select Y-Coordinate</option>
-                                    </select>
-                                </div>
+                        <!-- <div ng-if="item.type=='pie'">
+                             <div id="lineHighChart"></div>
+                         </div>-->
 
-                                <div class="form-group" ng-if="item.type=='line'">
-                                    <label>Y-Coordinate</label>
-                                    <ng-dropdown-multiselect class="angular-custom-select" options="array" selected-model="selected_items" events="events" translation-texts="customTexts" extra-settings="custom_settings" search-filter="customFilter" checkboxes="true"></ng-dropdown-multiselect>
-                                </div>
+
+                        <div ng-if="item.type=='column'">
+                            <div id="barChart"></div>
+                        </div>
+                        <div ng-if="item.type=='heatmap'">
+                            <div id="heatMap"></div>
+                        </div>
+                        <div ng-if="item.type=='area'">
+
+                            <div ng-if = "item.x_coordinate != '' && item.y_coordinate != ''  && schema.length && data.length">
+                                <highchart config="areaChartConfig"></highchart>
                             </div>
-                        </span>-->
-                    </div>
+                        </div>
 
-                    <!-- <div ng-if="item.type=='pie'">
-                         <div id="lineHighChart"></div>
-                     </div>-->
-
-
-                    <div ng-if="item.type=='column'">
-                        <div id="barChart"></div>
-                    </div>
-                    <div ng-if="item.type=='heatmap'">
-                        <div id="heatMap"></div>
-                    </div>
-                    <div ng-if="item.type=='area'">
-
-                        <div ng-if = "item.x_coordinate != '' && item.y_coordinate != ''  && schema.length && data.length">
-                            <highchart config="areaChartConfig"></highchart>
+                        <div ng-show="item.type=='map'">
+                            <!--<div id="mapDiv"></div>-->
+                        </div>
+                        <div ng-if="item.type=='pie'">
+                            <div id="pieHighChart"></div>
                         </div>
                     </div>
 
-                    <div ng-show="item.type=='map'">
-                        <!--<div id="mapDiv"></div>-->
-                    </div>
-                    <div ng-if="item.type=='pie'">
-                        <div id="pieHighChart"></div>
-                    </div>
+                </div>
+            </div>
+
+
+            <div class="graphWrap map">
+                <div class="slate-graph-title">
+                    MAP
                 </div>
 
+                <div class="graph-outer" ng-class="{graphOuterMap:item.type=='map'}">
+                    <div id="mapDiv"></div>
+                </div>
             </div>
+
+
         </div>
 
+        <div class="clear"></div>
 
-        <div class="graphWrap map">
-            <div class="slate-graph-title">
-                MAP
-            </div>
+        <div ng-show="tab==2">
+            <div class="table-block">
 
-            <div class="graph-outer" ng-class="{graphOuterMap:item.type=='map'}">
-                <div id="mapDiv"></div>
-            </div>
-        </div>
+                <div class="form-inline pull-left">
+                    <div class="form-group">
+                        <label style="margin-right: 10px;"><b>API:</b></label>
+                        <input style="width: 650px;" type="text" class="form-control" value="http://45.55.159.119:3000/sinkHelpers/executeQuery?pipeline=5526b98f8022a0dd73295c9e:556ff7a776f67ea760fe5c07;&query=select%20*%20from%20table556ff7a776f67ea760fe5c07&tool=phoenix&sink_type=smart"/>
+                    </div>
 
+                    <button type="submit" ng-click="fetchData();" class="btn btn-default btn-gray">Fetch</button>
+                </div>
 
-    </div>
-
-    <div ng-show="tab==2">
-        <div class="table-block">
-
-            <div class="form-inline pull-left">
                 <div class="form-group">
-                    <label style="margin-right: 10px;"><b>API:</b></label>
-                    <input style="width: 650px;" type="text" class="form-control" value="http://45.55.159.119:3000/sinkHelpers/executeQuery?pipeline=5526b98f8022a0dd73295c9e:556ff7a776f67ea760fe5c07;&query=select%20*%20from%20table556ff7a776f67ea760fe5c07&tool=phoenix&sink_type=smart"/>
+
+                    <div class="inner-addon right-addon">
+                        <i class="glyphicons glyphicons-search"></i>
+                        <input type="text" class="form-control" ng-model="searchText" placeholder="Search..." />
+                    </div>
+                    <div class="clear"></div>
                 </div>
 
-                <button type="submit" ng-click="fetchData();" class="btn btn-default btn-gray">Fetch</button>
+                <table ng-show="showData" class="table table-responsive">
+                    <thead>
+                    <tr>
+                        <th ng-repeat="fieldProps in schema">
+                            {{fieldProps.alias}}
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    <tr ng-repeat="dataObj in data  | filter:searchText">
+                        <td ng-repeat="fields in schema">{{dataObj[fields.field]}}</td>
+                    </tr>
+                    </tbody>
+                </table>
             </div>
-
-            <div class="form-group">
-
-                <div class="inner-addon right-addon">
-                    <i class="glyphicons glyphicons-search"></i>
-                    <input type="text" class="form-control" ng-model="searchText" placeholder="Search..." />
-                </div>
-                <div class="clear"></div>
-            </div>
-
-            <table ng-show="showData" class="table table-responsive">
-                <thead>
-                <tr>
-                    <th ng-repeat="fieldProps in schema">
-                        {{fieldProps.alias}}
-                    </th>
-                </tr>
-                </thead>
-                <tbody>
-
-                <tr ng-repeat="dataObj in data  | filter:searchText">
-                    <td ng-repeat="fields in schema">{{dataObj[fields.field]}}</td>
-                </tr>
-                </tbody>
-            </table>
         </div>
+
     </div>
 
 </div>
