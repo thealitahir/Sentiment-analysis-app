@@ -1,0 +1,235 @@
+
+<h1>TEAMS</h1>
+
+<div class="row">
+    <div class="col-md-6">
+        <h2>AFC-NORTH</h2>
+        <div> <img src="http://i.nflcdn.com/static/site/7.2/img/logos/teams-gloss-81x54/bal.png" alt="" width="81" height="54">Baltimore Ravens</div>
+        <div> <img src="http://i.nflcdn.com/static/site/7.2/img/logos/teams-gloss-81x54/cin.png" alt="" width="81" height="54" class="teamslandinggrid"> Cincinnati Bengals</div>
+        <div> <img src="http://i.nflcdn.com/static/site/7.2/img/logos/teams-gloss-81x54/cle.png" alt="" width="81" height="54" class="teamslandinggrid"> Cleveland Browns</div>
+        <div> <img src="http://i.nflcdn.com/static/site/7.2/img/logos/teams-gloss-81x54/pit.png" alt="" width="81" height="54" class="teamslandinggrid"> Pittsburgh Steelers</div>
+    </div>
+    <div class="col-md-6">
+        <h2> NFC-NORTH</h2>
+        <div> <img src="http://i.nflcdn.com/static/site/7.2/img/logos/teams-gloss-81x54/chi.png" alt="" width="81" height="54" class="teamslandinggrid"> Chicago Bears</div>
+        <div> <img src="http://i.nflcdn.com/static/site/7.2/img/logos/teams-gloss-81x54/det.png" alt="" width="81" height="54" class="teamslandinggrid"> Detroit Lions</div>
+        <div> <img src="http://i.nflcdn.com/static/site/7.2/img/logos/teams-gloss-81x54/gb.png" alt="" width="81" height="54" class="teamslandinggrid"> Green Bay Packers</div>
+        <div> <img src="http://i.nflcdn.com/static/site/7.2/img/logos/teams-gloss-81x54/min.png" alt="" width="81" height="54" class="teamslandinggrid"> Minnesota Vikings</div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6">
+        <h2> AFC-EAST</h2>
+        <div> <img src="http://i.nflcdn.com/static/site/7.2/img/logos/teams-gloss-81x54/buf.png" alt="" width="81" height="54" class="teamslandinggrid">  Buffalo Bills</div>
+        <div> <img src="http://i.nflcdn.com/static/site/7.2/img/logos/teams-gloss-81x54/mia.png" alt="" width="81" height="54" class="teamslandinggrid">Miami Dolphins</div>
+        <div> <img src="http://i.nflcdn.com/static/site/7.2/img/logos/teams-gloss-81x54/ne.png" alt="" width="81" height="54" class="teamslandinggrid"> New England Patriots</div>
+        <div><img src="http://i.nflcdn.com/static/site/7.2/img/logos/teams-gloss-81x54/nyj.png" alt="" width="81" height="54" class="teamslandinggrid"> New York Jets</div>
+    </div>
+    <div class="col-md-6">
+        <h2> NFC-EAST</h2>
+        <div> <img src="http://i.nflcdn.com/static/site/7.2/img/logos/teams-gloss-81x54/dal.png" alt="" width="81" height="54" class="teamslandinggrid"> Dallas Cowboys</div>
+        <div> <img src="http://i.nflcdn.com/static/site/7.2/img/logos/teams-gloss-81x54/nyg.png" alt="" width="81" height="54" class="teamslandinggrid"> New York Giants</div>
+        <div> <img src="http://i.nflcdn.com/static/site/7.2/img/logos/teams-gloss-81x54/phi.png" alt="" width="81" height="54" class="teamslandinggrid">  Philadelphia Eagles</div>
+        <div> <img src="http://i.nflcdn.com/static/site/7.2/img/logos/teams-gloss-81x54/was.png" alt="" width="81" height="54" class="teamslandinggrid">Washington Redskins</div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+<style>
+    .monitoring-pie-chart ul {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        margin: 0;
+        padding: 0;
+        height: 60px;
+        background: #cccccc;
+        font-size: 0;
+        line-height: 0;
+        letter-spacing: -0.3em;
+    }
+    .monitoring-pie-chart li {
+        position: relative;
+        display: inline-block;
+        vertical-align: top;
+        width: 25%;
+        text-align: center;
+        font-size: 18px;
+        line-height: 60px;
+        letter-spacing: normal;
+    }
+    .monitoring-pie-chart li a {
+        display: block;
+        color: #ffffff;
+        text-decoration: none;
+        text-transform: uppercase;
+        white-space: nowrap;
+    }
+    .monitoring-pie-chart li a:hover,
+    .monitoring-pie-chart li a.active {
+        background: #333333;
+        color: #ffffff;
+    }
+    .monitoring-pie-chart li a.active:after {
+        content: '';
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        margin-left: -10px;
+        border: 10px solid;
+        border-color: transparent;
+        border-top-color: #333333;
+    }
+    .monitoring-pie-chart .chart {
+        position: relative;
+        display: inline-block;
+        width: 100%;
+        /*height: 200px;*/
+        margin-top: 20px;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+    .monitoring-pie-chart .chart canvas {
+        /* position: absolute;
+         top: 0;
+         left: 0;*/
+    }
+
+    .monitoring-pie-chart .total-value{
+        position: absolute;
+        bottom: 0;
+        left: 20px;
+    }
+
+
+    .monitoring-pie-chart .percent {
+        display: inline-block;
+        /*line-height: 110px;*/
+        z-index: 2;
+        position:absolute;
+        left:0;
+        right:0;
+        margin-left:auto;
+        margin-right:auto;
+        color: #757575;
+        font-size: 2.5em;
+        font-weight: 400;
+        top: 76px;
+    }
+    .monitoring-pie-chart .percent:after {
+        /*content: '%';*/
+        margin-left: 0.1em;
+        font-size: .8em;
+    }
+    #mapDiv { height: 400px; width:100%; }
+    .leaflet-control-attribution {
+        display: none;
+    }
+
+    .hash-tags{
+        width: 300px;
+        position: fixed;
+        top: 47px;
+        overflow: auto;
+        height: 50%;
+        right: -300px;
+        z-index: 1000;
+        background: #f5f5f5;
+        box-shadow: 0px 0px 5px rgba(0, 0, 0, .2);
+        padding: 10px;
+        -webkit-transition: all .5s ease-out;
+        -moz-transition: all .5s ease-out;
+        transition: all .5s ease-out;
+    }
+    .hash-tags ul{
+        list-style-type: none;
+    }
+    .hash-tags li{
+        background: #4684D4;
+        color: #ffffff;
+        padding: 5px 10px;
+        margin-top: 5px;
+        margin-right: 5px;
+        display: inline-block;
+    }
+
+    .showHashTag{
+        right: 0;
+    }
+</style>
+
+<nav id="top-nav">
+    <!--<div class="pull-left">
+        <div class="btnMenuWrap">
+            <ul>
+                <li>
+                    <a id="btnMenu" href="javascript:void(0);">
+                        <span class="menu-bar"></span>
+                        <span class="menu-bar"></span>
+                        <span class="menu-bar"></span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>-->
+
+    <div class="logo pull-left">
+        <img src="images/uae-logo.svg" alt="" />
+    </div>
+
+    <ul id="topNav" class="topNav">
+        <li><a href="/" class="active-menu"><span class="glyphicons glyphicons-dashboard"></span>Realtime Sentiments</a></li>
+        <!--<li><input type="text" placeholder="Enter hashtag" ng-keypress="saveHashTag($event)" ng-blur="saveHashTag2($event)" ng-model="hashTags"></li>-->
+    </ul>
+    <ul id="teams" class="teams">
+        <li><a ui-sref="teams" class="active-menu"><span class="glyphicons glyphicons-dashboard"></span>Teams</a></li>
+        <!--<li><input type="text" placeholder="Enter hashtag" ng-keypress="saveHashTag($event)" ng-blur="saveHashTag2($event)" ng-model="hashTags"></li>-->
+    </ul>
+
+    <ul class="pull-right topNav" style="margin-left: 2px;">
+        <li><a ng-class="{'active-menu': showHashTag}" ng-click="showHideHashTag()"># Tags</a></li>
+        <!--<li><input type="text" placeholder="Enter hashtag" ng-keypress="saveHashTag($event)"  ng-blur="saveHashTag2($event)" ng-model="hashTags"></li>-->
+    </ul>
+
+    <ul class="topNavRight">
+        <li class="dropdown">
+            <a href="#" data-toggle="dropdown" class="dropdown-toggle"><span class="user-icon glyphicons glyphicons-user"></span><span style="display: inline-block; margin-right: 10px;">Admin</span><span class="glyphicons glyphicons-chevron-down"></span></a>
+            <ul class="dropdown-menu">
+                <li style="width: 100%; float: left;">
+
+                    <a href="/"><span class="glyphicons glyphicons-log-out"></span>Log out</a>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</nav>
+
+
+
+
+
+
+
+<!--<div ng-if="fetchDtataLoader==0">
+    <div class="loading-wrapper">
+        <div class="loading-overlay">
+            <img src="../images/loading.gif" alt="Loading..." />
+        </div>
+    </div>
+</div>-->
+<!--<div id="mapDiv"></div>-->
+
+<script type="text/javascript">
+    function showConfiguration(event){
+        $(event).parent().children(".configuration-block").stop().slideToggle();
+    }
+</script>

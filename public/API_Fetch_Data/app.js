@@ -36,6 +36,12 @@ StudentApp = angular.module('StudentApp',
                     controller: 'DemoController'
 
                 })
+                .state("teams", {
+                    url: "/teams",
+                    templateUrl: 'view/teams.html'
+                    //controller: 'DemoController'
+
+                })
         }]);
 
 angular.module('StudentApp.controllers',['ui.router']);
