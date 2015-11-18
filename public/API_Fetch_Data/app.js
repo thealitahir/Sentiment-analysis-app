@@ -26,11 +26,11 @@ StudentApp = angular.module('StudentApp',
     .config(['$stateProvider', '$urlRouterProvider',
         function ($stateProvider, $urlRouterProvider) {
 
-            $urlRouterProvider.otherwise("/sentiment_analysis");
+            $urlRouterProvider.otherwise("/teams");
 
             $stateProvider
 
-                .state("API_Data", {
+                .state("sentiments", {
                     url: "/sentiment_analysis",
                     templateUrl: 'view/Demo.html',
                     controller: 'DemoController'
