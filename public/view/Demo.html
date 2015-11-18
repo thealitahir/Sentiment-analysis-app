@@ -122,52 +122,51 @@
     }
 </style>
 
-<nav id="top-nav">
-    <!--<div class="pull-left">
-        <div class="btnMenuWrap">
-            <ul>
-                <li>
-                    <a id="btnMenu" href="javascript:void(0);">
-                        <span class="menu-bar"></span>
-                        <span class="menu-bar"></span>
-                        <span class="menu-bar"></span>
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </div>-->
+<div class="row" ng-show="data.length">
+    <div class="col-sm-10 col-sm-offset-1">
+        <nav id="top-nav">
+            <div class="logo pull-left">
+                <img src="images/nfl-logo.png" alt="" />
+            </div>
+            <!--<div class="pull-left">
+                <div class="btnMenuWrap">
+                    <ul>
+                        <li>
+                            <a id="btnMenu" href="javascript:void(0);">
+                                <span class="menu-bar"></span>
+                                <span class="menu-bar"></span>
+                                <span class="menu-bar"></span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>-->
 
-    <div class="logo pull-left">
-        <img src="images/uae-logo.svg" alt="" />
+            <ul id="topNav" class="topNav">
+                <li><a ui-sref="teams"><!--<span class="glyphicons glyphicons-dashboard"></span>-->Teams</a></li>
+                <li><a class="active-menu"><!--<span class="glyphicons glyphicons-dashboard"></span>-->Realtime Sentiments</a></li>
+                <!--<li><a ui-sref="teams"><span class="glyphicons glyphicons-dashboard"></span>Teams</a></li>-->
+            </ul>
+
+            <ul class="pull-right topNavRight" style="margin-left: 5px; margin-right: 15px;">
+                <li><a ng-class="{'active-menu': showHashTag}" ng-click="showHideHashTag()"># Tags</a></li>
+                <!--<li><input type="text" placeholder="Enter hashtag" ng-keypress="saveHashTag($event)"  ng-blur="saveHashTag2($event)" ng-model="hashTags"></li>-->
+            </ul>
+
+            <!--<ul class="topNavRight">
+                <li class="dropdown">
+                    <a href="#" data-toggle="dropdown" class="dropdown-toggle"><span class="user-icon glyphicons glyphicons-user"></span><span style="display: inline-block; margin-right: 10px;">Admin</span><span class="glyphicons glyphicons-chevron-down"></span></a>
+                    <ul class="dropdown-menu">
+                        <li style="width: 100%; float: left;">
+
+                            <a href="/"><span class="glyphicons glyphicons-log-out"></span>Log out</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>-->
+        </nav>
     </div>
-
-    <ul id="topNav" class="topNav">
-        <li><a href="/" class="active-menu"><span class="glyphicons glyphicons-dashboard"></span>Realtime Sentiments</a></li>
-        <!--<li><input type="text" placeholder="Enter hashtag" ng-keypress="saveHashTag($event)" ng-blur="saveHashTag2($event)" ng-model="hashTags"></li>-->
-    </ul>
-    <ul id="teams" class="teams">
-        <li><a ui-sref="teams" class="active-menu"><span class="glyphicons glyphicons-dashboard"></span>Teams</a></li>
-        <!--<li><input type="text" placeholder="Enter hashtag" ng-keypress="saveHashTag($event)" ng-blur="saveHashTag2($event)" ng-model="hashTags"></li>-->
-    </ul>
-
-    <ul class="pull-right topNav" style="margin-left: 2px;">
-        <li><a ng-class="{'active-menu': showHashTag}" ng-click="showHideHashTag()"># Tags</a></li>
-        <!--<li><input type="text" placeholder="Enter hashtag" ng-keypress="saveHashTag($event)"  ng-blur="saveHashTag2($event)" ng-model="hashTags"></li>-->
-    </ul>
-
-    <ul class="topNavRight">
-        <li class="dropdown">
-            <a href="#" data-toggle="dropdown" class="dropdown-toggle"><span class="user-icon glyphicons glyphicons-user"></span><span style="display: inline-block; margin-right: 10px;">Admin</span><span class="glyphicons glyphicons-chevron-down"></span></a>
-            <ul class="dropdown-menu">
-                <li style="width: 100%; float: left;">
-
-                    <a href="/"><span class="glyphicons glyphicons-log-out"></span>Log out</a>
-                </li>
-            </ul>
-        </li>
-    </ul>
-</nav>
-
+</div>
 
 
 <div ng-show="data.length" id="main-container" class="container-fluid">
