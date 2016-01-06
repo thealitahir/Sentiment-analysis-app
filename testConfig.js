@@ -3,10 +3,10 @@ module.exports = {
         id : '54f81d07f7da9fde14330cb9'
     },
     database:{
-        ip:'45.55.159.119',
+        ip:'192.168.23.102',
         db:'test'
     },
-    pipelineId:'56278682a8aabf373bf11c56',
-    smartSinkQueryUrl:'http://45.55.159.119:3000/sinkHelpers/executeQuery?pipeline=56278682a8aabf373bf11c56:562e4c48fd65829b3ba4c025;&query=select%20*%20from%20table562e4c48fd65829b3ba4c025%20where%20HASHTAGS%20is%20not%20null%20order%20by%20TWEET_ID%20DESC&tool=phoenix&sink_type=smart'+'&test_user=54f81d07f7da9fde14330cb9'
+    pipelineId:'56851c730b0169d8158a1389',
+    smartSinkQueryUrl:'http://192.168.23.101:3000/developersInterface/executeQuery?process=56851c730b0169d8158a1389:56851c73ecaef04d2ddccf4a;&query=select%20*%20from%20table56851c73ecaef04d2ddccf4a%20ORDER%20BY%20DATETIME%20DESC%20limit%20500&sink_type=smart&test_user=54f81d07f7da9fde14330cb9'
 };
 
