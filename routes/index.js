@@ -113,15 +113,15 @@ db.open(function(err, db) {
                             var index=-1;
 //                            console.log(obj);
                             //console.log(lcArray);
-                            console.log("sds")
-                            console.log(obj.HASHTAGS)
+                           // console.log("sds")
+                           // console.log(obj.HASHTAGS)
                             return lcArray.indexOf(obj.HASHTAGS.toLowerCase())>-1;
 
                         });
 
                         parsedBody.data.data=newArray;
-                        console.log("newArray")
-                        console.log(newArray)
+                       // console.log("newArray")
+                      //  console.log(newArray)
 
                         res.send({status: true, msg: "response received", data: parsedBody,hashTags:hashTags});
 
@@ -191,7 +191,7 @@ db.open(function(err, db) {
 
             twitterStage.stage_attributes.hash_tags=req.body.tags;
             console.log("finding collection")
-            db.collection('stages', function(err, collection) {
+            db.collection('stageversions', function(err, collection) {
                 console.log("testing")
                 if(!err){
                     console.log("twiiter doc")
