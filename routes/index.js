@@ -102,19 +102,26 @@ db.open(function(err, db) {
                 finally {
 
                     if (parsedBody instanceof Object) {
-                        console.log("HASH TAGS FROM MONGO");
-                        console.log(hashTags);
+
                         var tmp = hashTags.split(',').join('~').toLowerCase();
                         var lcArray = tmp.split('~');
+                       // console.log("local array");
+                     //   console.log(lcArray);
+                      //  console.log("parsedBody.data.data")
+                       // console.log(parsedBody.data.data)
                         var newArray = _.filter (parsedBody.data.data, function(obj) {
                             var index=-1;
 //                            console.log(obj);
-                            console.log(lcArray);
+                            //console.log(lcArray);
+                            console.log("sds")
+                            console.log(obj.HASHTAGS)
                             return lcArray.indexOf(obj.HASHTAGS.toLowerCase())>-1;
 
                         });
 
                         parsedBody.data.data=newArray;
+                        console.log("newArray")
+                        console.log(newArray)
 
                         res.send({status: true, msg: "response received", data: parsedBody,hashTags:hashTags});
 
