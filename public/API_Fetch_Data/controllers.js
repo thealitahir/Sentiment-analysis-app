@@ -154,6 +154,8 @@ APIFetchController.controller('DemoController', ['$scope', 'CRUDService', '$time
     }
     $scope.drawBarGraph = function(){
         var colors = Highcharts.getOptions().colors;
+        console.log("$scope.data")
+        console.log($scope.data)
         var groupByHastTags= _.groupBy($scope.data,"HASHTAGS");
         for(var key in groupByHastTags){
             groupByHastTags[key]= _.groupBy(groupByHastTags[key],function(item){
@@ -170,8 +172,8 @@ APIFetchController.controller('DemoController', ['$scope', 'CRUDService', '$time
             });
 
         }
-     //   console.log("!!!!!!!!!sgroupByHastTags")
-    //    console.log(groupByHastTags)
+        //   console.log("!!!!!!!!!sgroupByHastTags")
+        //    console.log(groupByHastTags)
 
         var seriesData=[
             { name: 'Positive',
@@ -672,23 +674,28 @@ APIFetchController.controller('DemoController', ['$scope', 'CRUDService', '$time
         //  console.log("fetch data called")
         CRUDService.fetchData().success(function (res) {
             if(res.status == true){
+                console.log("res.data");
+                console.log(res.data)
                 $scope.schema = res.data.data.schema;
                 $scope.data = res.data.data.data;
                 $scope.mapData=res.data.data.data;
                 $scope.hashTags=res.hashTags;
-              //  console.log("$scope.hashTags");
-              //  console.log(res);
+                //  console.log("$scope.hashTags");
+                //  console.log(res);
 
                 $scope.splittdHashTags = $scope.hashTags.split(",")
-
+                console.log("splited has00")
+                console.log($scope.splittdHashTags)
                 var schema = $scope.schema;
+                console.log("schema")
+                console.log(schema)
                 for(var i=0;i<schema.length;i++){
                     $scope.array.push({
                         id: schema[i].position,
                         label: schema[i].field
                     });
                 }
-                $scope.drawHeatMap();
+               // $scope.drawHeatMap();
                 $scope.drawBarGraph();
                 $scope.drawPieChart();
                 $scope.drawMap();

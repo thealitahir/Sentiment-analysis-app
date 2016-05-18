@@ -36,6 +36,11 @@ StudentApp = angular.module('StudentApp',
                     controller: 'DemoController'
 
                 })
+                .state("mynewstate", {
+                    url:'/activestate',
+                    template:'<h1>hello</h1>'
+
+                })
         }]);
 
 angular.module('StudentApp.controllers',['ui.router']);

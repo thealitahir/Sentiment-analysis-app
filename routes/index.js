@@ -59,11 +59,13 @@ var db = new Db(testConfig.database.db, server);
 db.open(function(err, db) {
     if(!err) {
 
-        db.collection('pipelines', function(err, collection) {
+        db.collection('pipelineversions', function(err, collection) {
             if(!err){
                 if (!err) {
                     collection.findOne({_id:new ObjectID(testConfig.pipelineId)},function(err, docs) {
                         if (!err) {
+                            console.log("DOC");
+                            console.log(docs)
                             var stages=docs.stages;
                             getTwitterSourceId(stages,function(doc){
                                 hashTags=doc.stage_attributes.hash_tags;
@@ -105,7 +107,10 @@ db.open(function(err, db) {
                             return lcArray.indexOf(obj.HASHTAGS.toLowerCase())>-1;
 
                         });
+                        console.log("m i here")
+                        console.log(newArray)
                         parsedBody.data.data=newArray;
+
                         res.send({status: true, msg: "response received", data: parsedBody,hashTags:hashTags});
 
                     }
@@ -192,12 +197,14 @@ db.open(function(err, db) {
         });
         function getTwitterSourceId(stages,callback){
             for(var i=0;i<stages.length;i++){
-                db.collection('stages', function(err, collection) {
+                db.collection('stageversions', function(err, collection) {
                     if(!err){
                         if (!err) {
-                            collection.findOne({_id:new ObjectID(stages[i])},function(err, doc) {
+                            collection.findOne({_id:new ObjectID(stages[i].version_id)},function(err, doc) {
                                 if (!err) {
                                     if(doc.sub_type=='twitter'){
+                                        console.log("doc ment found")
+                                        console.log("doc ment found")
                                         callback(doc);
                                     }
                                 }
