@@ -81,13 +81,15 @@ db.open(function(err, db) {
             res.render('index', {title: 'Express'});
         });
         router.get('/fetchData',function(req, res,next){
-            console.log(testConfig.testUser.id);
-            console.log(req.params);
+//            console.log(testConfig.testUser.id);
+//            console.log(req.params);
             /* var initial_params = decodeURIComponent(req.params.url);
              var params = initial_params + '&test_user=' + testConfig.testUser.id;*/
             var url=testConfig.smartSinkQueryUrl;
+            console.log(url)
             //var url="http://45.55.159.119:3000/platalytics/api/version/developers_interface/process/562f2ada3a366cf9052db40f/smart_sink/563738e1e709572d6aa3fb3f/?SELECT=Predicted_Label,Tweet_Id,userName,screenName,location,dateTime,status,HashTags%20&tool=phoenix&start=0&rows=500"+ '&test_user=' + testConfig.testUser.id;;
             request(url, function (error, response, body) {
+//                console.log(body)
                 var parsedBody = "";
                 try {
 
@@ -100,15 +102,18 @@ db.open(function(err, db) {
                 finally {
 
                     if (parsedBody instanceof Object) {
+                        console.log("HASH TAGS FROM MONGO");
+                        console.log(hashTags);
                         var tmp = hashTags.split(',').join('~').toLowerCase();
                         var lcArray = tmp.split('~');
                         var newArray = _.filter (parsedBody.data.data, function(obj) {
                             var index=-1;
+//                            console.log(obj);
+                            console.log(lcArray);
                             return lcArray.indexOf(obj.HASHTAGS.toLowerCase())>-1;
 
                         });
-                        console.log("m i here")
-                        console.log(newArray)
+
                         parsedBody.data.data=newArray;
 
                         res.send({status: true, msg: "response received", data: parsedBody,hashTags:hashTags});
@@ -196,6 +201,7 @@ db.open(function(err, db) {
 
         });
         function getTwitterSourceId(stages,callback){
+            console.log(stages);
             for(var i=0;i<stages.length;i++){
                 db.collection('stageversions', function(err, collection) {
                     if(!err){

@@ -673,6 +673,7 @@ APIFetchController.controller('DemoController', ['$scope', 'CRUDService', '$time
 
         //  console.log("fetch data called")
         CRUDService.fetchData().success(function (res) {
+            console.log(res)
             if(res.status == true){
                 console.log("res.data");
                 console.log(res.data)

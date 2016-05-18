@@ -32,8 +32,10 @@ label{
     font-family: "Verdana";
     font-size: 21px;
     color: #ffffff;
-    margin-right: 50px;
-    margin-left: 20px;
+    /*margin-right: 50px;*/
+    margin-right: 100px;
+    /*margin-left: 20px;*/
+    padding: 2px 16px 30px 16px;
 }
 
 /* Custom Select/Multi-select CSS
