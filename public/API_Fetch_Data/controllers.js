@@ -669,6 +669,10 @@ APIFetchController.controller('DemoController', ['$scope', 'CRUDService', '$time
         }
     }
 
+    $scope.clearAll=function(){
+     $scope.hashTags="";
+
+    };
     $scope.fetchData = function(){
 
         //  console.log("fetch data called")
