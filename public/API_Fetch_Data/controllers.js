@@ -670,8 +670,8 @@ APIFetchController.controller('DemoController', ['$scope', 'CRUDService', '$time
     }
 
     $scope.clearAll=function(){
-     $scope.hashTags="";
-
+        $scope.hashTags="";
+        $scope.splittdHashTags=[];
     };
     $scope.fetchData = function(){
 
@@ -679,8 +679,8 @@ APIFetchController.controller('DemoController', ['$scope', 'CRUDService', '$time
         CRUDService.fetchData().success(function (res) {
             console.log(res)
             if(res.status == true){
-                console.log("res.data");
-                console.log(res.data)
+               /// console.log("res.data");
+              //  console.log(res.data)
                 $scope.schema = res.data.data.schema;
                 $scope.data = res.data.data.data;
                 $scope.mapData=res.data.data.data;
