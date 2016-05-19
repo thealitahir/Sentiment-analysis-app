@@ -200,10 +200,10 @@
             <button class="btn btn-gray" ng-click="clearAll()">Clear</button>
         </div>
 
-        <ul>
-            <li ng-repeat="hashTag in splittdHashTags">
+        <ul >
+            <li ng-repeat="hashTag in splittdHashTags" ng-if="hashTag" >
                 {{hashTag}}
-                <span class="hash-tag">&times;</span>
+                <span class="hash-tag" ng-click="removeTag(hashTag)">&times;</span>
             </li>
         </ul>
     </div>

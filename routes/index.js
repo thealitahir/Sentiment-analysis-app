@@ -101,27 +101,42 @@ db.open(function(err, db) {
                 finally {
 
                     if (parsedBody instanceof Object) {
-                        var tmp = hashTags.split(',').join('~').toLowerCase();
-                        var lcArray = tmp.split('~');
-                       // console.log("local array");
-                     //   console.log(lcArray);
-                      //  console.log("parsedBody.data.data")
-                       // console.log(parsedBody.data.data)
-                        var newArray = _.filter (parsedBody.data.data, function(obj) {
-                            var index=-1;
+                        getTwitterSourceHashTags(twitterStage,function(hashTags){
+                        //    hashTags=doc.stage_attributes.hash_tags;
+                         //   twitterStage=doc;
+                            console.log("hasTags")
+                            console.log(hashTags)
+                            if(typeof hashTags !="null" && hashTags!="" && hashTags!=null)
+                            {
+                                var tmp = hashTags.split(',').join('~').toLowerCase();
+                                var lcArray = tmp.split('~');
+                                // console.log("local array");
+                                //   console.log(lcArray);
+                                //  console.log("parsedBody.data.data")
+                                // console.log(parsedBody.data.data)
+                                var newArray = _.filter (parsedBody.data.data, function(obj) {
+                                    var index=-1;
 //                            console.log(obj);
-                            //console.log(lcArray);
-                           // console.log("sds")
-                           // console.log(obj.HASHTAGS)
-                            return lcArray.indexOf(obj.HASHTAGS.toLowerCase())>-1;
+                                    //console.log(lcArray);
+                                    // console.log("sds")
+                                    // console.log(obj.HASHTAGS)
+                                    return lcArray.indexOf(obj.HASHTAGS.toLowerCase())>-1;
+
+                                });
+
+                                parsedBody.data.data=newArray;
+                                // console.log("newArray")
+                                //  console.log(newArray)
+
+                                res.send({status: true, msg: "response received", data: parsedBody,hashTags:hashTags});
+                            }
+                            else{
+                                res.send({status: true, msg: "response received", data: parsedBody,hashTags:""});
+                            }
+
 
                         });
 
-                        parsedBody.data.data=newArray;
-                       // console.log("newArray")
-                      //  console.log(newArray)
-
-                        res.send({status: true, msg: "response received", data: parsedBody,hashTags:hashTags});
 
                     }
                     else {
@@ -217,6 +232,27 @@ db.open(function(err, db) {
                     }
                 })
             }
+        }
+        function getTwitterSourceHashTags(twitterStage,callback){
+            db.collection('stageversions', function(err, collection) {
+                if(!err){
+                    if (!err) {
+                        collection.findOne({_id:new ObjectID(twitterStage._id)},function(err, doc) {
+                            if (!err) {
+                                    console.log("doc")
+                                    console.log(doc)
+                                if(doc){
+                                    callback(doc.stage_attributes.hash_tags);
+                                }
+                                else{
+                                    callback("");
+                                }
+
+                            }
+                        });
+                    }
+                }
+            })
         }
     }
     else{

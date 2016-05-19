@@ -672,6 +672,9 @@ APIFetchController.controller('DemoController', ['$scope', 'CRUDService', '$time
     $scope.clearAll=function(){
         $scope.hashTags="";
         $scope.splittdHashTags=[];
+        CRUDService.saveHashTag($scope.hashTags).success(function(res){
+
+        });
     };
     $scope.fetchData = function(){
 
@@ -718,6 +721,16 @@ APIFetchController.controller('DemoController', ['$scope', 'CRUDService', '$time
     };
     $scope.fetchData();
     $scope.drawHeatMap();
+    $scope.removeTag=function(hashTag){
+        //alert(hashTag)
+
+        $scope.splittdHashTags.splice($scope.splittdHashTags.indexOf(hashTag),1);
+        $scope.hashTags=$scope.splittdHashTags.join(',');
+
+        CRUDService.saveHashTag($scope.hashTags).success(function(res){
+
+        });
+    }
     $interval(function(){
         $scope.fetchData();
     }, 30000);
