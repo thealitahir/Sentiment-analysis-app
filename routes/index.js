@@ -204,8 +204,7 @@ db.open(function(err, db) {
                         }
                     });
                 }
-            })
-
+            });
         });
         function getTwitterSourceId(stages,callback){
             console.log(stages);
