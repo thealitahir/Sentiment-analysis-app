@@ -89,7 +89,6 @@ db.open(function(err, db) {
             console.log(url)
             //var url="http://45.55.159.119:3000/platalytics/api/version/developers_interface/process/562f2ada3a366cf9052db40f/smart_sink/563738e1e709572d6aa3fb3f/?SELECT=Predicted_Label,Tweet_Id,userName,screenName,location,dateTime,status,HashTags%20&tool=phoenix&start=0&rows=500"+ '&test_user=' + testConfig.testUser.id;;
             request(url, function (error, response, body) {
-//                console.log(body)
                 var parsedBody = "";
                 try {
 
@@ -102,7 +101,6 @@ db.open(function(err, db) {
                 finally {
 
                     if (parsedBody instanceof Object) {
-
                         var tmp = hashTags.split(',').join('~').toLowerCase();
                         var lcArray = tmp.split('~');
                        // console.log("local array");
@@ -184,13 +182,7 @@ db.open(function(err, db) {
 
         });
         router.post('/saveHashTag', function (req, res) {
-            console.log("req obj");
-            console.log(req.body.tags);
-            console.log("here");
-            console.log(twitterStage);
-
             twitterStage.stage_attributes.hash_tags=req.body.tags;
-            console.log("finding collection")
             db.collection('stageversions', function(err, collection) {
                 console.log("testing")
                 if(!err){

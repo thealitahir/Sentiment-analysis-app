@@ -700,10 +700,17 @@ APIFetchController.controller('DemoController', ['$scope', 'CRUDService', '$time
                         label: schema[i].field
                     });
                 }
-                $scope.drawHeatMap();
-                $scope.drawBarGraph();
-                $scope.drawPieChart();
-                $scope.drawMap();
+                if($scope.data.length!=0){
+                    $scope.drawHeatMap();
+                    $scope.drawBarGraph();
+                    $scope.drawPieChart();
+                    $scope.drawMap();
+
+                }
+                else{
+                    $scope.data=[{}]
+                }
+
 
                 //    $scope.graphArray[0].y_coordinate = [$scope.array[6].label,$scope.array[7].label];
             }
