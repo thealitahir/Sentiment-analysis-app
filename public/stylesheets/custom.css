@@ -432,3 +432,9 @@ nav a:hover,
     background-color: #23b7e5;
     color: #fff;
 }
+.btn-gray:hover,
+.btn-gray:active,
+.btn-gray:focus{
+    background-color: #23b7e5;
+    color: #fff;
+}
