@@ -195,8 +195,9 @@
         <div class="hash-tag-col-1">
             <input type="text" class="form-control" placeholder="Enter hashtag" ng-keypress="saveHashTag($event)" ng-blur="saveHashTag2($event)" ng-model="hashTags">
         </div>
+
         <div class="hash-tag-col-2">
-            <button class="btn btn-gray">Clear</button>
+            <button class="btn btn-gray" ng-click="clearAll()">Clear</button>
         </div>
 
         <ul>
