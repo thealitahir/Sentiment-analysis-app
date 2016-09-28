@@ -3,7 +3,7 @@ module.exports = {
         id : '54f81d07f7da9fde14330cb9'
     },
     database:{
-        ip:'122.129.79.68',
+        ip:'52.91.217.180',
         db:'test'
     },
     pipelineId:'573c55141734e3d473b8093b',//http://104.236.95.15:7777
