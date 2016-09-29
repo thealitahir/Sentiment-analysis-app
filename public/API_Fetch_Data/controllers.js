@@ -160,10 +160,10 @@ APIFetchController.controller('DemoController', ['$scope', 'CRUDService', '$time
         for(var key in groupByHastTags){
             groupByHastTags[key]= _.groupBy(groupByHastTags[key],function(item){
                 //console.log(item);
-                if(item["PREDICTED_LABEL_SENTIMENTTAG"].toLowerCase() == "positive"){
+                if(item["PREDICTED_SENTIMENT"].toLowerCase() == "positive"){
                     return "positive";
                 }
-                else if(item["PREDICTED_LABEL_SENTIMENTTAG"].toLowerCase() == "negative"){
+                else if(item["PREDICTED_SENTIMENT"].toLowerCase() == "negative"){
                     return "negative";
                 }
                 else{
@@ -277,10 +277,10 @@ APIFetchController.controller('DemoController', ['$scope', 'CRUDService', '$time
         for(var key in groupByHastTags){
             groupByHastTags[key]= _.groupBy(groupByHastTags[key],function(item){
                 //console.log(item);
-                if(item["PREDICTED_LABEL_SENTIMENTTAG"].toLowerCase() == "positive"){
+                if(item["PREDICTED_SENTIMENT"].toLowerCase() == "positive"){
                     return "positive";
                 }
-                else if(item["PREDICTED_LABEL_SENTIMENTTAG"].toLowerCase() == "negative"){
+                else if(item["PREDICTED_SENTIMENT"].toLowerCase() == "negative"){
                     return "negative";
                 }
                 else{
@@ -346,10 +346,10 @@ APIFetchController.controller('DemoController', ['$scope', 'CRUDService', '$time
         for(var key in groupByHastTags){
             groupByHastTags[key]= _.groupBy(groupByHastTags[key],function(item){
                 //console.log(item);
-                if(item["PREDICTED_LABEL_SENTIMENTTAG"].toLowerCase() == "positive"){
+                if(item["PREDICTED_SENTIMENT"].toLowerCase() == "positive"){
                     return "positive";
                 }
-                else if(item["PREDICTED_LABEL_SENTIMENTTAG"].toLowerCase() == "negative"){
+                else if(item["PREDICTED_SENTIMENT"].toLowerCase() == "negative"){
                     return "negative";
                 }
                 else{
@@ -628,12 +628,12 @@ APIFetchController.controller('DemoController', ['$scope', 'CRUDService', '$time
 
                 var icon=blueMarker;
 
-                if($scope.gisData[i]["PREDICTED_LABEL_SENTIMENTTAG"].toLowerCase()=="positive"){
+                if($scope.gisData[i]["PREDICTED_SENTIMENT"].toLowerCase()=="positive"){
                     icon=greenMarker;
                     //popup=popup+"<td>TWEET SENTIMENT:</td><td><font color='green'> "+$scope.gisData[i].PREDICTED_LABEL+'</font></td></tr>';
 
                 }
-                else if($scope.gisData[i]["PREDICTED_LABEL_SENTIMENTTAG"].toLowerCase()=="negative"){
+                else if($scope.gisData[i]["PREDICTED_SENTIMENT"].toLowerCase()=="negative"){
                     icon=redMarker;
                     //popup=popup+"<td>TWEET SENTIMENT:</td><td><font color='red'> "+$scope.gisData[i].PREDICTED_LABEL+'</font></td></tr>';
 
@@ -680,13 +680,14 @@ APIFetchController.controller('DemoController', ['$scope', 'CRUDService', '$time
 
         //  console.log("fetch data called")
         CRUDService.fetchData().success(function (res) {
-            console.log(res)
+            //console.log("=========================================")
+            //console.log(res.data.data.response)
             if(res.status == true){
                /// console.log("res.data");
               //  console.log(res.data)
-                $scope.schema = res.data.data.schema;
-                $scope.data = res.data.data.data;
-                $scope.mapData=res.data.data.data;
+                $scope.schema = res.data.data.response.schema;
+                $scope.data = res.data.data.response.data;
+                $scope.mapData=res.data.data.response.data;
                 $scope.hashTags=res.hashTags;
                 //  console.log("$scope.hashTags");
                 //  console.log(res);

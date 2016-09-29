@@ -93,6 +93,7 @@ db.open(function(err, db) {
                 try {
 
                     parsedBody = JSON.parse(body);
+                    console.log(parsedBody)
                 }
                 catch (ex) {
 
