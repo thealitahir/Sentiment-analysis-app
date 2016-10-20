@@ -93,6 +93,7 @@ db.open(function(err, db) {
                 try {
 
                     parsedBody = JSON.parse(body);
+                    console.log(parsedBody)
                 }
                 catch (ex) {
 
@@ -114,7 +115,7 @@ db.open(function(err, db) {
                                 //   console.log(lcArray);
                                 //  console.log("parsedBody.data.data")
                                 // console.log(parsedBody.data.data)
-                                var newArray = _.filter (parsedBody.data.data, function(obj) {
+                                var newArray = _.filter (parsedBody.response.data, function(obj) {
                                     var index=-1;
 //                            console.log(obj);
                                     //console.log(lcArray);
@@ -124,7 +125,7 @@ db.open(function(err, db) {
 
                                 });
 
-                                parsedBody.data.data=newArray;
+                                parsedBody.response.data=newArray;
                                 // console.log("newArray")
                                 //  console.log(newArray)
 
