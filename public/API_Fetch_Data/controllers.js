@@ -164,6 +164,7 @@ APIFetchController.controller('DemoController', ['$scope', 'CRUDService', '$time
                     return "positive";
                 }
                 else if(item["PREDICTED_LABEL_SENTIMENT"].toLowerCase() == "negative"){
+
                     return "negative";
                 }
                 else{
@@ -281,6 +282,7 @@ APIFetchController.controller('DemoController', ['$scope', 'CRUDService', '$time
                     return "positive";
                 }
                 else if(item["PREDICTED_LABEL_SENTIMENT"].toLowerCase() == "negative"){
+
                     return "negative";
                 }
                 else{
@@ -350,6 +352,7 @@ APIFetchController.controller('DemoController', ['$scope', 'CRUDService', '$time
                     return "positive";
                 }
                 else if(item["PREDICTED_LABEL_SENTIMENT"].toLowerCase() == "negative"){
+
                     return "negative";
                 }
                 else{
@@ -634,6 +637,7 @@ APIFetchController.controller('DemoController', ['$scope', 'CRUDService', '$time
 
                 }
                 else if($scope.gisData[i]["PREDICTED_LABEL_SENTIMENT"].toLowerCase()=="negative"){
+
                     icon=redMarker;
                     //popup=popup+"<td>TWEET SENTIMENT:</td><td><font color='red'> "+$scope.gisData[i].PREDICTED_LABEL+'</font></td></tr>';
 
@@ -680,13 +684,15 @@ APIFetchController.controller('DemoController', ['$scope', 'CRUDService', '$time
 
         //  console.log("fetch data called")
         CRUDService.fetchData().success(function (res) {
-            console.log(res)
+            //console.log("=========================================")
+            //console.log(res.data.data.response)
             if(res.status == true){
                /// console.log("res.data");
               //  console.log(res.data)
                 $scope.schema = res.data.response.schema;
                 $scope.data = res.data.response.data;
                 $scope.mapData=res.data.response.data;
+
                 $scope.hashTags=res.hashTags;
                 //  console.log("$scope.hashTags");
                 //  console.log(res);
