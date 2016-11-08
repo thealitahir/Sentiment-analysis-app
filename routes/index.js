@@ -115,7 +115,7 @@ db.open(function(err, db) {
                                 //   console.log(lcArray);
                                 //  console.log("parsedBody.data.data")
                                 // console.log(parsedBody.data.data)
-                                var newArray = _.filter (parsedBody.data.data, function(obj) {
+                                var newArray = _.filter (parsedBody.data.response.data, function(obj) {
                                     var index=-1;
 //                            console.log(obj);
                                     //console.log(lcArray);
@@ -125,14 +125,14 @@ db.open(function(err, db) {
 
                                 });
 
-                                parsedBody.data.data=newArray;
+                                parsedBody.data.response.data=newArray;
                                 // console.log("newArray")
                                 //  console.log(newArray)
 
-                                res.send({status: true, msg: "response received", data: parsedBody,hashTags:hashTags});
+                                res.send({status: true, msg: "response received", data: parsedBody.data,hashTags:hashTags});
                             }
                             else{
-                                res.send({status: true, msg: "response received", data: parsedBody,hashTags:""});
+                                res.send({status: true, msg: "response received", data: parsedBody.data,hashTags:""});
                             }
 
 
