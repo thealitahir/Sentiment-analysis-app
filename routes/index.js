@@ -52,7 +52,7 @@ var mongo = require('mongodb'),
     Server = mongo.Server,
     ObjectID = require('mongodb').ObjectID,
     Db = mongo.Db;
-var server = new Server(testConfig.database.ip, 27017, {
+var server = new Server(testConfig.database.ip, testConfig.database.port, {
     auto_reconnect: true
 });
 var db = new Db(testConfig.database.db, server);
