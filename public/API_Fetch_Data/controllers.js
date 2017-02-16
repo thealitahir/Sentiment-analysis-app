@@ -686,12 +686,13 @@ APIFetchController.controller('DemoController', ['$scope', 'CRUDService', '$time
         CRUDService.fetchData().success(function (res) {
             //console.log("=========================================")
             //console.log(res.data.data.response)
+            console.log(res.data)
             if(res.status == true){
                /// console.log("res.data");
-              //  console.log(res.data)
-                $scope.schema = res.data.response.schema;
-                $scope.data = res.data.response.data;
-                $scope.mapData=res.data.response.data;
+                console.log(res.data)
+                $scope.schema = res.data.schema;
+                $scope.data = res.data.data;
+                $scope.mapData=res.data.data;
 
                 $scope.hashTags=res.hashTags;
                 //  console.log("$scope.hashTags");

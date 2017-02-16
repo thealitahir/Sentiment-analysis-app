@@ -93,6 +93,7 @@ db.open(function(err, db) {
                 try {
 
                     parsedBody = JSON.parse(body);
+                    console.log("=======================After Parsing================================")
                     console.log(parsedBody)
                 }
                 catch (ex) {
@@ -115,7 +116,7 @@ db.open(function(err, db) {
                                 //   console.log(lcArray);
                                 //  console.log("parsedBody.data.data")
                                 // console.log(parsedBody.data.data)
-                                var newArray = _.filter (parsedBody.data.response.data, function(obj) {
+                                var newArray = _.filter (parsedBody.response.data, function(obj) {
                                     var index=-1;
 //                            console.log(obj);
                                     //console.log(lcArray);
@@ -125,14 +126,14 @@ db.open(function(err, db) {
 
                                 });
 
-                                parsedBody.data.response.data=newArray;
+                                parsedBody.response.data=newArray;
                                 // console.log("newArray")
                                 //  console.log(newArray)
 
-                                res.send({status: true, msg: "response received", data: parsedBody.data,hashTags:hashTags});
+                                res.send({status: true, msg: "response received", data: parsedBody.response,hashTags:hashTags});
                             }
                             else{
-                                res.send({status: true, msg: "response received", data: parsedBody.data,hashTags:""});
+                                res.send({status: true, msg: "response received", data: parsedBody.response,hashTags:""});
                             }
 
 
