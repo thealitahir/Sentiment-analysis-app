@@ -7,42 +7,9 @@ require('../passport')(passport,flash);
 var nodemailer = require('nodemailer');
 var async = require('async');
 var crypto = require('crypto');
-var testConfig = require('../testConfig');
-var pipelineId="56278682a8aabf373bf11c56";
 var _=require('underscore');
-var smtpTransport = nodemailer.createTransport({
-    service: "Gmail",  // sets automatically host, port and connection security settings
-    auth: {
-        /*user: "samanashraf92@gmail.com",
-         pass: "zusammenensemble91992"*/
-
-        user: "asma.sardar@platalytics.com",
-        pass: "libra1729"
-    }
-});
-var jsonFile = require("../public/API_Fetch_Data/waterlevel.json")
 var tweet = require("../public/API_Fetch_Data/tweet.json")
-/*router.get('/fetchData', function(req, res, next) {
- console.log("here")
- //res.send( {status:true,data:tweet} );
-
- console.log("Sds");
- //  console.log(params);
- console.log("sdssd");
- });*/
-
 var fs = require('fs');
-
-/*var multi  = require('connect-multiparty');
- var multimiddleware=new multi();*/
-
-var Sentiment= require('../models/SentiModel');
-//var Pipeline= require('../models/pipelineModel');
-//var Stage= require('../models/stageModel');
-
-//var mongoose = require('mongoose');
-//var StudentModel = mongoose.model('Student');
-
 var request = require('request');
 
 var hashTags="";
@@ -52,17 +19,17 @@ var mongo = require('mongodb'),
     Server = mongo.Server,
     ObjectID = require('mongodb').ObjectID,
     Db = mongo.Db;
-var server = new Server(testConfig.database.ip, testConfig.database.port, {
+var server = new Server(getConf().database.ip, getConf().database.port, {
     auto_reconnect: true
 });
-var db = new Db(testConfig.database.db, server);
+var db = new Db(getConf().database.db, server);
 db.open(function(err, db) {
     if(!err) {
 
         db.collection('pipelineversions', function(err, collection) {
             if(!err){
                 if (!err) {
-                    collection.findOne({_id:new ObjectID(testConfig.pipelineId)},function(err, docs) {
+                    collection.findOne({_id:new ObjectID(getConf().pipelineId)},function(err, docs) {
                         if (!err) {
                             console.log("DOC");
                             console.log(docs)
@@ -76,18 +43,18 @@ db.open(function(err, db) {
                 }
             }
         })
-        console.log("connected to db :"+testConfig.database.ip )
+        console.log("connected to db :"+getConf().database.ip )
         router.get('/', function (req, res, next) {
             res.render('index', {title: 'Express'});
         });
         router.get('/fetchData',function(req, res,next){
-//            console.log(testConfig.testUser.id);
+//            console.log(getConf().testUser.id);
 //            console.log(req.params);
             /* var initial_params = decodeURIComponent(req.params.url);
-             var params = initial_params + '&test_user=' + testConfig.testUser.id;*/
-            var url=testConfig.smartSinkQueryUrl;
+             var params = initial_params + '&test_user=' + getConf().testUser.id;*/
+            var url=getConf().smartSinkQueryUrl;
             console.log(url)
-            //var url="http://45.55.159.119:3000/platalytics/api/version/developers_interface/process/562f2ada3a366cf9052db40f/smart_sink/563738e1e709572d6aa3fb3f/?SELECT=Predicted_Label,Tweet_Id,userName,screenName,location,dateTime,status,HashTags%20&tool=phoenix&start=0&rows=500"+ '&test_user=' + testConfig.testUser.id;;
+            //var url="http://45.55.159.119:3000/platalytics/api/version/developers_interface/process/562f2ada3a366cf9052db40f/smart_sink/563738e1e709572d6aa3fb3f/?SELECT=Predicted_Label,Tweet_Id,userName,screenName,location,dateTime,status,HashTags%20&tool=phoenix&start=0&rows=500"+ '&test_user=' + getConf().testUser.id;;
             request(url, function (error, response, body) {
                 var parsedBody = "";
                 try {
@@ -263,9 +230,23 @@ db.open(function(err, db) {
 
 
 });
-/* GET home page. */
-
 
 module.exports=router;
 
+function getConf(){
+    return {
+        testUser : {
+            id : '54f81d07f7da9fde14330cb9'
+        },
+        database:{
+            ip:CONFIGURATIONS.dbHost,
+            //ip:'54.164.145.190',
+            db:CONFIGURATIONS.db,
+            port: CONFIGURATIONS.dbPort
+        },
+        pipelineId:'5811ef825b2686b20192a382',
+        //smartSinkQueryUrl:'http://24.16.42.120:5000/platalytics/api/version/developers_interface/process/5811ef825b2686b20192a382/smart_sink/58a4650c6ad364cbcc108bd8/?query=select%20Predicted_label_sentiment%20as%20PREDICTED_SENTIMENT,Tweet_Id,%20userName,%20screenName,location,dateTime%20,status,%20HashTags%20from%20TABLE58A4650C6AD364CBCC108BD8%20where%20HashTags%20is%20not%20null%20and%20HashTags%20%3C%3E%20%27null%27%20order%20by%20TWEET_ID%20desc%20limit%201000&sink_profile=5804911c87b25b0e5b29653e&cluster_profile=5804911a87b25b0e5b29653b&start=0&rows=500&api_key=35454545'
+        smartSinkQueryUrl:'http://'+CONFIGURATIONS.backEndHost+':'+CONFIGURATIONS.backEndPort+'/services/api/querysink/getData?process=5811ef825b2686b20192a382%3A58a4650c6ad364cbcc108bd8%3B&query=select%20Predicted_label_sentiment%20as%20PREDICTED_SENTIMENT%2CTweet_Id%2C%20userName%2C%20screenName%2Clocation%2CdateTime%20%2Cstatus%2C%20HashTags%20from%20TABLE58A4650C6AD364CBCC108BD8%20where%20HashTags%20is%20not%20null%20and%20HashTags%20%3C%3E%20%27null%27%20order%20by%20TWEET_ID%20desc%20limit%201000&tool=undefined&sink_type=smart&sink_profile=5804911c87b25b0e5b29653e&cluster_profile=5804911a87b25b0e5b29653b&start=0&rows=500'
 
+    }
+}

@@ -39,7 +39,7 @@ var CLIOptions = [
 
 var cli = commandLineArgs(CLIOptions);
 console.log('CLI')
-console.log(cli)
+console.log(cli.parse())
 global.CONFIGURATIONS = cli.parse();
 
 console.log(CONFIGURATIONS)
