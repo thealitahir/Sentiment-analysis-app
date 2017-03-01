@@ -20,12 +20,13 @@ var mongo = require('mongodb'),
     ObjectID = require('mongodb').ObjectID,
     Db = mongo.Db;
 
+var db ;
 
 router.get('/', function (req, res, next) {
     var server = new Server(getConf().database.ip, getConf().database.port, {
         auto_reconnect: true
     });
-    var db = new Db(getConf().database.db, server);
+    db = new Db(getConf().database.db, server);
     db.open(function(err, db) {
         if(!err) {
 
