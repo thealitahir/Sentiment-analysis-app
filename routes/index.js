@@ -29,8 +29,35 @@ router.get('/', function (req, res, next) {
     db = new Db(getConf().database.db, server);
     db.open(function(err, db) {
         if(!err) {
+            console.log("connected to db :"+getConf().database.ip )
 
-
+            db.collection('pipelineversions', function(err, collection) {
+                console.log('pipelineversions')
+                console.log(err)
+                console.log(collection)
+                if (!err) {
+                    console.log('fetch pipeline')
+                    console.log(getConf().pipelineId)
+                    collection.findOne({_id:new ObjectID(getConf().pipelineId)},function(err, docs) {
+                        console.log('getting pipeline')
+                        console.log(err)
+                        console.log(docs)
+                        if (!err) {
+                            console.log("DOC");
+                            console.log(docs)
+                            var stages=docs.stages;
+                            getTwitterSourceId(stages,function(doc){
+                                hashTags=doc.stage_attributes.hash_tags;
+                                twitterStage=doc;
+                            });
+                        }
+                        else{
+                            console.log('in error')
+                            console.log(err)
+                        }
+                    });
+                }
+            })
         }
         else{
             console.log("error connecting db")
@@ -38,26 +65,12 @@ router.get('/', function (req, res, next) {
 
 
     });
-    db.collection('pipelineversions', function(err, collection) {
-        if(!err){
-            if (!err) {
-                collection.findOne({_id:new ObjectID(getConf().pipelineId)},function(err, docs) {
-                    if (!err) {
-                        console.log("DOC");
-                        console.log(docs)
-                        var stages=docs.stages;
-                        getTwitterSourceId(stages,function(doc){
-                            hashTags=doc.stage_attributes.hash_tags;
-                            twitterStage=doc;
-                        });
-                    }
-                });
-            }
-        }
-    })
-    console.log("connected to db :"+getConf().database.ip )
 
     res.render('index', {title: 'Express'});
+});
+router.get('/getApiUrl', function(req, res, next) {
+    var url = getConf().baseUrl + "/platalytics/api/version/developers_interface/process/5811ef825b2686b20192a382/smart_sink/58a4650c6ad364cbcc108bd8/?query=select%20Predicted_label_sentiment%20as%20PREDICTED_SENTIMENT,Tweet_Id,%20userName,%20screenName,location,dateTime%20,status,%20HashTags%20from%20TABLE58A4650C6AD364CBCC108BD8%20where%20HashTags%20is%20not%20null%20and%20HashTags%20<>%20%27null%27%20and%20status%20<>%20%27null%27%20order%20by%20TWEET_ID%20desc%20limit%201000&sink_profile=5804911c87b25b0e5b29653e&cluster_profile=5804911a87b25b0e5b29653b&start=0&rows=500&api_key=35454545";
+    res.send({status:true , data:url});
 });
 router.get('/fetchData',function(req, res,next){
 //            console.log(getConf().testUser.id);
@@ -195,6 +208,7 @@ router.post('/saveHashTag', function (req, res) {
     });
 });
 function getTwitterSourceId(stages,callback){
+    console.log('getTwitterSourceId');
     console.log(stages);
     for(var i=0;i<stages.length;i++){
         db.collection('stageversions', function(err, collection) {
@@ -249,11 +263,12 @@ function getConf(){
             db:CONFIGURATIONS.db,
             port: CONFIGURATIONS.dbPort
         },
-        pipelineId:'5811ef825b2686b20192a382',
+        baseUrl: "http://" + CONFIGURATIONS.frontEndHost + ':' + CONFIGURATIONS.frontEndPort,
+        pipelineId: '5811ef825b2686b20192a382',
         //smartSinkQueryUrl:'http://24.16.42.120:5000/platalytics/api/version/developers_interface/process/5811ef825b2686b20192a382/smart_sink/58a4650c6ad364cbcc108bd8/?query=select%20Predicted_label_sentiment%20as%20PREDICTED_SENTIMENT,Tweet_Id,%20userName,%20screenName,location,dateTime%20,status,%20HashTags%20from%20TABLE58A4650C6AD364CBCC108BD8%20where%20HashTags%20is%20not%20null%20and%20HashTags%20%3C%3E%20%27null%27%20order%20by%20TWEET_ID%20desc%20limit%201000&sink_profile=5804911c87b25b0e5b29653e&cluster_profile=5804911a87b25b0e5b29653b&start=0&rows=500&api_key=35454545'
         smartSinkQueryUrl:'http://'+CONFIGURATIONS.backEndHost+':'+CONFIGURATIONS.backEndPort+'/services/api/querysink/getData?process=5811ef825b2686b20192a382%3A58a4650c6ad364cbcc108bd8%3B&query=select%20Predicted_label_sentiment%20as%20PREDICTED_SENTIMENT%2CTweet_Id%2C%20userName%2C%20screenName%2Clocation%2CdateTime%20%2Cstatus%2C%20HashTags%20from%20TABLE58A4650C6AD364CBCC108BD8%20where%20HashTags%20is%20not%20null%20and%20HashTags%20%3C%3E%20%27null%27%20order%20by%20TWEET_ID%20desc%20limit%201000&tool=undefined&sink_type=smart&sink_profile=5804911c87b25b0e5b29653e&cluster_profile=5804911a87b25b0e5b29653b&start=0&rows=500'
 
     };
-    console.log(conf);
+    //console.log(conf);
     return conf;
 }

@@ -33,7 +33,14 @@ StudentApp = angular.module('StudentApp',
                 .state("API_Data", {
                     url: "/sentiment_analysis",
                     templateUrl: 'view/Demo.html',
-                    controller: 'DemoController'
+                    controller: 'DemoController',
+                    resolve : {
+                        apiUrl : ['$http', function ($http) {
+                            return $http.get('getApiUrl').then(function (res) {
+                                return res.data.data;
+                            });
+                        }]
+                    }
 
                 })
                 .state("mynewstate", {

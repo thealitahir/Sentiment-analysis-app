@@ -3,7 +3,7 @@
 
 var APIFetchController = angular.module('APIFetchController', []);
 
-APIFetchController.controller('DemoController', ['$scope', 'CRUDService', '$timeout','$interval','$timeout', function ($scope, CRUDService, $timeout,$interval,$timeout) {
+APIFetchController.controller('DemoController', ['$scope', 'CRUDService', '$timeout','$interval','$timeout','apiUrl', function ($scope, CRUDService, $timeout,$interval,$timeout,apiUrl) {
 
     $scope.options = {
         animate:{
@@ -680,6 +680,7 @@ APIFetchController.controller('DemoController', ['$scope', 'CRUDService', '$time
 
         });
     };
+    $scope.apiUrl = apiUrl;
     $scope.fetchData = function(){
 
         //  console.log("fetch data called")
