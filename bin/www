@@ -25,11 +25,24 @@ var server = http.createServer(app);
  * Listen on provided port, on all network interfaces.
  */
 
-
-
+var commandLineArgs = require("command-line-args");
 var debug = require('debug')('PlatalyticsFrontEnd');
 var app = require('../app');
 
+var CLIOptions = [
+  { name: "db", type: String, defaultValue: "test", description: "[bold]{Default: localhost} -- Host for db"},
+  { name: "dbHost", type: String, defaultValue: "localhost", description: "[bold]{Default: localhost} -- Host for db"},
+  { name: "dbPort", type: Number, defaultValue: 27017, description: "[bold]{Default: 27017} -- Port for db"},
+  { name: "backEndHost", type: String, defaultValue: "localhost", description: "[bold]{Default: localhost} -- Host for frontend app."},
+  { name: "backEndPort", type: Number, defaultValue: 7777, description: "[bold]{Default: 7777} -- Port for frontend app."}
+];
+
+var cli = commandLineArgs(CLIOptions);
+console.log('CLI')
+console.log(cli)
+global.CONFIGURATIONS = cli.parse();
+
+console.log(CONFIGURATIONS)
 server.listen(port);
 server.on('error', onError);
 server.on('listening', onListening);
