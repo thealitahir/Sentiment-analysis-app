@@ -19,8 +19,6 @@ app.set('port', port);
  * Create HTTP server.
  */
 
-var server = http.createServer(app);
-
 /**
  * Listen on provided port, on all network interfaces.
  */
@@ -40,9 +38,13 @@ var CLIOptions = [
 var cli = commandLineArgs(CLIOptions);
 console.log('CLI')
 console.log(cli.parse())
-global.CONFIGURATIONS = cli.parse();
+GLOBAL.CONFIGURATIONS = cli.parse();
 
 console.log(CONFIGURATIONS)
+
+var server = http.createServer(app);
+
+
 server.listen(port);
 server.on('error', onError);
 server.on('listening', onListening);

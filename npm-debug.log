@@ -1,1099 +1,181 @@
 0 info it worked if it ends with ok
 1 verbose cli [ 'C:\\Program Files\\nodejs\\node.exe',
 1 verbose cli   'C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js',
-1 verbose cli   'install' ]
+1 verbose cli   'install',
+1 verbose cli   'command-line-args' ]
 2 info using npm@2.15.5
 3 info using node@v4.4.5
-4 verbose readDependencies loading dependencies from C:\Platalytics\Code\sentiment-analysis-app\package.json
-5 verbose install where, deps [ 'C:\\Platalytics\\Code\\sentiment-analysis-app',
-5 verbose install   [ 'body-parser',
-5 verbose install     'command-line-args',
-5 verbose install     'cookie-parser',
-5 verbose install     'debug',
-5 verbose install     'ejs',
-5 verbose install     'express',
-5 verbose install     'mongodb',
-5 verbose install     'mongoose',
-5 verbose install     'morgan',
-5 verbose install     'nodemailer',
-5 verbose install     'nodemailer-sendgrid-transport',
-5 verbose install     'nodemailer-sendmail-transport',
-5 verbose install     'serve-favicon',
-5 verbose install     'underscore' ] ]
-6 verbose install where, peers [ 'C:\\Platalytics\\Code\\sentiment-analysis-app', [] ]
-7 verbose installManyTop reading for lifecycle C:\Platalytics\Code\sentiment-analysis-app\package.json
-8 info preinstall AngularJS@0.0.0
-9 verbose installManyTop reading scoped package data from C:\Platalytics\Code\sentiment-analysis-app\node_modules\async\package.json
-10 verbose installManyTop reading scoped package data from C:\Platalytics\Code\sentiment-analysis-app\node_modules\body-parser\package.json
-11 verbose installManyTop reading scoped package data from C:\Platalytics\Code\sentiment-analysis-app\node_modules\chai\package.json
-12 verbose installManyTop reading scoped package data from C:\Platalytics\Code\sentiment-analysis-app\node_modules\connect-flash\package.json
-13 verbose installManyTop reading scoped package data from C:\Platalytics\Code\sentiment-analysis-app\node_modules\connect-multiparty\package.json
-14 verbose installManyTop reading scoped package data from C:\Platalytics\Code\sentiment-analysis-app\node_modules\cookie-parser\package.json
-15 verbose installManyTop reading scoped package data from C:\Platalytics\Code\sentiment-analysis-app\node_modules\debug\package.json
-16 verbose installManyTop reading scoped package data from C:\Platalytics\Code\sentiment-analysis-app\node_modules\ejs\package.json
-17 verbose installManyTop reading scoped package data from C:\Platalytics\Code\sentiment-analysis-app\node_modules\express\package.json
-18 verbose installManyTop reading scoped package data from C:\Platalytics\Code\sentiment-analysis-app\node_modules\morgan\package.json
-19 verbose installManyTop reading scoped package data from C:\Platalytics\Code\sentiment-analysis-app\node_modules\multer\package.json
-20 verbose installManyTop reading scoped package data from C:\Platalytics\Code\sentiment-analysis-app\node_modules\nodemailer\package.json
-21 verbose installManyTop reading scoped package data from C:\Platalytics\Code\sentiment-analysis-app\node_modules\nodemailer-sendgrid-transport\package.json
-22 verbose installManyTop reading scoped package data from C:\Platalytics\Code\sentiment-analysis-app\node_modules\nodemailer-sendmail-transport\package.json
-23 verbose installManyTop reading scoped package data from C:\Platalytics\Code\sentiment-analysis-app\node_modules\passport\package.json
-24 verbose installManyTop reading scoped package data from C:\Platalytics\Code\sentiment-analysis-app\node_modules\passport-local\package.json
-25 verbose installManyTop reading scoped package data from C:\Platalytics\Code\sentiment-analysis-app\node_modules\request\package.json
-26 verbose installManyTop reading scoped package data from C:\Platalytics\Code\sentiment-analysis-app\node_modules\require\package.json
-27 verbose installManyTop reading scoped package data from C:\Platalytics\Code\sentiment-analysis-app\node_modules\serve-favicon\package.json
-28 verbose installManyTop reading scoped package data from C:\Platalytics\Code\sentiment-analysis-app\node_modules\supertest\package.json
-29 info package.json connect-flash@0.1.1 No license field.
-30 info package.json passport-local@1.0.0 No license field.
-31 info package.json require@2.4.17 No license field.
-32 verbose readDependencies loading dependencies from C:\Platalytics\Code\sentiment-analysis-app\package.json
-33 verbose targetResolver reading package data from C:\Platalytics\Code\sentiment-analysis-app\node_modules\async\package.json
-34 verbose targetResolver reading package data from C:\Platalytics\Code\sentiment-analysis-app\node_modules\body-parser\package.json
-35 verbose targetResolver reading package data from C:\Platalytics\Code\sentiment-analysis-app\node_modules\chai\package.json
-36 verbose targetResolver reading package data from C:\Platalytics\Code\sentiment-analysis-app\node_modules\connect-flash\package.json
-37 verbose targetResolver reading package data from C:\Platalytics\Code\sentiment-analysis-app\node_modules\connect-multiparty\package.json
-38 verbose targetResolver reading package data from C:\Platalytics\Code\sentiment-analysis-app\node_modules\cookie-parser\package.json
-39 verbose targetResolver reading package data from C:\Platalytics\Code\sentiment-analysis-app\node_modules\debug\package.json
-40 verbose targetResolver reading package data from C:\Platalytics\Code\sentiment-analysis-app\node_modules\ejs\package.json
-41 verbose targetResolver reading package data from C:\Platalytics\Code\sentiment-analysis-app\node_modules\express\package.json
-42 verbose targetResolver reading package data from C:\Platalytics\Code\sentiment-analysis-app\node_modules\morgan\package.json
-43 verbose targetResolver reading package data from C:\Platalytics\Code\sentiment-analysis-app\node_modules\multer\package.json
-44 verbose targetResolver reading package data from C:\Platalytics\Code\sentiment-analysis-app\node_modules\nodemailer\package.json
-45 verbose targetResolver reading package data from C:\Platalytics\Code\sentiment-analysis-app\node_modules\nodemailer-sendgrid-transport\package.json
-46 verbose targetResolver reading package data from C:\Platalytics\Code\sentiment-analysis-app\node_modules\nodemailer-sendmail-transport\package.json
-47 verbose targetResolver reading package data from C:\Platalytics\Code\sentiment-analysis-app\node_modules\passport\package.json
-48 verbose targetResolver reading package data from C:\Platalytics\Code\sentiment-analysis-app\node_modules\passport-local\package.json
-49 verbose targetResolver reading package data from C:\Platalytics\Code\sentiment-analysis-app\node_modules\request\package.json
-50 verbose targetResolver reading package data from C:\Platalytics\Code\sentiment-analysis-app\node_modules\require\package.json
-51 verbose targetResolver reading package data from C:\Platalytics\Code\sentiment-analysis-app\node_modules\serve-favicon\package.json
-52 verbose targetResolver reading package data from C:\Platalytics\Code\sentiment-analysis-app\node_modules\supertest\package.json
-53 verbose targetResolver reading package data from C:\Platalytics\Code\sentiment-analysis-app\node_modules\.bin\require\package.json
-54 verbose targetResolver reading package data from C:\Platalytics\Code\sentiment-analysis-app\node_modules\.bin\require.cmd\package.json
-55 silly cache add args [ 'underscore@^1.8.3', null ]
-56 verbose cache add spec underscore@^1.8.3
-57 silly cache add parsed spec Result {
-57 silly cache add   raw: 'underscore@^1.8.3',
-57 silly cache add   scope: null,
-57 silly cache add   name: 'underscore',
-57 silly cache add   rawSpec: '^1.8.3',
-57 silly cache add   spec: '>=1.8.3 <2.0.0',
-57 silly cache add   type: 'range' }
-58 silly addNamed underscore@>=1.8.3 <2.0.0
-59 verbose addNamed ">=1.8.3 <2.0.0" is a valid semver range for underscore
-60 silly addNameRange { name: 'underscore', range: '>=1.8.3 <2.0.0', hasData: false }
-61 silly mapToRegistry name underscore
-62 silly mapToRegistry using default registry
-63 silly mapToRegistry registry https://registry.npmjs.org/
-64 silly mapToRegistry data Result {
-64 silly mapToRegistry   raw: 'underscore',
-64 silly mapToRegistry   scope: null,
-64 silly mapToRegistry   name: 'underscore',
-64 silly mapToRegistry   rawSpec: '',
-64 silly mapToRegistry   spec: 'latest',
-64 silly mapToRegistry   type: 'tag' }
-65 silly mapToRegistry uri https://registry.npmjs.org/underscore
-66 verbose addNameRange registry:https://registry.npmjs.org/underscore not in flight; fetching
-67 verbose already installed skipping body-parser@~1.10.2 C:\Platalytics\Code\sentiment-analysis-app
-68 silly cache add args [ 'command-line-args@^1.1.0', null ]
-69 verbose cache add spec command-line-args@^1.1.0
-70 silly cache add parsed spec Result {
-70 silly cache add   raw: 'command-line-args@^1.1.0',
-70 silly cache add   scope: null,
-70 silly cache add   name: 'command-line-args',
-70 silly cache add   rawSpec: '^1.1.0',
-70 silly cache add   spec: '>=1.1.0 <2.0.0',
-70 silly cache add   type: 'range' }
-71 silly addNamed command-line-args@>=1.1.0 <2.0.0
-72 verbose addNamed ">=1.1.0 <2.0.0" is a valid semver range for command-line-args
-73 silly addNameRange { name: 'command-line-args',
-73 silly addNameRange   range: '>=1.1.0 <2.0.0',
-73 silly addNameRange   hasData: false }
-74 silly mapToRegistry name command-line-args
-75 silly mapToRegistry using default registry
-76 silly mapToRegistry registry https://registry.npmjs.org/
-77 silly mapToRegistry data Result {
-77 silly mapToRegistry   raw: 'command-line-args',
-77 silly mapToRegistry   scope: null,
-77 silly mapToRegistry   name: 'command-line-args',
-77 silly mapToRegistry   rawSpec: '',
-77 silly mapToRegistry   spec: 'latest',
-77 silly mapToRegistry   type: 'tag' }
-78 silly mapToRegistry uri https://registry.npmjs.org/command-line-args
-79 verbose addNameRange registry:https://registry.npmjs.org/command-line-args not in flight; fetching
-80 verbose already installed skipping cookie-parser@~1.3.3 C:\Platalytics\Code\sentiment-analysis-app
-81 verbose already installed skipping debug@~2.1.1 C:\Platalytics\Code\sentiment-analysis-app
-82 verbose already installed skipping ejs@~2.1.4 C:\Platalytics\Code\sentiment-analysis-app
-83 verbose already installed skipping express@~4.11.1 C:\Platalytics\Code\sentiment-analysis-app
-84 silly cache add args [ 'mongodb@*', null ]
-85 verbose cache add spec mongodb@*
-86 silly cache add parsed spec Result {
-86 silly cache add   raw: 'mongodb@*',
-86 silly cache add   scope: null,
-86 silly cache add   name: 'mongodb',
-86 silly cache add   rawSpec: '*',
-86 silly cache add   spec: '*',
-86 silly cache add   type: 'range' }
-87 silly addNamed mongodb@*
-88 verbose addNamed "*" is a valid semver range for mongodb
-89 silly addNameRange { name: 'mongodb', range: '*', hasData: false }
-90 silly mapToRegistry name mongodb
-91 silly mapToRegistry using default registry
-92 silly mapToRegistry registry https://registry.npmjs.org/
-93 silly mapToRegistry data Result {
-93 silly mapToRegistry   raw: 'mongodb',
-93 silly mapToRegistry   scope: null,
-93 silly mapToRegistry   name: 'mongodb',
-93 silly mapToRegistry   rawSpec: '',
-93 silly mapToRegistry   spec: 'latest',
-93 silly mapToRegistry   type: 'tag' }
-94 silly mapToRegistry uri https://registry.npmjs.org/mongodb
-95 verbose addNameRange registry:https://registry.npmjs.org/mongodb not in flight; fetching
-96 silly cache add args [ 'mongoose@*', null ]
-97 verbose cache add spec mongoose@*
-98 silly cache add parsed spec Result {
-98 silly cache add   raw: 'mongoose@*',
-98 silly cache add   scope: null,
-98 silly cache add   name: 'mongoose',
-98 silly cache add   rawSpec: '*',
-98 silly cache add   spec: '*',
-98 silly cache add   type: 'range' }
-99 silly addNamed mongoose@*
-100 verbose addNamed "*" is a valid semver range for mongoose
-101 silly addNameRange { name: 'mongoose', range: '*', hasData: false }
-102 silly mapToRegistry name mongoose
-103 silly mapToRegistry using default registry
-104 silly mapToRegistry registry https://registry.npmjs.org/
-105 silly mapToRegistry data Result {
-105 silly mapToRegistry   raw: 'mongoose',
-105 silly mapToRegistry   scope: null,
-105 silly mapToRegistry   name: 'mongoose',
-105 silly mapToRegistry   rawSpec: '',
-105 silly mapToRegistry   spec: 'latest',
-105 silly mapToRegistry   type: 'tag' }
-106 silly mapToRegistry uri https://registry.npmjs.org/mongoose
-107 verbose addNameRange registry:https://registry.npmjs.org/mongoose not in flight; fetching
-108 verbose already installed skipping morgan@~1.5.1 C:\Platalytics\Code\sentiment-analysis-app
-109 verbose already installed skipping nodemailer@^1.3.0 C:\Platalytics\Code\sentiment-analysis-app
-110 verbose already installed skipping nodemailer-sendgrid-transport@^0.1.0 C:\Platalytics\Code\sentiment-analysis-app
-111 verbose request uri https://registry.npmjs.org/command-line-args
-112 verbose request no auth needed
-113 info attempt registry request try #1 at 1:35:58 PM
-114 verbose request id 5e75efd8b5ddac2f
-115 verbose etag W/"5891b791-17947"
-116 verbose lastModified Wed, 01 Feb 2017 10:25:21 GMT
-117 http request GET https://registry.npmjs.org/command-line-args
-118 verbose already installed skipping nodemailer-sendmail-transport@^1.0.0 C:\Platalytics\Code\sentiment-analysis-app
-119 verbose already installed skipping serve-favicon@~2.2.0 C:\Platalytics\Code\sentiment-analysis-app
-120 verbose request uri https://registry.npmjs.org/mongodb
-121 verbose request no auth needed
-122 info attempt registry request try #1 at 1:35:58 PM
-123 verbose etag W/"58aed291-95814"
-124 verbose lastModified Thu, 23 Feb 2017 12:16:17 GMT
-125 http request GET https://registry.npmjs.org/mongodb
-126 verbose request uri https://registry.npmjs.org/underscore
-127 verbose request no auth needed
-128 info attempt registry request try #1 at 1:35:58 PM
-129 verbose etag W/"58695295-ab80"
-130 verbose lastModified Sun, 01 Jan 2017 19:03:49 GMT
-131 http request GET https://registry.npmjs.org/underscore
-132 verbose request uri https://registry.npmjs.org/mongoose
-133 verbose request no auth needed
-134 info attempt registry request try #1 at 1:35:58 PM
-135 verbose etag W/"58b534c6-8b473"
-136 verbose lastModified Tue, 28 Feb 2017 08:28:54 GMT
-137 http request GET https://registry.npmjs.org/mongoose
-138 http 304 https://registry.npmjs.org/command-line-args
-139 verbose headers { date: 'Wed, 01 Mar 2017 08:36:02 GMT',
-139 verbose headers   via: '1.1 varnish',
-139 verbose headers   'cache-control': 'max-age=300',
-139 verbose headers   etag: 'W/"5891b791-17947"',
-139 verbose headers   age: '0',
-139 verbose headers   connection: 'keep-alive',
-139 verbose headers   'x-served-by': 'cache-hhn1529-HHN',
-139 verbose headers   'x-cache': 'HIT',
-139 verbose headers   'x-cache-hits': '1',
-139 verbose headers   'x-timer': 'S1488357362.998155,VS0,VE1',
-139 verbose headers   vary: 'Accept-Encoding' }
-140 silly get cb [ 304,
-140 silly get   { date: 'Wed, 01 Mar 2017 08:36:02 GMT',
-140 silly get     via: '1.1 varnish',
-140 silly get     'cache-control': 'max-age=300',
-140 silly get     etag: 'W/"5891b791-17947"',
-140 silly get     age: '0',
-140 silly get     connection: 'keep-alive',
-140 silly get     'x-served-by': 'cache-hhn1529-HHN',
-140 silly get     'x-cache': 'HIT',
-140 silly get     'x-cache-hits': '1',
-140 silly get     'x-timer': 'S1488357362.998155,VS0,VE1',
-140 silly get     vary: 'Accept-Encoding' } ]
-141 verbose etag https://registry.npmjs.org/command-line-args from cache
-142 verbose get saving command-line-args to C:\Users\asma\AppData\Roaming\npm-cache\registry.npmjs.org\command-line-args\.cache.json
-143 verbose correctMkdir C:\Users\asma\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
-144 http 304 https://registry.npmjs.org/mongoose
-145 verbose headers { date: 'Wed, 01 Mar 2017 08:36:03 GMT',
-145 verbose headers   via: '1.1 varnish',
-145 verbose headers   'cache-control': 'max-age=300',
-145 verbose headers   etag: 'W/"58b534c6-8b473"',
-145 verbose headers   age: '35',
-145 verbose headers   connection: 'keep-alive',
-145 verbose headers   'x-served-by': 'cache-hhn1527-HHN',
-145 verbose headers   'x-cache': 'HIT',
-145 verbose headers   'x-cache-hits': '1',
-145 verbose headers   'x-timer': 'S1488357363.005422,VS0,VE0',
-145 verbose headers   vary: 'Accept-Encoding' }
-146 silly get cb [ 304,
-146 silly get   { date: 'Wed, 01 Mar 2017 08:36:03 GMT',
-146 silly get     via: '1.1 varnish',
-146 silly get     'cache-control': 'max-age=300',
-146 silly get     etag: 'W/"58b534c6-8b473"',
-146 silly get     age: '35',
-146 silly get     connection: 'keep-alive',
-146 silly get     'x-served-by': 'cache-hhn1527-HHN',
-146 silly get     'x-cache': 'HIT',
-146 silly get     'x-cache-hits': '1',
-146 silly get     'x-timer': 'S1488357363.005422,VS0,VE0',
-146 silly get     vary: 'Accept-Encoding' } ]
-147 verbose etag https://registry.npmjs.org/mongoose from cache
-148 verbose get saving mongoose to C:\Users\asma\AppData\Roaming\npm-cache\registry.npmjs.org\mongoose\.cache.json
-149 verbose correctMkdir C:\Users\asma\AppData\Roaming\npm-cache correctMkdir already in flight; waiting
-150 http 304 https://registry.npmjs.org/mongodb
-151 verbose headers { date: 'Wed, 01 Mar 2017 08:36:03 GMT',
-151 verbose headers   via: '1.1 varnish',
-151 verbose headers   'cache-control': 'max-age=300',
-151 verbose headers   etag: 'W/"58aed291-95814"',
-151 verbose headers   age: '205',
-151 verbose headers   connection: 'keep-alive',
-151 verbose headers   'x-served-by': 'cache-hhn1524-HHN',
-151 verbose headers   'x-cache': 'HIT',
-151 verbose headers   'x-cache-hits': '1',
-151 verbose headers   'x-timer': 'S1488357363.011613,VS0,VE0',
-151 verbose headers   vary: 'Accept-Encoding' }
-152 silly get cb [ 304,
-152 silly get   { date: 'Wed, 01 Mar 2017 08:36:03 GMT',
-152 silly get     via: '1.1 varnish',
-152 silly get     'cache-control': 'max-age=300',
-152 silly get     etag: 'W/"58aed291-95814"',
-152 silly get     age: '205',
-152 silly get     connection: 'keep-alive',
-152 silly get     'x-served-by': 'cache-hhn1524-HHN',
-152 silly get     'x-cache': 'HIT',
-152 silly get     'x-cache-hits': '1',
-152 silly get     'x-timer': 'S1488357363.011613,VS0,VE0',
-152 silly get     vary: 'Accept-Encoding' } ]
-153 verbose etag https://registry.npmjs.org/mongodb from cache
-154 verbose get saving mongodb to C:\Users\asma\AppData\Roaming\npm-cache\registry.npmjs.org\mongodb\.cache.json
-155 verbose correctMkdir C:\Users\asma\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
-156 silly addNameRange number 2 { name: 'mongoose', range: '*', hasData: true }
-157 silly addNameRange versions [ 'mongoose',
-157 silly addNameRange   [ '0.0.1',
-157 silly addNameRange     '0.0.2',
-157 silly addNameRange     '0.0.3',
-157 silly addNameRange     '0.0.4',
-157 silly addNameRange     '0.0.5',
-157 silly addNameRange     '1.0.0',
-157 silly addNameRange     '1.0.1',
-157 silly addNameRange     '1.0.2',
-157 silly addNameRange     '0.0.6',
-157 silly addNameRange     '1.0.3',
-157 silly addNameRange     '1.0.4',
-157 silly addNameRange     '1.0.5',
-157 silly addNameRange     '1.0.6',
-157 silly addNameRange     '1.0.7',
-157 silly addNameRange     '1.0.8',
-157 silly addNameRange     '1.0.10',
-157 silly addNameRange     '1.0.11',
-157 silly addNameRange     '1.0.12',
-157 silly addNameRange     '1.0.13',
-157 silly addNameRange     '1.0.14',
-157 silly addNameRange     '1.0.15',
-157 silly addNameRange     '1.0.16',
-157 silly addNameRange     '1.1.0',
-157 silly addNameRange     '1.1.1',
-157 silly addNameRange     '1.1.2',
-157 silly addNameRange     '1.1.3',
-157 silly addNameRange     '1.1.4',
-157 silly addNameRange     '1.1.5',
-157 silly addNameRange     '1.1.6',
-157 silly addNameRange     '1.1.7',
-157 silly addNameRange     '1.1.8',
-157 silly addNameRange     '1.1.9',
-157 silly addNameRange     '1.1.10',
-157 silly addNameRange     '1.1.11',
-157 silly addNameRange     '1.1.12',
-157 silly addNameRange     '1.1.13',
-157 silly addNameRange     '1.1.14',
-157 silly addNameRange     '1.1.15',
-157 silly addNameRange     '1.1.16',
-157 silly addNameRange     '1.1.17',
-157 silly addNameRange     '1.1.18',
-157 silly addNameRange     '1.1.19',
-157 silly addNameRange     '1.1.20',
-157 silly addNameRange     '1.1.21',
-157 silly addNameRange     '1.1.22',
-157 silly addNameRange     '1.1.23',
-157 silly addNameRange     '1.1.24',
-157 silly addNameRange     '1.1.25',
-157 silly addNameRange     '1.2.0',
-157 silly addNameRange     '1.3.0',
-157 silly addNameRange     '1.3.1',
-157 silly addNameRange     '1.3.2',
-157 silly addNameRange     '1.3.3',
-157 silly addNameRange     '1.3.4',
-157 silly addNameRange     '1.3.5',
-157 silly addNameRange     '1.3.6',
-157 silly addNameRange     '1.3.7',
-157 silly addNameRange     '1.4.0',
-157 silly addNameRange     '1.5.0',
-157 silly addNameRange     '1.6.0',
-157 silly addNameRange     '1.7.2',
-157 silly addNameRange     '1.7.3',
-157 silly addNameRange     '1.7.4',
-157 silly addNameRange     '1.8.0',
-157 silly addNameRange     '1.8.1',
-157 silly addNameRange     '1.8.2',
-157 silly addNameRange     '1.8.3',
-157 silly addNameRange     '1.8.4',
-157 silly addNameRange     '2.0.0',
-157 silly addNameRange     '2.0.1',
-157 silly addNameRange     '2.0.2',
-157 silly addNameRange     '2.0.3',
-157 silly addNameRange     '2.0.4',
-157 silly addNameRange     '2.1.0',
-157 silly addNameRange     '2.1.1',
-157 silly addNameRange     '2.1.2',
-157 silly addNameRange     '2.1.3',
-157 silly addNameRange     '2.1.4',
-157 silly addNameRange     '2.2.0',
-157 silly addNameRange     '2.2.1',
-157 silly addNameRange     '2.2.2',
-157 silly addNameRange     '2.2.3',
-157 silly addNameRange     '2.2.4',
-157 silly addNameRange     '2.3.0',
-157 silly addNameRange     '2.3.1',
-157 silly addNameRange     '2.3.2',
-157 silly addNameRange     '2.3.3',
-157 silly addNameRange     '2.3.4',
-157 silly addNameRange     '2.3.5',
-157 silly addNameRange     '2.3.6',
-157 silly addNameRange     '2.3.7',
-157 silly addNameRange     '2.3.8',
-157 silly addNameRange     '2.3.9',
-157 silly addNameRange     '2.3.10',
-157 silly addNameRange     '2.3.11',
-157 silly addNameRange     '2.3.12',
-157 silly addNameRange     '2.3.13',
-157 silly addNameRange     '2.4.0',
-157 silly addNameRange     '2.4.1',
-157 silly addNameRange     '2.4.2',
-157 silly addNameRange     '2.4.3',
-157 silly addNameRange     '2.4.4',
-157 silly addNameRange     '2.4.5',
-157 silly addNameRange     '2.4.6',
-157 silly addNameRange     '2.4.7',
-157 silly addNameRange     '2.4.8',
-157 silly addNameRange     '2.4.9',
-157 silly addNameRange     '2.4.10',
-157 silly addNameRange     '2.5.0',
-157 silly addNameRange     '2.5.1',
-157 silly addNameRange     '2.5.2',
-157 silly addNameRange     '2.5.3',
-157 silly addNameRange     '2.5.4',
-157 silly addNameRange     '2.5.5',
-157 silly addNameRange     '2.5.6',
-157 silly addNameRange     '2.5.7',
-157 silly addNameRange     '2.5.8',
-157 silly addNameRange     '2.5.9',
-157 silly addNameRange     '2.5.10',
-157 silly addNameRange     '2.5.11',
-157 silly addNameRange     '2.5.12',
-157 silly addNameRange     '2.5.13',
-157 silly addNameRange     '2.5.14',
-157 silly addNameRange     '2.6.0',
-157 silly addNameRange     '2.6.1',
-157 silly addNameRange     '2.6.2',
-157 silly addNameRange     '2.6.3',
-157 silly addNameRange     '2.6.4',
-157 silly addNameRange     '2.6.5',
-157 silly addNameRange     '2.6.6',
-157 silly addNameRange     '2.6.7',
-157 silly addNameRange     '2.6.8',
-157 silly addNameRange     '2.7.0',
-157 silly addNameRange     '2.7.1',
-157 silly addNameRange     '2.7.2',
-157 silly addNameRange     '2.7.4',
-157 silly addNameRange     '2.7.3',
-157 silly addNameRange     '3.0.0',
-157 silly addNameRange     '3.0.1',
-157 silly addNameRange     '3.0.2',
-157 silly addNameRange     '2.8.0',
-157 silly addNameRange     '3.0.3',
-157 silly addNameRange     '3.1.0',
-157 silly addNameRange     '2.8.1',
-157 silly addNameRange     '3.1.1',
-157 silly addNameRange     '2.8.2',
-157 silly addNameRange     '2.8.3',
-157 silly addNameRange     '2.9.0',
-157 silly addNameRange     '3.2.0',
-157 silly addNameRange     '2.9.1',
-157 silly addNameRange     '3.2.1',
-157 silly addNameRange     '2.9.2',
-157 silly addNameRange     '3.2.2',
-157 silly addNameRange     '3.3.0',
-157 silly addNameRange     '3.3.1',
-157 silly addNameRange     '2.9.3',
-157 silly addNameRange     '3.4.0',
-157 silly addNameRange     '2.9.4',
-157 silly addNameRange     '2.9.5',
-157 silly addNameRange     '3.5.0',
-157 silly addNameRange     '3.5.1',
-157 silly addNameRange     '3.5.2',
-157 silly addNameRange     '3.5.3',
-157 silly addNameRange     '2.9.6',
-157 silly addNameRange     '2.9.7',
-157 silly addNameRange     '3.5.4',
-157 silly addNameRange     '3.5.5',
-157 silly addNameRange     '2.9.8',
-157 silly addNameRange     '2.9.9',
-157 silly addNameRange     '3.5.6',
-157 silly addNameRange     '3.5.7',
-157 silly addNameRange     '3.5.8',
-157 silly addNameRange     '2.9.10',
-157 silly addNameRange     '3.5.9',
-157 silly addNameRange     '3.6.2',
-157 silly addNameRange     '3.5.10',
-157 silly addNameRange     '3.6.3',
-157 silly addNameRange     '3.5.11',
-157 silly addNameRange     '3.6.4',
-157 silly addNameRange     '3.6.5',
-157 silly addNameRange     '3.6.6',
-157 silly addNameRange     '3.6.7',
-157 silly addNameRange     '3.5.12',
-157 silly addNameRange     '3.6.8',
-157 silly addNameRange     '3.6.9',
-157 silly addNameRange     '3.6.10',
-157 silly addNameRange     '3.5.13',
-157 silly addNameRange     '3.5.14',
-157 silly addNameRange     '3.6.11',
-157 silly addNameRange     '3.6.12',
-157 silly addNameRange     '3.6.13',
-157 silly addNameRange     '3.6.14',
-157 silly addNameRange     '3.6.15',
-157 silly addNameRange     '3.5.15',
-157 silly addNameRange     '3.7.0',
-157 silly addNameRange     '3.6.16',
-157 silly addNameRange     '3.5.16',
-157 silly addNameRange     '3.6.17',
-157 silly addNameRange     '3.7.2',
-157 silly addNameRange     '3.0.0-alpha1',
-157 silly addNameRange     '3.0.0-alpha2',
-157 silly addNameRange     '3.0.0-rc0',
-157 silly addNameRange     '3.6.0-rc0',
-157 silly addNameRange     '3.6.0-rc1',
-157 silly addNameRange     '3.6.18',
-157 silly addNameRange     '3.7.3',
-157 silly addNameRange     '3.6.19',
-157 silly addNameRange     '3.6.20',
-157 silly addNameRange     '3.7.4',
-157 silly addNameRange     '3.8.0',
-157 silly addNameRange     '3.8.1',
-157 silly addNameRange     '3.8.2',
-157 silly addNameRange     '3.8.3',
-157 silly addNameRange     '3.8.4',
-157 silly addNameRange     '3.8.5',
-157 silly addNameRange     '3.8.6',
-157 silly addNameRange     '3.8.7',
-157 silly addNameRange     '3.8.8',
-157 silly addNameRange     '3.8.9',
-157 silly addNameRange     '3.8.10',
-157 silly addNameRange     '3.8.11',
-157 silly addNameRange     '3.9.0',
-157 silly addNameRange     '3.8.12',
-157 silly addNameRange     '3.8.13',
-157 silly addNameRange     '3.8.14',
-157 silly addNameRange     '3.8.15',
-157 silly addNameRange     '3.9.1',
-157 silly addNameRange     '3.8.16',
-157 silly addNameRange     '3.9.2',
-157 silly addNameRange     '3.8.17',
-157 silly addNameRange     '3.9.3',
-157 silly addNameRange     '3.8.18',
-157 silly addNameRange     '3.9.4',
-157 silly addNameRange     '3.8.19',
-157 silly addNameRange     '3.9.5',
-157 silly addNameRange     '3.8.20',
-157 silly addNameRange     '3.9.6',
-157 silly addNameRange     '3.8.21',
-157 silly addNameRange     '3.9.7',
-157 silly addNameRange     '3.8.22',
-157 silly addNameRange     '4.0.0-rc0',
-157 silly addNameRange     '4.0.0-rc1',
-157 silly addNameRange     '3.8.23',
-157 silly addNameRange     '4.0.0-rc2',
-157 silly addNameRange     '3.8.24',
-157 silly addNameRange     '4.0.0-rc3',
-157 silly addNameRange     '3.8.25',
-157 silly addNameRange     '4.0.0-rc4',
-157 silly addNameRange     '4.0.0',
-157 silly addNameRange     '4.0.1',
-157 silly addNameRange     '3.8.26',
-157 silly addNameRange     '3.8.27',
-157 silly addNameRange     '4.0.2',
-157 silly addNameRange     '3.8.28',
-157 silly addNameRange     '4.0.3',
-157 silly addNameRange     '3.8.29',
-157 silly addNameRange     '4.0.4',
-157 silly addNameRange     '3.8.30',
-157 silly addNameRange     '4.0.5',
-157 silly addNameRange     '3.8.31',
-157 silly addNameRange     '4.0.6',
-157 silly addNameRange     '3.8.33',
-157 silly addNameRange     '4.0.7',
-157 silly addNameRange     '3.8.34',
-157 silly addNameRange     '4.0.8',
-157 silly addNameRange     '4.1.0',
-157 silly addNameRange     '4.1.1',
-157 silly addNameRange     '4.1.2',
-157 silly addNameRange     '3.8.35',
-157 silly addNameRange     '4.1.3',
-157 silly addNameRange     '4.1.5',
-157 silly addNameRange     '4.1.6',
-157 silly addNameRange     '4.1.7',
-157 silly addNameRange     '4.1.8',
-157 silly addNameRange     '4.1.9',
-157 silly addNameRange     '4.1.10',
-157 silly addNameRange     '4.1.11',
-157 silly addNameRange     '3.8.36',
-157 silly addNameRange     '4.1.12',
-157 silly addNameRange     '4.2.0',
-157 silly addNameRange     '4.2.1',
-157 silly addNameRange     '4.2.2',
-157 silly addNameRange     '4.2.3',
-157 silly addNameRange     '4.2.4',
-157 silly addNameRange     '4.2.5',
-157 silly addNameRange     '3.8.37',
-157 silly addNameRange     '4.2.6',
-157 silly addNameRange     '4.2.7',
-157 silly addNameRange     '4.2.8',
-157 silly addNameRange     '4.2.9',
-157 silly addNameRange     '4.2.10',
-157 silly addNameRange     '4.3.0',
-157 silly addNameRange     '4.3.1',
-157 silly addNameRange     '4.3.2',
-157 silly addNameRange     '4.3.3',
-157 silly addNameRange     '4.3.4',
-157 silly addNameRange     '3.8.38',
-157 silly addNameRange     '4.3.5',
-157 silly addNameRange     '4.3.6',
-157 silly addNameRange     '3.8.39',
-157 silly addNameRange     '4.3.7',
-157 silly addNameRange     '4.4.0',
-157 silly addNameRange     '4.4.1',
-157 silly addNameRange     '4.4.2',
-157 silly addNameRange     '4.4.3',
-157 silly addNameRange     '4.4.4',
-157 silly addNameRange     '4.4.5',
-157 silly addNameRange     '4.4.6',
-157 silly addNameRange     '4.4.7',
-157 silly addNameRange     '4.4.8',
-157 silly addNameRange     '4.4.9',
-157 silly addNameRange     '4.4.10',
-157 silly addNameRange     '4.4.11',
-157 silly addNameRange     '4.4.12',
-157 silly addNameRange     '4.4.13',
-157 silly addNameRange     '3.8.40',
-157 silly addNameRange     '4.4.14',
-157 silly addNameRange     '4.4.15',
-157 silly addNameRange     '4.4.16',
-157 silly addNameRange     '4.4.17',
-157 silly addNameRange     '4.4.18',
-157 silly addNameRange     '4.4.19',
-157 silly addNameRange     '4.4.20',
-157 silly addNameRange     '4.5.0',
-157 silly addNameRange     '4.5.1',
-157 silly addNameRange     '4.5.2',
-157 silly addNameRange     '4.5.3',
-157 silly addNameRange     '4.5.4',
-157 silly addNameRange     '4.5.5',
-157 silly addNameRange     '4.5.6',
-157 silly addNameRange     '4.5.7',
-157 silly addNameRange     '4.5.8',
-157 silly addNameRange     '4.5.9',
-157 silly addNameRange     '4.5.10',
-157 silly addNameRange     '4.6.0',
-157 silly addNameRange     '4.6.1',
-157 silly addNameRange     '4.6.2',
-157 silly addNameRange     '4.6.3',
-157 silly addNameRange     '4.6.4',
-157 silly addNameRange     '4.6.5',
-157 silly addNameRange     '4.6.6',
-157 silly addNameRange     '4.6.7',
-157 silly addNameRange     '4.6.8',
-157 silly addNameRange     '4.7.0',
-157 silly addNameRange     '4.7.1',
-157 silly addNameRange     '4.7.2',
-157 silly addNameRange     '4.7.3',
-157 silly addNameRange     '4.7.4',
-157 silly addNameRange     '4.7.5-pre',
-157 silly addNameRange     '4.7.5',
-157 silly addNameRange     '4.7.6',
-157 silly addNameRange     '4.7.7',
-157 silly addNameRange     '4.7.8',
-157 silly addNameRange     '4.7.9',
-157 silly addNameRange     '4.8.0',
-157 silly addNameRange     '4.8.1',
-157 silly addNameRange     '4.8.2',
-157 silly addNameRange     '4.8.3',
-157 silly addNameRange     '4.8.4',
-157 silly addNameRange     '4.8.5' ] ]
-158 silly addNamed mongoose@4.8.5
-159 verbose addNamed "4.8.5" is a plain semver version for mongoose
-160 silly addNameRange number 2 { name: 'command-line-args',
-160 silly addNameRange   range: '>=1.1.0 <2.0.0',
-160 silly addNameRange   hasData: true }
-161 silly addNameRange versions [ 'command-line-args',
-161 silly addNameRange   [ '0.0.0',
-161 silly addNameRange     '0.0.1',
-161 silly addNameRange     '0.0.2',
-161 silly addNameRange     '0.1.0',
-161 silly addNameRange     '0.2.0',
-161 silly addNameRange     '0.2.1',
-161 silly addNameRange     '0.2.2',
-161 silly addNameRange     '0.2.3',
-161 silly addNameRange     '0.2.4',
-161 silly addNameRange     '0.3.0',
-161 silly addNameRange     '0.3.1',
-161 silly addNameRange     '0.4.0',
-161 silly addNameRange     '0.5.0',
-161 silly addNameRange     '0.5.1',
-161 silly addNameRange     '0.5.2',
-161 silly addNameRange     '0.5.3',
-161 silly addNameRange     '0.5.4',
-161 silly addNameRange     '0.5.5',
-161 silly addNameRange     '0.5.6',
-161 silly addNameRange     '0.5.7',
-161 silly addNameRange     '0.5.8',
-161 silly addNameRange     '0.5.9',
-161 silly addNameRange     '1.0.0-0',
-161 silly addNameRange     '1.0.0-1',
-161 silly addNameRange     '1.0.0-2',
-161 silly addNameRange     '1.0.0-3',
-161 silly addNameRange     '1.1.0-0',
-161 silly addNameRange     '1.1.0-1',
-161 silly addNameRange     '1.0.0',
-161 silly addNameRange     '1.0.1',
-161 silly addNameRange     '1.0.2',
-161 silly addNameRange     '2.0.0',
-161 silly addNameRange     '2.0.1',
-161 silly addNameRange     '2.0.2',
-161 silly addNameRange     '2.0.3',
-161 silly addNameRange     '2.0.4',
-161 silly addNameRange     '2.1.0',
-161 silly addNameRange     '2.1.1',
-161 silly addNameRange     '2.1.2',
-161 silly addNameRange     '2.1.3',
-161 silly addNameRange     '2.1.4',
-161 silly addNameRange     '2.1.5',
-161 silly addNameRange     '2.1.6',
-161 silly addNameRange     '3.0.0',
-161 silly addNameRange     '3.0.1',
-161 silly addNameRange     '3.0.2',
-161 silly addNameRange     '3.0.3-0',
-161 silly addNameRange     '3.0.3',
-161 silly addNameRange     '3.0.4',
-161 silly addNameRange     '3.0.5',
-161 silly addNameRange     '4.0.0-0',
-161 silly addNameRange     '4.0.0-1',
-161 silly addNameRange     '4.0.0',
-161 silly addNameRange     '4.0.1' ] ]
-162 silly addNameRange number 2 { name: 'mongodb', range: '*', hasData: true }
-163 silly addNameRange versions [ 'mongodb',
-163 silly addNameRange   [ '0.9.4',
-163 silly addNameRange     '0.9.4-4',
-163 silly addNameRange     '0.9.3',
-163 silly addNameRange     '0.9.1',
-163 silly addNameRange     '0.9.2',
-163 silly addNameRange     '0.9.6-7',
-163 silly addNameRange     '0.9.6-8',
-163 silly addNameRange     '0.9.6-9',
-163 silly addNameRange     '0.9.6-10',
-163 silly addNameRange     '0.9.6-11',
-163 silly addNameRange     '0.9.6-12',
-163 silly addNameRange     '0.9.6-13',
-163 silly addNameRange     '0.9.6-14',
-163 silly addNameRange     '0.9.6-15',
-163 silly addNameRange     '0.9.6-16',
-163 silly addNameRange     '0.9.6-17',
-163 silly addNameRange     '0.9.6-18',
-163 silly addNameRange     '0.9.6-19',
-163 silly addNameRange     '0.9.6-20',
-163 silly addNameRange     '0.9.6-21',
-163 silly addNameRange     '0.9.6-22',
-163 silly addNameRange     '0.9.6-23',
-163 silly addNameRange     '0.9.7',
-163 silly addNameRange     '0.9.7-0',
-163 silly addNameRange     '0.9.7-1',
-163 silly addNameRange     '0.9.7-1.1',
-163 silly addNameRange     '0.9.7-1.2',
-163 silly addNameRange     '0.9.7-1.3',
-163 silly addNameRange     '0.9.7-1.4',
-163 silly addNameRange     '0.9.7-2',
-163 silly addNameRange     '0.9.7-2-1',
-163 silly addNameRange     '0.9.7-2-2',
-163 silly addNameRange     '0.9.7-2-3',
-163 silly addNameRange     '0.9.7-2-4',
-163 silly addNameRange     '0.9.7-2-5',
-163 silly addNameRange     '0.9.7-3',
-163 silly addNameRange     '0.9.7-3-1',
-163 silly addNameRange     '0.9.7-3-2',
-163 silly addNameRange     '0.9.7-3-3',
-163 silly addNameRange     '0.9.7-3-4',
-163 silly addNameRange     '0.9.7-3-5',
-163 silly addNameRange     '0.9.8',
-163 silly addNameRange     '0.9.8-1',
-163 silly addNameRange     '0.9.8-2',
-163 silly addNameRange     '0.9.8-3',
-163 silly addNameRange     '0.9.8-4',
-163 silly addNameRange     '0.9.8-5',
-163 silly addNameRange     '0.9.8-6',
-163 silly addNameRange     '0.9.8-7',
-163 silly addNameRange     '0.9.9',
-163 silly addNameRange     '0.9.9-1',
-163 silly addNameRange     '0.9.9-2',
-163 silly addNameRange     '0.9.9-3',
-163 silly addNameRange     '0.9.9-4',
-163 silly addNameRange     '0.9.9-5',
-163 silly addNameRange     '0.9.9-6',
-163 silly addNameRange     '0.9.9-7',
-163 silly addNameRange     '0.9.9-8',
-163 silly addNameRange     '1.0.0',
-163 silly addNameRange     '1.0.1',
-163 silly addNameRange     '1.0.2',
-163 silly addNameRange     '1.1.0-beta',
-163 silly addNameRange     '1.1.0',
-163 silly addNameRange     '1.1.1',
-163 silly addNameRange     '1.1.2',
-163 silly addNameRange     '1.1.3',
-163 silly addNameRange     '1.1.4',
-163 silly addNameRange     '1.1.5',
-163 silly addNameRange     '1.1.6',
-163 silly addNameRange     '1.1.7',
-163 silly addNameRange     '1.1.8',
-163 silly addNameRange     '1.1.9',
-163 silly addNameRange     '1.1.10',
-163 silly addNameRange     '1.1.11',
-163 silly addNameRange     '1.2.0',
-163 silly addNameRange     '1.2.1',
-163 silly addNameRange     '1.2.2',
-163 silly addNameRange     '1.2.3',
-163 silly addNameRange     '1.2.4',
-163 silly addNameRange     '1.2.5',
-163 silly addNameRange     '1.2.6',
-163 silly addNameRange     '1.2.7',
-163 silly addNameRange     '1.2.8',
-163 silly addNameRange     '1.2.9',
-163 silly addNameRange     '1.2.10',
-163 silly addNameRange     '1.2.11',
-163 silly addNameRange     '1.2.12',
-163 silly addNameRange     '1.2.13',
-163 silly addNameRange     '1.2.14',
-163 silly addNameRange     '1.3.0',
-163 silly addNameRange     '1.3.1',
-163 silly addNameRange     '1.3.2',
-163 silly addNameRange     '1.3.3',
-163 silly addNameRange     '1.3.4',
-163 silly addNameRange     '1.3.5',
-163 silly addNameRange     '1.3.6',
-163 silly addNameRange     '1.3.7',
-163 silly addNameRange     '1.3.8',
-163 silly addNameRange     '1.3.9',
-163 silly addNameRange     '1.3.10',
-163 silly addNameRange     '1.3.11',
-163 silly addNameRange     '1.3.12',
-163 silly addNameRange     '1.3.14',
-163 silly addNameRange     '1.3.15',
-163 silly addNameRange     '1.3.17',
-163 silly addNameRange     '1.3.18',
-163 silly addNameRange     '1.3.19',
-163 silly addNameRange     '1.4.0-rc2',
-163 silly addNameRange     '1.3.20',
-163 silly addNameRange     '1.4.0-rc3',
-163 silly addNameRange     '1.3.21',
-163 silly addNameRange     '1.3.22',
-163 silly addNameRange     '1.3.23',
-163 silly addNameRange     '1.4.0-rc4',
-163 silly addNameRange     '1.4.0-rc5',
-163 silly addNameRange     '1.4.0-rc6',
-163 silly addNameRange     '1.4.0-rc7',
-163 silly addNameRange     '1.4.0-rc8',
-163 silly addNameRange     '1.4.0-rc9',
-163 silly addNameRange     '1.4.0-rc10',
-163 silly addNameRange     '1.4.0',
-163 silly addNameRange     '1.4.1',
-163 silly addNameRange     '1.4.2',
-163 silly addNameRange     '1.4.3',
-163 silly addNameRange     '1.4.4',
-163 silly addNameRange     '1.4.5',
-163 silly addNameRange     '1.4.6',
-163 silly addNameRange     '1.4.7',
-163 silly addNameRange     '1.4.8',
-163 silly addNameRange     '1.4.9',
-163 silly addNameRange     '1.4.10',
-163 silly addNameRange     '2.0.0-alpha1',
-163 silly addNameRange     '1.4.11',
-163 silly addNameRange     '1.4.12',
-163 silly addNameRange     '1.4.14',
-163 silly addNameRange     '1.4.15',
-163 silly addNameRange     '1.4.16',
-163 silly addNameRange     '1.4.17',
-163 silly addNameRange     '2.0.0-alpha2',
-163 silly addNameRange     '1.4.18',
-163 silly addNameRange     '2.0.0',
-163 silly addNameRange     '2.0.1',
-163 silly addNameRange     '2.0.2',
-163 silly addNameRange     '1.4.19',
-163 silly addNameRange     '2.0.3',
-163 silly addNameRange     '2.0.4',
-163 silly addNameRange     '2.0.5',
-163 silly addNameRange     '2.0.6',
-163 silly addNameRange     '1.4.20',
-163 silly addNameRange     '1.4.22',
-163 silly addNameRange     '2.0.7',
-163 silly addNameRange     '2.0.8',
-163 silly addNameRange     '2.0.9',
-163 silly addNameRange     '1.4.23',
-163 silly addNameRange     '2.0.10',
-163 silly addNameRange     '1.4.24',
-163 silly addNameRange     '2.0.11',
-163 silly addNameRange     '1.4.25',
-163 silly addNameRange     '2.0.12',
-163 silly addNameRange     '1.4.26',
-163 silly addNameRange     '1.4.27',
-163 silly addNameRange     '1.4.28',
-163 silly addNameRange     '2.0.13',
-163 silly addNameRange     '2.0.14',
-163 silly addNameRange     '1.4.29',
-163 silly addNameRange     '2.0.15',
-163 silly addNameRange     '1.4.30',
-163 silly addNameRange     '2.0.16',
-163 silly addNameRange     '1.4.31',
-163 silly addNameRange     '2.0.17',
-163 silly addNameRange     '1.4.32',
-163 silly addNameRange     '2.0.18',
-163 silly addNameRange     '2.0.19',
-163 silly addNameRange     '1.4.33',
-163 silly addNameRange     '2.0.20',
-163 silly addNameRange     '2.0.21',
-163 silly addNameRange     '1.4.34',
-163 silly addNameRange     '2.0.22',
-163 silly addNameRange     '2.0.23',
-163 silly addNameRange     '1.4.35',
-163 silly addNameRange     '2.0.24',
-163 silly addNameRange     '2.0.25',
-163 silly addNameRange     '2.0.26',
-163 silly addNameRange     '2.0.27',
-163 silly addNameRange     '2.0.28',
-163 silly addNameRange     '2.0.29',
-163 silly addNameRange     '1.4.36',
-163 silly addNameRange     '2.0.30',
-163 silly addNameRange     '1.4.37',
-163 silly addNameRange     '2.0.31',
-163 silly addNameRange     '1.4.38',
-163 silly addNameRange     '2.0.32',
-163 silly addNameRange     '2.0.33',
-163 silly addNameRange     '2.1.0-alpha',
-163 silly addNameRange     '2.0.34',
-163 silly addNameRange     '2.0.35',
-163 silly addNameRange     '2.0.36',
-163 silly addNameRange     '2.0.37',
-163 silly addNameRange     '2.0.38',
-163 silly addNameRange     '2.0.39',
-163 silly addNameRange     '1.4.39',
-163 silly addNameRange     '2.0.40',
-163 silly addNameRange     '2.0.41',
-163 silly addNameRange     '2.0.42',
-163 silly addNameRange     '2.0.43',
-163 silly addNameRange     '2.0.44',
-163 silly addNameRange     '2.0.45',
-163 silly addNameRange     '2.0.46',
-163 silly addNameRange     '2.0.47',
-163 silly addNameRange     '2.0.48',
-163 silly addNameRange     '2.1.0-rc1',
-163 silly addNameRange     '2.0.49',
-163 silly addNameRange     '2.0.50',
-163 silly addNameRange     '2.1.0',
-163 silly addNameRange     '2.0.51',
-163 silly addNameRange     '2.1.1',
-163 silly addNameRange     '2.0.52',
-163 silly addNameRange     '2.0.53',
-163 silly addNameRange     '2.1.2',
-163 silly addNameRange     '2.1.3',
-163 silly addNameRange     '2.0.54',
-163 silly addNameRange     '2.0.55',
-163 silly addNameRange     '1.4.40',
-163 silly addNameRange     '2.1.4',
-163 silly addNameRange     '2.1.5',
-163 silly addNameRange     '2.1.6',
-163 silly addNameRange     '2.1.7',
-163 silly addNameRange     '2.1.8',
-163 silly addNameRange     '2.1.9',
-163 silly addNameRange     '2.1.10',
-163 silly addNameRange     '2.1.11',
-163 silly addNameRange     '2.1.12',
-163 silly addNameRange     '2.1.13',
-163 silly addNameRange     '2.1.14',
-163 silly addNameRange     '2.1.15',
-163 silly addNameRange     '2.1.16',
-163 silly addNameRange     '2.1.17',
-163 silly addNameRange     '2.1.18',
-163 silly addNameRange     '2.1.19',
-163 silly addNameRange     '2.1.20',
-163 silly addNameRange     '2.1.21',
-163 silly addNameRange     '2.1.22-alpha',
-163 silly addNameRange     '2.1.22-alpha2',
-163 silly addNameRange     '2.1.22-alpha3',
-163 silly addNameRange     '2.1.22-alpha4',
-163 silly addNameRange     '2.2.0-alpha1',
-163 silly addNameRange     '2.2.0-alpha2',
-163 silly addNameRange     '2.2.0',
-163 silly addNameRange     '2.2.1',
-163 silly addNameRange     '2.2.2',
-163 silly addNameRange     '2.2.3',
-163 silly addNameRange     '2.2.4',
-163 silly addNameRange     '2.2.5',
-163 silly addNameRange     '2.2.6',
-163 silly addNameRange     '2.2.7',
-163 silly addNameRange     '2.2.8',
-163 silly addNameRange     '2.2.9',
-163 silly addNameRange     '2.2.10',
-163 silly addNameRange     '2.2.11',
-163 silly addNameRange     '2.2.12',
-163 silly addNameRange     '2.2.13',
-163 silly addNameRange     '2.2.14',
-163 silly addNameRange     '2.2.15',
-163 silly addNameRange     '2.2.16',
-163 silly addNameRange     '2.2.17',
-163 silly addNameRange     '2.2.18',
-163 silly addNameRange     '2.2.19',
-163 silly addNameRange     '2.2.20',
-163 silly addNameRange     '2.2.21',
-163 silly addNameRange     '2.2.22',
-163 silly addNameRange     '2.2.23',
-163 silly addNameRange     '2.2.24' ] ]
-164 silly addNamed mongodb@2.2.24
-165 verbose addNamed "2.2.24" is a plain semver version for mongodb
-166 http 200 https://registry.npmjs.org/underscore
-167 verbose headers { server: 'nginx/1.10.1',
-167 verbose headers   'content-type': 'application/json',
-167 verbose headers   'last-modified': 'Wed, 01 Mar 2017 02:58:25 GMT',
-167 verbose headers   etag: 'W/"58b638d1-ac18"',
-167 verbose headers   'content-encoding': 'gzip',
-167 verbose headers   'cache-control': 'max-age=300',
-167 verbose headers   'content-length': '7226',
-167 verbose headers   'accept-ranges': 'bytes',
-167 verbose headers   date: 'Wed, 01 Mar 2017 08:36:03 GMT',
-167 verbose headers   via: '1.1 varnish',
-167 verbose headers   age: '284',
-167 verbose headers   connection: 'keep-alive',
-167 verbose headers   'x-served-by': 'cache-hhn1544-HHN',
-167 verbose headers   'x-cache': 'HIT',
-167 verbose headers   'x-cache-hits': '18',
-167 verbose headers   'x-timer': 'S1488357363.040002,VS0,VE0',
-167 verbose headers   vary: 'Accept-Encoding' }
-168 silly get cb [ 200,
-168 silly get   { server: 'nginx/1.10.1',
-168 silly get     'content-type': 'application/json',
-168 silly get     'last-modified': 'Wed, 01 Mar 2017 02:58:25 GMT',
-168 silly get     etag: 'W/"58b638d1-ac18"',
-168 silly get     'content-encoding': 'gzip',
-168 silly get     'cache-control': 'max-age=300',
-168 silly get     'content-length': '7226',
-168 silly get     'accept-ranges': 'bytes',
-168 silly get     date: 'Wed, 01 Mar 2017 08:36:03 GMT',
-168 silly get     via: '1.1 varnish',
-168 silly get     age: '284',
-168 silly get     connection: 'keep-alive',
-168 silly get     'x-served-by': 'cache-hhn1544-HHN',
-168 silly get     'x-cache': 'HIT',
-168 silly get     'x-cache-hits': '18',
-168 silly get     'x-timer': 'S1488357363.040002,VS0,VE0',
-168 silly get     vary: 'Accept-Encoding' } ]
-169 verbose get saving underscore to C:\Users\asma\AppData\Roaming\npm-cache\registry.npmjs.org\underscore\.cache.json
-170 verbose correctMkdir C:\Users\asma\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
-171 silly addNameRange number 2 { name: 'underscore', range: '>=1.8.3 <2.0.0', hasData: true }
-172 silly addNameRange versions [ 'underscore',
-172 silly addNameRange   [ '1.0.3',
-172 silly addNameRange     '1.0.4',
-172 silly addNameRange     '1.1.0',
-172 silly addNameRange     '1.1.1',
-172 silly addNameRange     '1.1.2',
-172 silly addNameRange     '1.1.3',
-172 silly addNameRange     '1.1.4',
-172 silly addNameRange     '1.1.5',
-172 silly addNameRange     '1.1.6',
-172 silly addNameRange     '1.1.7',
-172 silly addNameRange     '1.2.0',
-172 silly addNameRange     '1.2.1',
-172 silly addNameRange     '1.2.2',
-172 silly addNameRange     '1.2.3',
-172 silly addNameRange     '1.2.4',
-172 silly addNameRange     '1.3.0',
-172 silly addNameRange     '1.3.1',
-172 silly addNameRange     '1.3.2',
-172 silly addNameRange     '1.3.3',
-172 silly addNameRange     '1.4.0',
-172 silly addNameRange     '1.4.1',
-172 silly addNameRange     '1.4.2',
-172 silly addNameRange     '1.4.3',
-172 silly addNameRange     '1.4.4',
-172 silly addNameRange     '1.5.0',
-172 silly addNameRange     '1.5.1',
-172 silly addNameRange     '1.5.2',
-172 silly addNameRange     '1.6.0',
-172 silly addNameRange     '1.7.0',
-172 silly addNameRange     '1.8.0',
-172 silly addNameRange     '1.8.1',
-172 silly addNameRange     '1.8.2',
-172 silly addNameRange     '1.8.3' ] ]
-173 silly addNamed underscore@1.8.3
-174 verbose addNamed "1.8.3" is a plain semver version for underscore
-175 silly cache afterAdd mongoose@4.8.5
-176 verbose afterAdd C:\Users\asma\AppData\Roaming\npm-cache\mongoose\4.8.5\package\package.json not in flight; writing
-177 verbose correctMkdir C:\Users\asma\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
-178 verbose afterAdd C:\Users\asma\AppData\Roaming\npm-cache\mongoose\4.8.5\package\package.json written
-179 silly cache afterAdd mongodb@2.2.24
-180 verbose afterAdd C:\Users\asma\AppData\Roaming\npm-cache\mongodb\2.2.24\package\package.json not in flight; writing
-181 verbose correctMkdir C:\Users\asma\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
-182 verbose afterAdd C:\Users\asma\AppData\Roaming\npm-cache\mongodb\2.2.24\package\package.json written
-183 silly cache afterAdd underscore@1.8.3
-184 verbose afterAdd C:\Users\asma\AppData\Roaming\npm-cache\underscore\1.8.3\package\package.json not in flight; writing
-185 verbose correctMkdir C:\Users\asma\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
-186 verbose afterAdd C:\Users\asma\AppData\Roaming\npm-cache\underscore\1.8.3\package\package.json written
-187 verbose stack Error: No compatible version found: command-line-args@'>=1.1.0 <2.0.0'
-187 verbose stack Valid install targets:
-187 verbose stack ["0.0.0","0.0.1","0.0.2","0.1.0","0.2.0","0.2.1","0.2.2","0.2.3","0.2.4","0.3.0","0.3.1","0.4.0","0.5.0","0.5.1","0.5.2","0.5.3","0.5.4","0.5.5","0.5.6","0.5.7","0.5.8","0.5.9","1.0.0-0","1.0.0-1","1.0.0-2","1.0.0-3","1.1.0-0","1.1.0-1","1.0.0","1.0.1","1.0.2","2.0.0","2.0.1","2.0.2","2.0.3","2.0.4","2.1.0","2.1.1","2.1.2","2.1.3","2.1.4","2.1.5","2.1.6","3.0.0","3.0.1","3.0.2","3.0.3-0","3.0.3","3.0.4","3.0.5","4.0.0-0","4.0.0-1","4.0.0","4.0.1"]
-187 verbose stack
-187 verbose stack     at installTargetsError (C:\Program Files\nodejs\node_modules\npm\lib\cache\add-named.js:284:12)
-187 verbose stack     at next (C:\Program Files\nodejs\node_modules\npm\lib\cache\add-named.js:262:19)
-187 verbose stack     at setData (C:\Program Files\nodejs\node_modules\npm\lib\cache\add-named.js:236:5)
-187 verbose stack     at RES (C:\Program Files\nodejs\node_modules\npm\node_modules\inflight\inflight.js:23:14)
-187 verbose stack     at f (C:\Program Files\nodejs\node_modules\npm\node_modules\once\once.js:17:25)
-187 verbose stack     at fixName (C:\Program Files\nodejs\node_modules\npm\lib\cache\add-named.js:29:5)
-187 verbose stack     at saved (C:\Program Files\nodejs\node_modules\npm\lib\cache\caching-client.js:173:7)
-187 verbose stack     at C:\Program Files\nodejs\node_modules\npm\node_modules\graceful-fs\polyfills.js:210:7
-187 verbose stack     at FSReqWrap.oncomplete (fs.js:82:15)
-188 verbose cwd C:\Platalytics\Code\sentiment-analysis-app
-189 error Windows_NT 6.3.9600
-190 error argv "C:\\Program Files\\nodejs\\node.exe" "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "install"
-191 error node v4.4.5
-192 error npm  v2.15.5
-193 error code ETARGET
-194 error notarget No compatible version found: command-line-args@'>=1.1.0 <2.0.0'
-194 error notarget Valid install targets:
-194 error notarget ["0.0.0","0.0.1","0.0.2","0.1.0","0.2.0","0.2.1","0.2.2","0.2.3","0.2.4","0.3.0","0.3.1","0.4.0","0.5.0","0.5.1","0.5.2","0.5.3","0.5.4","0.5.5","0.5.6","0.5.7","0.5.8","0.5.9","1.0.0-0","1.0.0-1","1.0.0-2","1.0.0-3","1.1.0-0","1.1.0-1","1.0.0","1.0.1","1.0.2","2.0.0","2.0.1","2.0.2","2.0.3","2.0.4","2.1.0","2.1.1","2.1.2","2.1.3","2.1.4","2.1.5","2.1.6","3.0.0","3.0.1","3.0.2","3.0.3-0","3.0.3","3.0.4","3.0.5","4.0.0-0","4.0.0-1","4.0.0","4.0.1"]
-194 error notarget
-194 error notarget This is most likely not a problem with npm itself.
-194 error notarget In most cases you or one of your dependencies are requesting
-194 error notarget a package version that doesn't exist.
-194 error notarget
-194 error notarget It was specified as a dependency of 'AngularJS'
-195 verbose exit [ 1, true ]
+4 verbose install initial load of C:\Platalytics\Code\sentiment-analysis-app\package.json
+5 verbose installManyTop reading scoped package data from C:\Platalytics\Code\sentiment-analysis-app\node_modules\async\package.json
+6 verbose installManyTop reading scoped package data from C:\Platalytics\Code\sentiment-analysis-app\node_modules\body-parser\package.json
+7 verbose installManyTop reading scoped package data from C:\Platalytics\Code\sentiment-analysis-app\node_modules\chai\package.json
+8 verbose installManyTop reading scoped package data from C:\Platalytics\Code\sentiment-analysis-app\node_modules\connect-flash\package.json
+9 verbose installManyTop reading scoped package data from C:\Platalytics\Code\sentiment-analysis-app\node_modules\connect-multiparty\package.json
+10 verbose installManyTop reading scoped package data from C:\Platalytics\Code\sentiment-analysis-app\node_modules\cookie-parser\package.json
+11 verbose installManyTop reading scoped package data from C:\Platalytics\Code\sentiment-analysis-app\node_modules\debug\package.json
+12 verbose installManyTop reading scoped package data from C:\Platalytics\Code\sentiment-analysis-app\node_modules\ejs\package.json
+13 verbose installManyTop reading scoped package data from C:\Platalytics\Code\sentiment-analysis-app\node_modules\express\package.json
+14 verbose installManyTop reading scoped package data from C:\Platalytics\Code\sentiment-analysis-app\node_modules\mongodb\package.json
+15 verbose installManyTop reading scoped package data from C:\Platalytics\Code\sentiment-analysis-app\node_modules\morgan\package.json
+16 verbose installManyTop reading scoped package data from C:\Platalytics\Code\sentiment-analysis-app\node_modules\multer\package.json
+17 verbose installManyTop reading scoped package data from C:\Platalytics\Code\sentiment-analysis-app\node_modules\nodemailer\package.json
+18 verbose installManyTop reading scoped package data from C:\Platalytics\Code\sentiment-analysis-app\node_modules\nodemailer-sendgrid-transport\package.json
+19 verbose installManyTop reading scoped package data from C:\Platalytics\Code\sentiment-analysis-app\node_modules\nodemailer-sendmail-transport\package.json
+20 verbose installManyTop reading scoped package data from C:\Platalytics\Code\sentiment-analysis-app\node_modules\passport\package.json
+21 verbose installManyTop reading scoped package data from C:\Platalytics\Code\sentiment-analysis-app\node_modules\passport-local\package.json
+22 verbose installManyTop reading scoped package data from C:\Platalytics\Code\sentiment-analysis-app\node_modules\request\package.json
+23 verbose installManyTop reading scoped package data from C:\Platalytics\Code\sentiment-analysis-app\node_modules\require\package.json
+24 verbose installManyTop reading scoped package data from C:\Platalytics\Code\sentiment-analysis-app\node_modules\serve-favicon\package.json
+25 verbose installManyTop reading scoped package data from C:\Platalytics\Code\sentiment-analysis-app\node_modules\supertest\package.json
+26 verbose installManyTop reading scoped package data from C:\Platalytics\Code\sentiment-analysis-app\node_modules\underscore\package.json
+27 info package.json connect-flash@0.1.1 No license field.
+28 info package.json passport-local@1.0.0 No license field.
+29 info package.json require@2.4.17 No license field.
+30 verbose readDependencies loading dependencies from C:\Platalytics\Code\sentiment-analysis-app\package.json
+31 silly cache add args [ 'command-line-args@^1.1.0', null ]
+32 verbose cache add spec command-line-args@^1.1.0
+33 silly cache add parsed spec Result {
+33 silly cache add   raw: 'command-line-args@^1.1.0',
+33 silly cache add   scope: null,
+33 silly cache add   name: 'command-line-args',
+33 silly cache add   rawSpec: '^1.1.0',
+33 silly cache add   spec: '>=1.1.0 <2.0.0',
+33 silly cache add   type: 'range' }
+34 silly addNamed command-line-args@>=1.1.0 <2.0.0
+35 verbose addNamed ">=1.1.0 <2.0.0" is a valid semver range for command-line-args
+36 silly addNameRange { name: 'command-line-args',
+36 silly addNameRange   range: '>=1.1.0 <2.0.0',
+36 silly addNameRange   hasData: false }
+37 silly mapToRegistry name command-line-args
+38 silly mapToRegistry using default registry
+39 silly mapToRegistry registry https://registry.npmjs.org/
+40 silly mapToRegistry data Result {
+40 silly mapToRegistry   raw: 'command-line-args',
+40 silly mapToRegistry   scope: null,
+40 silly mapToRegistry   name: 'command-line-args',
+40 silly mapToRegistry   rawSpec: '',
+40 silly mapToRegistry   spec: 'latest',
+40 silly mapToRegistry   type: 'tag' }
+41 silly mapToRegistry uri https://registry.npmjs.org/command-line-args
+42 verbose addNameRange registry:https://registry.npmjs.org/command-line-args not in flight; fetching
+43 verbose request uri https://registry.npmjs.org/command-line-args
+44 verbose request no auth needed
+45 info attempt registry request try #1 at 2:55:21 PM
+46 verbose request id ba9a60f5c9aba6d4
+47 verbose etag W/"5891b791-17947"
+48 verbose lastModified Wed, 01 Feb 2017 10:25:21 GMT
+49 http request GET https://registry.npmjs.org/command-line-args
+50 http 304 https://registry.npmjs.org/command-line-args
+51 verbose headers { date: 'Wed, 01 Mar 2017 09:55:22 GMT',
+51 verbose headers   via: '1.1 varnish',
+51 verbose headers   'cache-control': 'max-age=300',
+51 verbose headers   etag: 'W/"5891b791-17947"',
+51 verbose headers   age: '91',
+51 verbose headers   connection: 'keep-alive',
+51 verbose headers   'x-served-by': 'cache-hhn1530-HHN',
+51 verbose headers   'x-cache': 'HIT',
+51 verbose headers   'x-cache-hits': '1',
+51 verbose headers   'x-timer': 'S1488362122.597206,VS0,VE0',
+51 verbose headers   vary: 'Accept-Encoding' }
+52 silly get cb [ 304,
+52 silly get   { date: 'Wed, 01 Mar 2017 09:55:22 GMT',
+52 silly get     via: '1.1 varnish',
+52 silly get     'cache-control': 'max-age=300',
+52 silly get     etag: 'W/"5891b791-17947"',
+52 silly get     age: '91',
+52 silly get     connection: 'keep-alive',
+52 silly get     'x-served-by': 'cache-hhn1530-HHN',
+52 silly get     'x-cache': 'HIT',
+52 silly get     'x-cache-hits': '1',
+52 silly get     'x-timer': 'S1488362122.597206,VS0,VE0',
+52 silly get     vary: 'Accept-Encoding' } ]
+53 verbose etag https://registry.npmjs.org/command-line-args from cache
+54 verbose get saving command-line-args to C:\Users\asma\AppData\Roaming\npm-cache\registry.npmjs.org\command-line-args\.cache.json
+55 verbose correctMkdir C:\Users\asma\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+56 silly addNameRange number 2 { name: 'command-line-args',
+56 silly addNameRange   range: '>=1.1.0 <2.0.0',
+56 silly addNameRange   hasData: true }
+57 silly addNameRange versions [ 'command-line-args',
+57 silly addNameRange   [ '0.0.0',
+57 silly addNameRange     '0.0.1',
+57 silly addNameRange     '0.0.2',
+57 silly addNameRange     '0.1.0',
+57 silly addNameRange     '0.2.0',
+57 silly addNameRange     '0.2.1',
+57 silly addNameRange     '0.2.2',
+57 silly addNameRange     '0.2.3',
+57 silly addNameRange     '0.2.4',
+57 silly addNameRange     '0.3.0',
+57 silly addNameRange     '0.3.1',
+57 silly addNameRange     '0.4.0',
+57 silly addNameRange     '0.5.0',
+57 silly addNameRange     '0.5.1',
+57 silly addNameRange     '0.5.2',
+57 silly addNameRange     '0.5.3',
+57 silly addNameRange     '0.5.4',
+57 silly addNameRange     '0.5.5',
+57 silly addNameRange     '0.5.6',
+57 silly addNameRange     '0.5.7',
+57 silly addNameRange     '0.5.8',
+57 silly addNameRange     '0.5.9',
+57 silly addNameRange     '1.0.0-0',
+57 silly addNameRange     '1.0.0-1',
+57 silly addNameRange     '1.0.0-2',
+57 silly addNameRange     '1.0.0-3',
+57 silly addNameRange     '1.1.0-0',
+57 silly addNameRange     '1.1.0-1',
+57 silly addNameRange     '1.0.0',
+57 silly addNameRange     '1.0.1',
+57 silly addNameRange     '1.0.2',
+57 silly addNameRange     '2.0.0',
+57 silly addNameRange     '2.0.1',
+57 silly addNameRange     '2.0.2',
+57 silly addNameRange     '2.0.3',
+57 silly addNameRange     '2.0.4',
+57 silly addNameRange     '2.1.0',
+57 silly addNameRange     '2.1.1',
+57 silly addNameRange     '2.1.2',
+57 silly addNameRange     '2.1.3',
+57 silly addNameRange     '2.1.4',
+57 silly addNameRange     '2.1.5',
+57 silly addNameRange     '2.1.6',
+57 silly addNameRange     '3.0.0',
+57 silly addNameRange     '3.0.1',
+57 silly addNameRange     '3.0.2',
+57 silly addNameRange     '3.0.3-0',
+57 silly addNameRange     '3.0.3',
+57 silly addNameRange     '3.0.4',
+57 silly addNameRange     '3.0.5',
+57 silly addNameRange     '4.0.0-0',
+57 silly addNameRange     '4.0.0-1',
+57 silly addNameRange     '4.0.0',
+57 silly addNameRange     '4.0.1' ] ]
+58 verbose stack Error: No compatible version found: command-line-args@'>=1.1.0 <2.0.0'
+58 verbose stack Valid install targets:
+58 verbose stack ["0.0.0","0.0.1","0.0.2","0.1.0","0.2.0","0.2.1","0.2.2","0.2.3","0.2.4","0.3.0","0.3.1","0.4.0","0.5.0","0.5.1","0.5.2","0.5.3","0.5.4","0.5.5","0.5.6","0.5.7","0.5.8","0.5.9","1.0.0-0","1.0.0-1","1.0.0-2","1.0.0-3","1.1.0-0","1.1.0-1","1.0.0","1.0.1","1.0.2","2.0.0","2.0.1","2.0.2","2.0.3","2.0.4","2.1.0","2.1.1","2.1.2","2.1.3","2.1.4","2.1.5","2.1.6","3.0.0","3.0.1","3.0.2","3.0.3-0","3.0.3","3.0.4","3.0.5","4.0.0-0","4.0.0-1","4.0.0","4.0.1"]
+58 verbose stack
+58 verbose stack     at installTargetsError (C:\Program Files\nodejs\node_modules\npm\lib\cache\add-named.js:284:12)
+58 verbose stack     at next (C:\Program Files\nodejs\node_modules\npm\lib\cache\add-named.js:262:19)
+58 verbose stack     at setData (C:\Program Files\nodejs\node_modules\npm\lib\cache\add-named.js:236:5)
+58 verbose stack     at RES (C:\Program Files\nodejs\node_modules\npm\node_modules\inflight\inflight.js:23:14)
+58 verbose stack     at f (C:\Program Files\nodejs\node_modules\npm\node_modules\once\once.js:17:25)
+58 verbose stack     at fixName (C:\Program Files\nodejs\node_modules\npm\lib\cache\add-named.js:29:5)
+58 verbose stack     at saved (C:\Program Files\nodejs\node_modules\npm\lib\cache\caching-client.js:173:7)
+58 verbose stack     at C:\Program Files\nodejs\node_modules\npm\node_modules\graceful-fs\polyfills.js:210:7
+58 verbose stack     at FSReqWrap.oncomplete (fs.js:82:15)
+59 verbose cwd C:\Platalytics\Code\sentiment-analysis-app
+60 error Windows_NT 6.3.9600
+61 error argv "C:\\Program Files\\nodejs\\node.exe" "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "install" "command-line-args"
+62 error node v4.4.5
+63 error npm  v2.15.5
+64 error code ETARGET
+65 error notarget No compatible version found: command-line-args@'>=1.1.0 <2.0.0'
+65 error notarget Valid install targets:
+65 error notarget ["0.0.0","0.0.1","0.0.2","0.1.0","0.2.0","0.2.1","0.2.2","0.2.3","0.2.4","0.3.0","0.3.1","0.4.0","0.5.0","0.5.1","0.5.2","0.5.3","0.5.4","0.5.5","0.5.6","0.5.7","0.5.8","0.5.9","1.0.0-0","1.0.0-1","1.0.0-2","1.0.0-3","1.1.0-0","1.1.0-1","1.0.0","1.0.1","1.0.2","2.0.0","2.0.1","2.0.2","2.0.3","2.0.4","2.1.0","2.1.1","2.1.2","2.1.3","2.1.4","2.1.5","2.1.6","3.0.0","3.0.1","3.0.2","3.0.3-0","3.0.3","3.0.4","3.0.5","4.0.0-0","4.0.0-1","4.0.0","4.0.1"]
+65 error notarget
+65 error notarget This is most likely not a problem with npm itself.
+65 error notarget In most cases you or one of your dependencies are requesting
+65 error notarget a package version that doesn't exist.
+65 error notarget
+65 error notarget It was specified as a dependency of 'AngularJS'
+66 verbose exit [ 1, true ]

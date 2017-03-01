@@ -19,217 +19,221 @@ var mongo = require('mongodb'),
     Server = mongo.Server,
     ObjectID = require('mongodb').ObjectID,
     Db = mongo.Db;
-var server = new Server(getConf().database.ip, getConf().database.port, {
-    auto_reconnect: true
-});
-var db = new Db(getConf().database.db, server);
-db.open(function(err, db) {
-    if(!err) {
 
-        db.collection('pipelineversions', function(err, collection) {
-            if(!err){
-                if (!err) {
-                    collection.findOne({_id:new ObjectID(getConf().pipelineId)},function(err, docs) {
-                        if (!err) {
-                            console.log("DOC");
-                            console.log(docs)
-                            var stages=docs.stages;
-                            getTwitterSourceId(stages,function(doc){
-                                hashTags=doc.stage_attributes.hash_tags;
-                                twitterStage=doc;
-                            });
-                        }
-                    });
-                }
+
+router.get('/', function (req, res, next) {
+    var server = new Server(getConf().database.ip, getConf().database.port, {
+        auto_reconnect: true
+    });
+    var db = new Db(getConf().database.db, server);
+    db.open(function(err, db) {
+        if(!err) {
+
+
+        }
+        else{
+            console.log("error connecting db")
+        }
+
+
+    });
+    db.collection('pipelineversions', function(err, collection) {
+        if(!err){
+            if (!err) {
+                collection.findOne({_id:new ObjectID(getConf().pipelineId)},function(err, docs) {
+                    if (!err) {
+                        console.log("DOC");
+                        console.log(docs)
+                        var stages=docs.stages;
+                        getTwitterSourceId(stages,function(doc){
+                            hashTags=doc.stage_attributes.hash_tags;
+                            twitterStage=doc;
+                        });
+                    }
+                });
             }
-        })
-        console.log("connected to db :"+getConf().database.ip )
-        router.get('/', function (req, res, next) {
-            res.render('index', {title: 'Express'});
-        });
-        router.get('/fetchData',function(req, res,next){
+        }
+    })
+    console.log("connected to db :"+getConf().database.ip )
+
+    res.render('index', {title: 'Express'});
+});
+router.get('/fetchData',function(req, res,next){
 //            console.log(getConf().testUser.id);
 //            console.log(req.params);
-            /* var initial_params = decodeURIComponent(req.params.url);
-             var params = initial_params + '&test_user=' + getConf().testUser.id;*/
-            var url=getConf().smartSinkQueryUrl;
-            console.log(url)
-            //var url="http://45.55.159.119:3000/platalytics/api/version/developers_interface/process/562f2ada3a366cf9052db40f/smart_sink/563738e1e709572d6aa3fb3f/?SELECT=Predicted_Label,Tweet_Id,userName,screenName,location,dateTime,status,HashTags%20&tool=phoenix&start=0&rows=500"+ '&test_user=' + getConf().testUser.id;;
-            request(url, function (error, response, body) {
-                var parsedBody = "";
-                try {
+    /* var initial_params = decodeURIComponent(req.params.url);
+     var params = initial_params + '&test_user=' + getConf().testUser.id;*/
+    var url=getConf().smartSinkQueryUrl;
+    console.log(url)
+    //var url="http://45.55.159.119:3000/platalytics/api/version/developers_interface/process/562f2ada3a366cf9052db40f/smart_sink/563738e1e709572d6aa3fb3f/?SELECT=Predicted_Label,Tweet_Id,userName,screenName,location,dateTime,status,HashTags%20&tool=phoenix&start=0&rows=500"+ '&test_user=' + getConf().testUser.id;;
+    request(url, function (error, response, body) {
+        var parsedBody = "";
+        try {
 
-                    parsedBody = JSON.parse(body);
-                    console.log("=======================After Parsing================================")
-                    console.log(parsedBody)
-                }
-                catch (ex) {
+            parsedBody = JSON.parse(body);
+            console.log("=======================After Parsing================================")
+            console.log(parsedBody)
+        }
+        catch (ex) {
 
-                    console.log("Exception occurred while parsing oozie response : " + ex);
-                }
-                finally {
+            console.log("Exception occurred while parsing oozie response : " + ex);
+        }
+        finally {
 
-                    if (parsedBody instanceof Object) {
-                        getTwitterSourceHashTags(twitterStage,function(hashTags){
-                        //    hashTags=doc.stage_attributes.hash_tags;
-                         //   twitterStage=doc;
-                            console.log("hasTags")
-                            console.log(hashTags)
-                            if(typeof hashTags !="null" && hashTags!="" && hashTags!=null)
-                            {
-                                var tmp = hashTags.split(',').join('~').toLowerCase();
-                                var lcArray = tmp.split('~');
-                                // console.log("local array");
-                                //   console.log(lcArray);
-                                //  console.log("parsedBody.data.data")
-                                // console.log(parsedBody.data.data)
-                                var newArray = _.filter (parsedBody.response.data, function(obj) {
-                                    var index=-1;
+            if (parsedBody instanceof Object) {
+                getTwitterSourceHashTags(twitterStage,function(hashTags){
+                    //    hashTags=doc.stage_attributes.hash_tags;
+                    //   twitterStage=doc;
+                    console.log("hasTags")
+                    console.log(hashTags)
+                    if(typeof hashTags !="null" && hashTags!="" && hashTags!=null)
+                    {
+                        var tmp = hashTags.split(',').join('~').toLowerCase();
+                        var lcArray = tmp.split('~');
+                        // console.log("local array");
+                        //   console.log(lcArray);
+                        //  console.log("parsedBody.data.data")
+                        // console.log(parsedBody.data.data)
+                        var newArray = _.filter (parsedBody.response.data, function(obj) {
+                            var index=-1;
 //                            console.log(obj);
-                                    //console.log(lcArray);
-                                    // console.log("sds")
-                                    // console.log(obj.HASHTAGS)
-                                    return lcArray.indexOf(obj.HASHTAGS.toLowerCase())>-1;
-
-                                });
-
-                                parsedBody.response.data=newArray;
-                                // console.log("newArray")
-                                //  console.log(newArray)
-
-                                res.send({status: true, msg: "response received", data: parsedBody.response,hashTags:hashTags});
-                            }
-                            else{
-                                res.send({status: true, msg: "response received", data: parsedBody.response,hashTags:""});
-                            }
-
+                            //console.log(lcArray);
+                            // console.log("sds")
+                            // console.log(obj.HASHTAGS)
+                            return lcArray.indexOf(obj.HASHTAGS.toLowerCase())>-1;
 
                         });
 
+                        parsedBody.response.data=newArray;
+                        // console.log("newArray")
+                        //  console.log(newArray)
 
+                        res.send({status: true, msg: "response received", data: parsedBody.response,hashTags:hashTags});
                     }
-                    else {
-                        res.send({status: false, msg: "Non JSON response received.", data: []});
+                    else{
+                        res.send({status: true, msg: "response received", data: parsedBody.response,hashTags:""});
                     }
-                }
 
-            });
-        });
-        router.post('/upload', function (req, res) {
 
-            console.log(req.files);
+                });
 
-            if (req.body.length == 1) {
 
-                var file_path = req.files.FILE.path;
-                var dest_path = './public/uploads/' + req.files.FILE.originalname;
+            }
+            else {
+                res.send({status: false, msg: "Non JSON response received.", data: []});
+            }
+        }
 
-                fs.rename(file_path, dest_path, function (err) {
+    });
+});
+router.post('/upload', function (req, res) {
+
+    console.log(req.files);
+
+    if (req.body.length == 1) {
+
+        var file_path = req.files.FILE.path;
+        var dest_path = './public/uploads/' + req.files.FILE.originalname;
+
+        fs.rename(file_path, dest_path, function (err) {
+            if (err) {
+                fs.unlink(file_path, function () {
                     if (err) {
-                        fs.unlink(file_path, function () {
-                            if (err) {
-                                throw err;
-                            }
-
-                        });
-                    }
-
-                    else {
-                        res.send('File Uploaded Successfully');
+                        throw err;
                     }
 
                 });
             }
 
             else {
-                for (var i = 0; i < req.files.FILE.length; i++) {
-
-                    var file_path = req.files.FILE[i].path;
-                    var dest_path = './public/uploads/' + req.files.FILE[i].originalname;
-
-                    if ((i + 1) == req.files.FILE.length) {
-                        res.send('File/s Uploaded Successfully');
-                    }
-
-                    fs.rename(file_path, dest_path, function (err) {
-                        if (err) {
-                            fs.unlink(file_path, function () {
-                                if (err) {
-                                    throw err;
-                                }
-
-                            });
-                        }
-                    });
-                }
+                res.send('File Uploaded Successfully');
             }
 
         });
-        router.post('/saveHashTag', function (req, res) {
-            twitterStage.stage_attributes.hash_tags=req.body.tags;
-            db.collection('stageversions', function(err, collection) {
-                console.log("testing")
-                if(!err){
-                    console.log("twiiter doc")
-                    console.log(twitterStage)
-                    collection.update({_id:new ObjectID(twitterStage._id)}, {$set: {stage_attributes:twitterStage.stage_attributes}},function(){
-                        if(!err){
-                            hashTags=req.body.tags;
-                            res.send({status: true, msg: "Hash Tags updated"});
+    }
 
+    else {
+        for (var i = 0; i < req.files.FILE.length; i++) {
+
+            var file_path = req.files.FILE[i].path;
+            var dest_path = './public/uploads/' + req.files.FILE[i].originalname;
+
+            if ((i + 1) == req.files.FILE.length) {
+                res.send('File/s Uploaded Successfully');
+            }
+
+            fs.rename(file_path, dest_path, function (err) {
+                if (err) {
+                    fs.unlink(file_path, function () {
+                        if (err) {
+                            throw err;
                         }
+
                     });
                 }
             });
-        });
-        function getTwitterSourceId(stages,callback){
-            console.log(stages);
-            for(var i=0;i<stages.length;i++){
-                db.collection('stageversions', function(err, collection) {
-                    if(!err){
-                        if (!err) {
-                            collection.findOne({_id:new ObjectID(stages[i].version_id)},function(err, doc) {
-                                if (!err) {
-                                    if(doc.sub_type=='twitter'){
-                                        console.log("doc ment found")
-                                        console.log("doc ment found")
-                                        callback(doc);
-                                    }
-                                }
-                            });
-                        }
-                    }
-                })
-            }
-        }
-        function getTwitterSourceHashTags(twitterStage,callback){
-            db.collection('stageversions', function(err, collection) {
-                if(!err){
-                    if (!err) {
-                        collection.findOne({_id:new ObjectID(twitterStage._id)},function(err, doc) {
-                            if (!err) {
-                                    console.log("doc")
-                                    console.log(doc)
-                                if(doc){
-                                    callback(doc.stage_attributes.hash_tags);
-                                }
-                                else{
-                                    callback("");
-                                }
-
-                            }
-                        });
-                    }
-                }
-            })
         }
     }
-    else{
-        console.log("error connecting db")
-    }
-
 
 });
+router.post('/saveHashTag', function (req, res) {
+    twitterStage.stage_attributes.hash_tags=req.body.tags;
+    db.collection('stageversions', function(err, collection) {
+        console.log("testing")
+        if(!err){
+            console.log("twiiter doc")
+            console.log(twitterStage)
+            collection.update({_id:new ObjectID(twitterStage._id)}, {$set: {stage_attributes:twitterStage.stage_attributes}},function(){
+                if(!err){
+                    hashTags=req.body.tags;
+                    res.send({status: true, msg: "Hash Tags updated"});
+
+                }
+            });
+        }
+    });
+});
+function getTwitterSourceId(stages,callback){
+    console.log(stages);
+    for(var i=0;i<stages.length;i++){
+        db.collection('stageversions', function(err, collection) {
+            if(!err){
+                if (!err) {
+                    collection.findOne({_id:new ObjectID(stages[i].version_id)},function(err, doc) {
+                        if (!err) {
+                            if(doc.sub_type=='twitter'){
+                                console.log("doc ment found")
+                                console.log("doc ment found")
+                                callback(doc);
+                            }
+                        }
+                    });
+                }
+            }
+        })
+    }
+}
+function getTwitterSourceHashTags(twitterStage,callback){
+    db.collection('stageversions', function(err, collection) {
+        if(!err){
+            if (!err) {
+                collection.findOne({_id:new ObjectID(twitterStage._id)},function(err, doc) {
+                    if (!err) {
+                        console.log("doc")
+                        console.log(doc)
+                        if(doc){
+                            callback(doc.stage_attributes.hash_tags);
+                        }
+                        else{
+                            callback("");
+                        }
+
+                    }
+                });
+            }
+        }
+    })
+}
 
 module.exports=router;
 
