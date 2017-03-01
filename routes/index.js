@@ -51,8 +51,6 @@ router.get('/', function (req, res, next) {
                                 twitterStage=doc;
 
                                 res.render('index', {title: 'Express'});
-
-
                             });
                         }
                         else{
@@ -66,8 +64,6 @@ router.get('/', function (req, res, next) {
         else{
             console.log("error connecting db")
         }
-
-
     });
 
 });

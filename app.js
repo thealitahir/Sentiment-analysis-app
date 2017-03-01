@@ -10,8 +10,7 @@ var url = require('./routes/url');
 
 var app = express();
 
-var multer = require('multer');
-app.use(multer());
+
 var array=[{team:'london',player:'smith',goals:2},{team:'munich',player:'schwartz',goals:1},{team:'london',player:'robert',goals:1},{team:'munich',player:'schwartz',goals:3}]
 function groupBy(key,array){
     var group={};

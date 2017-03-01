@@ -39,8 +39,8 @@ var CLIOptions = [
 
 var cli = commandLineArgs(CLIOptions);
 console.log('CLI')
-console.log(cli)
-GLOBAL.CONFIGURATIONS = cli;
+console.log(cli.parse())
+GLOBAL.CONFIGURATIONS = cli.parse();
 
 var server = http.createServer(app);
 
