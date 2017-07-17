@@ -160,10 +160,10 @@ APIFetchController.controller('DemoController', ['$scope', 'CRUDService', '$time
         for(var key in groupByHastTags){
             groupByHastTags[key]= _.groupBy(groupByHastTags[key],function(item){
                 //console.log(item);
-                if(item["PREDICTED_SENTIMENT"].toLowerCase() == "positive"){
+                if(item["PREDICTED_LABEL_SENTIMENT"].toLowerCase() == "positive"){
                     return "positive";
                 }
-                else if(item["PREDICTED_SENTIMENT"].toLowerCase() == "negative"){
+                else if(item["PREDICTED_LABEL_SENTIMENT"].toLowerCase() == "negative"){
 
                     return "negative";
                 }
@@ -278,10 +278,10 @@ APIFetchController.controller('DemoController', ['$scope', 'CRUDService', '$time
         for(var key in groupByHastTags){
             groupByHastTags[key]= _.groupBy(groupByHastTags[key],function(item){
                 console.log(item);
-                if(item["PREDICTED_SENTIMENT"].toLowerCase() == "positive"){
+                if(item["PREDICTED_LABEL_SENTIMENT"].toLowerCase() == "positive"){
                     return "positive";
                 }
-                else if(item["PREDICTED_SENTIMENT"].toLowerCase() == "negative"){
+                else if(item["PREDICTED_LABEL_SENTIMENT"].toLowerCase() == "negative"){
 
                     return "negative";
                 }
@@ -348,10 +348,10 @@ APIFetchController.controller('DemoController', ['$scope', 'CRUDService', '$time
         for(var key in groupByHastTags){
             groupByHastTags[key]= _.groupBy(groupByHastTags[key],function(item){
                 //console.log(item);
-                if(item["PREDICTED_SENTIMENT"].toLowerCase() == "positive"){
+                if(item["PREDICTED_LABEL_SENTIMENT"].toLowerCase() == "positive"){
                     return "positive";
                 }
-                else if(item["PREDICTED_SENTIMENT"].toLowerCase() == "negative"){
+                else if(item["PREDICTED_LABEL_SENTIMENT"].toLowerCase() == "negative"){
 
                     return "negative";
                 }
@@ -631,12 +631,12 @@ APIFetchController.controller('DemoController', ['$scope', 'CRUDService', '$time
 
                 var icon=blueMarker;
 
-                if($scope.gisData[i]["PREDICTED_SENTIMENT"].toLowerCase()=="positive"){
+                if($scope.gisData[i]["PREDICTED_LABEL_SENTIMENT"].toLowerCase()=="positive"){
                     icon=greenMarker;
                     //popup=popup+"<td>TWEET SENTIMENT:</td><td><font color='green'> "+$scope.gisData[i].PREDICTED_LABEL+'</font></td></tr>';
 
                 }
-                else if($scope.gisData[i]["PREDICTED_SENTIMENT"].toLowerCase()=="negative"){
+                else if($scope.gisData[i]["PREDICTED_LABEL_SENTIMENT"].toLowerCase()=="negative"){
 
                     icon=redMarker;
                     //popup=popup+"<td>TWEET SENTIMENT:</td><td><font color='red'> "+$scope.gisData[i].PREDICTED_LABEL+'</font></td></tr>';
