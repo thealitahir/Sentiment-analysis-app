@@ -36,18 +36,17 @@ var CLIOptions = [
   { name: "frontEndHost", type: String, defaultValue: "localhost", description: "[bold]{Default: localhost} -- Host for frontend app."},
   { name: "frontEndPort", type: Number, defaultValue: 5000, description: "[bold]{Default: 5000} -- Port for frontend app."},
   { name: "processId", type: String, defaultValue: "5811ef825b2686b20192a382", description: "[bold]{Default: } -- process ID"},
-  { name: "smartSinkId", type: String, defaultValue: "5821ae86562069c371f99b3b", description: "[bold]{Default: } -- smart Sink ID"},
+  { name: "smartSinkId", type: String, defaultValue: "5821ae86562069c371f99b3b", description: "[bold]{Default: } -- smart Sink ID"}
 ];
 
 var cli = commandLineArgs(CLIOptions);
 GLOBAL.CONFIGURATIONS = cli.parse();
 
-console.log('CLI')
-console.log(CONFIGURATIONS)
+
 
 var server = http.createServer(app);
 
-
+console.log(port)
 server.listen(port);
 server.on('error', onError);
 server.on('listening', onListening);
