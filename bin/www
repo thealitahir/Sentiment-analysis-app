@@ -29,14 +29,14 @@ var app = require('../app');
 
 var CLIOptions = [
   { name: "db", type: String, defaultValue: "test", description: "[bold]{Default: localhost} -- Host for db"},
-  { name: "dbHost", type: String, defaultValue: "localhost", description: "[bold]{Default: localhost} -- Host for db"},
-  { name: "dbPort", type: Number, defaultValue: 27017, description: "[bold]{Default: 27017} -- Port for db"},
-  { name: "backEndHost", type: String, defaultValue: "localhost", description: "[bold]{Default: localhost} -- Host for frontend app."},
+  { name: "dbHost", type: String, defaultValue: "10.0.5.55", description: "[bold]{Default: 10.0.5.55} -- Host for db"},
+  { name: "dbPort", type: Number, defaultValue: 9876, description: "[bold]{Default: 9876} -- Port for db"},
+  { name: "backEndHost", type: String, defaultValue: "10.0.5.55", description: "[bold]{Default: 10.0.5.55} -- Host for frontend app."},
   { name: "backEndPort", type: Number, defaultValue: 7777, description: "[bold]{Default: 7777} -- Port for frontend app."},
   { name: "frontEndHost", type: String, defaultValue: "localhost", description: "[bold]{Default: localhost} -- Host for frontend app."},
   { name: "frontEndPort", type: Number, defaultValue: 5000, description: "[bold]{Default: 5000} -- Port for frontend app."},
-  { name: "processId", type: String, defaultValue: "5811ef825b2686b20192a382", description: "[bold]{Default: } -- process ID"},
-  { name: "smartSinkId", type: String, defaultValue: "5821ae86562069c371f99b3b", description: "[bold]{Default: } -- smart Sink ID"}
+  { name: "processId", type: String, defaultValue: "5c2f5c5fc2c510640cb0e5b7", description: "[bold]{Default: } -- process ID"},
+  { name: "smartSinkId", type: String, defaultValue: "5c2f5c5f84987a673af6336e", description: "[bold]{Default: } -- smart Sink ID"}
 ];
 
 var cli = commandLineArgs(CLIOptions);

@@ -20,7 +20,7 @@ var mongo = require('mongodb'),
     ObjectID = require('mongodb').ObjectID,
     Db = mongo.Db;
 
-var db ;
+var db;
 
 router.get('/', function (req, res, next) {
     var server = new Server(getConf().database.ip, getConf().database.port, {
@@ -81,6 +81,8 @@ router.get('/fetchData',function(req, res,next){
     console.log(url)
     //var url="http://45.55.159.119:3000/platalytics/api/version/developers_interface/process/562f2ada3a366cf9052db40f/smart_sink/563738e1e709572d6aa3fb3f/?SELECT=Predicted_Label,Tweet_Id,userName,screenName,location,dateTime,status,HashTags%20&tool=phoenix&start=0&rows=500"+ '&test_user=' + getConf().testUser.id;;
     request(url, function (error, response, body) {
+
+        console.log(body);
         var parsedBody = "";
         try {
 
@@ -108,7 +110,7 @@ router.get('/fetchData',function(req, res,next){
                         //   console.log(lcArray);
                         //  console.log("parsedBody.data.data")
                         // console.log(parsedBody.data.data)
-                        var newArray = _.filter (parsedBody.response.data, function(obj) {
+                        var newArray = _.filter (parsedBody.data, function(obj) {
                             var index=-1;
 //                            console.log(obj);
                             //console.log(lcArray);
@@ -118,14 +120,14 @@ router.get('/fetchData',function(req, res,next){
 
                         });
 
-                        parsedBody.response.data=newArray;
+                        parsedBody.data=newArray;
                         // console.log("newArray")
                         //  console.log(newArray)
 
-                        res.send({status: true, msg: "response received", data: parsedBody.response,hashTags:hashTags});
+                        res.send({status: true, msg: "response received", data: parsedBody,hashTags:hashTags});
                     }
                     else{
-                        res.send({status: true, msg: "response received", data: parsedBody.response,hashTags:""});
+                        res.send({status: true, msg: "response received", data: parsedBody,hashTags:""});
                     }
 
 
@@ -191,21 +193,29 @@ router.post('/upload', function (req, res) {
 
 });
 router.post('/saveHashTag', function (req, res) {
+    console.log(req.body.tags);
     twitterStage.stage_attributes.hash_tags=req.body.tags;
-    db.collection('stageversions', function(err, collection) {
-        console.log("testing")
-        if(!err){
-            console.log("twiiter doc")
-            console.log(twitterStage)
-            collection.update({_id:new ObjectID(twitterStage._id)}, {$set: {stage_attributes:twitterStage.stage_attributes}},function(){
-                if(!err){
-                    hashTags=req.body.tags;
-                    res.send({status: true, msg: "Hash Tags updated"});
-
-                }
-            });
-        }
+    var server = new Server(getConf().database.ip, getConf().database.port, {
+        auto_reconnect: true
     });
+    db = new Db(getConf().database.db, server);
+    db.open(function(err, db) {
+        db.collection('stageversions', function(err, collection) {
+            console.log("testing")
+            if(!err){
+                console.log("twiiter doc")
+                console.log(twitterStage)
+                collection.update({_id:new ObjectID(twitterStage._id)}, {$set: {stage_attributes:twitterStage.stage_attributes}},function(){
+                    if(!err){
+                        hashTags=req.body.tags;
+                        res.send({status: true, msg: "Hash Tags updated"});
+
+                    }
+                });
+            }
+        });
+    });
+
 });
 function getTwitterSourceId(stages,callback){
     console.log('getTwitterSourceId');
@@ -218,7 +228,7 @@ function getTwitterSourceId(stages,callback){
                         if (!err) {
                             if(doc.sub_type=='twitter'){
                                 console.log("doc ment found")
-                                console.log("doc ment found")
+                                console.log("doc m  ent found")
                                 callback(doc);
                             }
                         }
@@ -229,7 +239,32 @@ function getTwitterSourceId(stages,callback){
     }
 }
 function getTwitterSourceHashTags(twitterStage,callback){
-    db.collection('stageversions', function(err, collection) {
+    var server = new Server(getConf().database.ip, getConf().database.port, {
+        auto_reconnect: true
+    });
+    db = new Db(getConf().database.db, server);
+    db.open(function(err, db) {
+        db.collection('stageversions', function(err, collection) {
+            if(!err){
+                if (!err) {
+                    collection.findOne({_id:new ObjectID(twitterStage._id)},function(err, doc) {
+                        if (!err) {
+                            console.log("doc")
+                            console.log(doc)
+                            if(doc){
+                                callback(doc.stage_attributes.hash_tags);
+                            }
+                            else{
+                                callback("");
+                            }
+
+                        }
+                    });
+                }
+            }
+        })
+    });
+    /*db.collection('stageversions', function(err, collection) {
         if(!err){
             if (!err) {
                 collection.findOne({_id:new ObjectID(twitterStage._id)},function(err, doc) {
@@ -247,7 +282,7 @@ function getTwitterSourceHashTags(twitterStage,callback){
                 });
             }
         }
-    })
+    })*/
 }
 
 module.exports=router;
@@ -266,7 +301,16 @@ function getConf(){
         baseUrl: "http://" + CONFIGURATIONS.frontEndHost + ':' + CONFIGURATIONS.frontEndPort,
         pipelineId: CONFIGURATIONS.processId,
         //smartSinkQueryUrl:'http://24.16.42.120:5000/platalytics/api/version/developers_interface/process/5811ef825b2686b20192a382/smart_sink/58a4650c6ad364cbcc108bd8/?query=select%20Predicted_label_sentiment%20as%20PREDICTED_SENTIMENT,Tweet_Id,%20userName,%20screenName,location,dateTime%20,status,%20HashTags%20from%20TABLE58A4650C6AD364CBCC108BD8%20where%20HashTags%20is%20not%20null%20and%20HashTags%20%3C%3E%20%27null%27%20order%20by%20TWEET_ID%20desc%20limit%201000&sink_profile=5804911c87b25b0e5b29653e&cluster_profile=5804911a87b25b0e5b29653b&start=0&rows=500&api_key=35454545'
-        smartSinkQueryUrl:'http://'+CONFIGURATIONS.backEndHost+':'+CONFIGURATIONS.backEndPort+'/services/api/querysink/getData?process='+CONFIGURATIONS.processId+'%3A'+CONFIGURATIONS.smartSinkId+'%3B&query=select%20Predicted_label_sentiment%20as%20PREDICTED_SENTIMENT%2CTweet_Id%2C%20userName%2C%20screenName%2Clocation%2CdateTime%20%2Cstatus%2C%20HashTags%20from%20TABLE'+CONFIGURATIONS.smartSinkId.toUpperCase()+'%20where%20HashTags%20is%20not%20null%20and%20HashTags%20%3C%3E%20%27null%27%20order%20by%20TWEET_ID%20desc%20limit%201000&sink_type=smart&start=0&rows=500&sink_profile=5804911c87b25b0e5b29653e&cluster_profile=5804911a87b25b0e5b29653b'
+        smartSinkQueryUrl:'http://'+CONFIGURATIONS.backEndHost+':'+
+        CONFIGURATIONS.backEndPort+'/services/api/smartsink/'+CONFIGURATIONS.smartSinkId+
+        '?rows=500&query=select%20PREDICTED_LABEL%20as%20PREDICTED_SENTIMENT%2CTweet_Id%2C%20USERNAME%2C%20screenName%2CDATETIME%20%2CSTATUS%2C%20HASHTAGS%20from%20TABLE5C2F5C5F84987A673AF6336E%20where%20HashTags%20is%20not%20null%20and%20HashTags%20%3C%3E%20%27null%27%20order%20by%20TWEET_ID%20desc%20limit%201000'
+
+        /*baseUrl: "http://" + CONFIGURATIONS.frontEndHost + ':' + CONFIGURATIONS.frontEndPort,
+        pipelineId: CONFIGURATIONS.processId,
+        //smartSinkQueryUrl:'http://24.16.42.120:5000/platalytics/api/version/developers_interface/process/5811ef825b2686b20192a382/smart_sink/58a4650c6ad364cbcc108bd8/?query=select%20Predicted_label_sentiment%20as%20PREDICTED_SENTIMENT,Tweet_Id,%20userName,%20screenName,location,dateTime%20,status,%20HashTags%20from%20TABLE58A4650C6AD364CBCC108BD8%20where%20HashTags%20is%20not%20null%20and%20HashTags%20%3C%3E%20%27null%27%20order%20by%20TWEET_ID%20desc%20limit%201000&sink_profile=5804911c87b25b0e5b29653e&cluster_profile=5804911a87b25b0e5b29653b&start=0&rows=500&api_key=35454545'
+        smartSinkQueryUrl:'http://'+CONFIGURATIONS.backEndHost+':'+
+        CONFIGURATIONS.backEndPort+'/services/api/querysink/getData?process='+CONFIGURATIONS.processId+'%3A'+CONFIGURATIONS.smartSinkId
+        +'%3B&query=select%20Predicted_label_sentiment%20as%20PREDICTED_SENTIMENT%2CTweet_Id%2C%20userName%2C%20screenName%2Clocation%2CdateTime%20%2Cstatus%2C%20HashTags%20from%20TABLE'+CONFIGURATIONS.smartSinkId.toUpperCase()+'%20where%20HashTags%20is%20not%20null%20and%20HashTags%20%3C%3E%20%27null%27%20order%20by%20TWEET_ID%20desc%20limit%201000&sink_type=smart&start=0&rows=500&sink_profile=5804911c87b25b0e5b29653e&cluster_profile=5804911a87b25b0e5b29653b'*/
     };
     //console.log(conf);
     return conf;
