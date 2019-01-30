@@ -278,10 +278,10 @@ APIFetchController.controller('DemoController', ['$scope', 'CRUDService', '$time
         for(var key in groupByHastTags){
             groupByHastTags[key]= _.groupBy(groupByHastTags[key],function(item){
                 console.log(item);
-                if(item["PREDICTED_SENTIMENT"].toLowerCase() == "positive"){
+                if(item["PREDICTED_SENTIMENT"].toLowerCase() == "2"){
                     return "positive";
                 }
-                else if(item["PREDICTED_SENTIMENT"].toLowerCase() == "negative"){
+                else if(item["PREDICTED_SENTIMENT"].toLowerCase() == "1"){
 
                     return "negative";
                 }
@@ -348,10 +348,10 @@ APIFetchController.controller('DemoController', ['$scope', 'CRUDService', '$time
         for(var key in groupByHastTags){
             groupByHastTags[key]= _.groupBy(groupByHastTags[key],function(item){
                 //console.log(item);
-                if(item["PREDICTED_SENTIMENT"].toLowerCase() == "positive"){
+                if(item["PREDICTED_SENTIMENT"].toLowerCase() == "2"){
                     return "positive";
                 }
-                else if(item["PREDICTED_SENTIMENT"].toLowerCase() == "negative"){
+                else if(item["PREDICTED_SENTIMENT"].toLowerCase() == "1"){
 
                     return "negative";
                 }
