@@ -35,8 +35,8 @@ var CLIOptions = [
   { name: "backEndPort", type: Number, defaultValue: 7777, description: "[bold]{Default: 7777} -- Port for frontend app."},
   { name: "frontEndHost", type: String, defaultValue: "localhost", description: "[bold]{Default: localhost} -- Host for frontend app."},
   { name: "frontEndPort", type: Number, defaultValue: 5000, description: "[bold]{Default: 5000} -- Port for frontend app."},
-  { name: "processId", type: String, defaultValue: "5c2f5c5fc2c510640cb0e5b7", description: "[bold]{Default: } -- process ID"},
-  { name: "smartSinkId", type: String, defaultValue: "5c2f5c5f84987a673af6336e", description: "[bold]{Default: } -- smart Sink ID"}
+  { name: "processId", type: String, defaultValue: "5c51641b607a223b3ef0ea61", description: "[bold]{Default: } -- process ID"},
+  { name: "smartSinkId", type: String, defaultValue: "5c51641b3742c52e5df7c8a3", description: "[bold]{Default: } -- smart Sink ID"}
 ];
 
 var cli = commandLineArgs(CLIOptions);
